@@ -1,0 +1,888 @@
+﻿<!DOCTYPE html>
+<html lang="@Context.Session.GetString("lang")" class="@Context.Session.GetString("theme")-style layout-navbar-fixed layout-menu-fixed" 
+dir="@Context.Session.GetString("dir")" 
+    data-theme="theme-default"
+    data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    
+    <title data-lang="@ViewData["page_title_data_lang"]"></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets/img/favicon/favicon.ico" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin asp-append-version="true" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" asp-append-version="true" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icons.css" asp-append-version="true" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/core.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/theme-default.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/css/demo.css" asp-append-version="true" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/typeahead-js/typeahead.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bs-stepper/bs-stepper.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-select/bootstrap-select.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/select2/select2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" asp-append-version="true" />  
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.css" asp-append-version="true" />
+
+    <!-- jQuery Data Tables -->
+    <link href="~/assets/DataTables/datatables.min.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/custom/css/site.css" asp-append-version="true" />
+
+    <!-- Installed Libraries -->
+    <link rel="stylesheet" href="~/custom/lib/sweet_alert_2/sweetalert2.min.css" asp-append-version="true" />
+
+    <!-- Helpers -->
+    <script src="~/assets/vendor/js/helpers.js" asp-append-version="true"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    @*<script src="~/assets/vendor/js/template-customizer.js" asp-append-version="true"></script>*@
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="~/assets/js/config.js" asp-append-version="true"></script>
+
+    <!-- Dark Theme -->
+    @{
+        if (Context.Session.GetString("theme") == "dark")
+        {
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/core-dark.css" class="template-customizer-core-css" asp-append-version="true">
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/theme-default-dark.css" class="template-customizer-theme-css" asp-append-version="true">
+        }
+    }
+    
+</head>
+<body>
+
+    <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Menu -->
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a asp-area="" asp-controller="Home" asp-action="Index" class="app-brand-link">
+              <img class="logo" src="~/favicon.png" alt="General Investment Authority" />
+          </a>
+
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="bx menu-toggle-icon fs-4 d-none d-xl-block align-middle"></i>
+            <i class="bx bx-x bx-sm d-xl-none d-block align-middle"></i>
+          </a>
+        </div>
+
+        <div class="menu-divider mt-0"></div>
+
+        <div class="menu-inner-shadow"></div>
+
+                @{
+                    if (false)
+                    {
+                        @* Projects Office *@
+                        <ul class="menu-inner py-1">
+                            <li class="menu-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-dashboard"></i>
+                                <div data-lang="Dashboard"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Search" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-search-alt-2"></i>
+                                <div data-lang="Search"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Registration" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-edit-alt"></i>
+                                <div data-lang="Register a Project"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bxs-book-content"></i>
+                                <div data-lang="Projects"></div>
+                            </a>
+
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                <a asp-area="" asp-controller="Home" asp-action="RegisteredProjects" class="menu-link">
+                                    <div data-lang="Registered"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a asp-area="" asp-controller="Home" asp-action="ProjectsUnderRegistration" class="menu-link">
+                                    <div data-lang="Under Registration"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+                                    <div data-lang="Done"></div>
+                                </a>
+                                </li>
+                            </ul>
+                            </li>
+                            <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bxs-folder-open"></i>
+                                <div data-lang="Order Folders"></div>
+                            </a>
+
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                <a href="layouts-collapsed-menu.html" class="menu-link">
+                                    <div data-lang="All"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a href="layouts-content-navbar.html" class="menu-link">
+                                    <div data-lang="Current"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+                                    <div data-lang="Done"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+                                    <div data-lang="Outstanding"></div>
+                                </a>
+                                </li>
+                            </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-controller="Home" asp-action="AlertsAndTasks" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-task"></i>
+                                <div data-lang="Alerts and Tasks"></div>
+                            </a>
+                            </li>
+                        </ul>
+                        @* / Projects Office *@
+                    }
+                    else if (true)
+                    {
+                        @* Projects Office *@
+                        <ul class="menu-inner py-1">
+                            <li class="menu-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-dashboard"></i>
+                                <div data-lang="Dashboard"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Search" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-search-alt-2"></i>
+                                <div data-lang="Search"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Registration"  class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-edit-alt"></i>
+                                <div data-lang="Register a Project"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bxs-book-content"></i>
+                                <div data-lang="Projects"></div>
+                            </a>
+
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                <a asp-area="" asp-controller="Home" asp-action="RegisteredProjects" class="menu-link">
+                                    <div data-lang="Registered"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a asp-area="" asp-controller="Home" asp-action="ProjectsUnderRegistration" class="menu-link">
+                                    <div data-lang="Under Registration"></div>
+                                </a>
+                                </li>
+                                <li class="menu-item">
+                                <a asp-controller="Home" asp-action="FinishedProjects" class="menu-link">
+                                    <div data-lang="Finished"></div>
+                                </a>
+                                </li>
+                            </ul>
+                            </li>
+                            <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bxs-folder-open"></i>
+                                <div data-lang="Order Folders"></div>
+                            </a>
+
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a asp-controller="Home" asp-action="AllOrderFolders" class="menu-link">
+                                        <div data-lang="All"></div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a asp-controller="Home" asp-action="CurrentOrderFolders" class="menu-link">
+                                        <div data-lang="Current"></div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a asp-controller="Home" asp-action="DoneOrderFolders" class="menu-link">
+                                        <div data-lang="Done"></div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a asp-controller="Home" asp-action="OutstandingOrderFolders" class="menu-link">
+                                        <div data-lang="Outstanding"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class="menu-icon bx bxs-folder-open"></i>
+                                    <div data-lang="Orders"></div>
+                                </a>
+
+                                <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a asp-controller="Home" asp-action="AllOrders" class="menu-link">
+                                            <div data-lang="All"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="Home" asp-action="CurrentOrders" class="menu-link">
+                                            <div data-lang="Current"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="Home" asp-action="DoneOrders" class="menu-link">
+                                            <div data-lang="Done"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="Home" asp-action="OutstandingOrders" class="menu-link">
+                                            <div data-lang="Outstanding"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-controller="Home" asp-action="AlertsAndTasks" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-task"></i>
+                                <div data-lang="Alerts and Tasks"></div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-controller="Home" asp-action="SubsidiaryServices" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-task"></i>
+                                    <div data-lang="Subsidiary Services"></div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class="menu-icon bx bxs-folder-open"></i>
+                                    <div data-lang="Project Documents"></div>
+                                </a>
+
+                                <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ProjectRegistrationDocument" class="menu-link">
+                                            <div data-lang="Project Registration Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ActivityStartDocument" class="menu-link">
+                                            <div data-lang="Activity Start Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="FirstTimeProductionInputExemptionDocument" class="menu-link">
+                                            <div data-lang="First Time Production Input Exemption Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="SecondTimeAndBeyondProductionInputsExemptionDocument" class="menu-link">
+                                            <div data-lang="Second Time and Beyond Production Inputs Exemption Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="AddMachinesDocument" class="menu-link">
+                                            <div data-lang="Add Machines Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ProjectImplementationPhaseRenewalDocument" class="menu-link">
+                                            <div data-lang="Project Implementation Phase Renewal Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ReplacementOfLostDocument" class="menu-link">
+                                            <div data-lang="Replacement of Lost Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="LocationModificationAndTransferDocument" class="menu-link">
+                                            <div data-lang="Location Modification and Transfer Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ProjectOwnershipModificationDocument" class="menu-link">
+                                            <div data-lang="Project Ownership Modification Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="LegalFormModificationDocument" class="menu-link">
+                                            <div data-lang="Legal Form Modification Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ProjectNameModificationDocument" class="menu-link">
+                                            <div data-lang="Project Name Modification Document"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="ProjectDocuments" asp-action="ProjectRegistrationCertificateCancellationDocument" class="menu-link">
+                                            <div data-lang="Project Registration Certificate Cancellation Document"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class="menu-icon bx bxs-folder-open"></i>
+                                    <div data-lang="Certificates"></div>
+                                </a>
+
+                                <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a asp-controller="Certificates" asp-action="ProjectRegistrationCertificate" class="menu-link">
+                                            <div data-lang="Project Registration Certificate"></div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a asp-controller="Certificates" asp-action="BusinessStartupCertificate" class="menu-link">
+                                            <div data-lang="Business Startup Certificate"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @* / Projects Office *@
+                    }
+                }
+
+        
+      </aside>
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+
+        <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+          <div class="container-fluid">
+            <div class="layout-menu-toggle navbar-nav d-xl-none align-items-xl-center me-3 me-xl-0">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+            <!-- Page Title -->
+            <div class="navbar-nav align-items-center">
+                <h2 class="ms-2 mt-4 fs-4" data-lang="@ViewData["page_title_data_lang"]"></h2>
+            </div>
+            <!-- / Page Title -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Language -->
+                <li class="lang-dropdown">
+                    <a href="javascript:void(0)" id="lang-drop-btn">
+                    @{
+                        if (Context.Session.GetString("lang") == "ar")
+                        {
+                            <i class="flag-icon flag-icon-ye flag-icon-squared fs-3 rounded-circle me-1"></i>
+                        }
+                        else
+                        {
+                            <i class="flag-icon flag-icon-au flag-icon-squared fs-3 rounded-circle me-1"></i>       
+                        }
+                    }
+                    </a>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="ToAr" asp-route-viewName="@Context.Request.Path">
+                                <i class="flag-icon flag-icon-ye flag-icon-squared fs-4 rounded-circle me-1"></i>
+                                <span class="align-middle">العربية</span>
+                            </a>
+                        </li>
+                        <li>
+                                <a asp-area="" asp-controller="Home" asp-action="ToEn" asp-route-viewName="@Context.Request.Path">
+                                <i class="flag-icon flag-icon-au flag-icon-squared fs-4 rounded-circle me-1"></i>
+                                <span class="align-middle">English</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--/ Language -->
+
+                <!-- Style Switcher -->
+                  <li class="nav-item style-switcher mx-2">
+                    @{
+                        if (Context.Session.GetString("theme") == "dark")
+                        {
+                                            <a class="style-icon" asp-area="" asp-controller="Home" asp-action="ToLight" asp-route-viewName="@Context.Request.Path">
+                                <i class="bx bx-sm bx-sun"></i>
+                            </a>
+                        }
+                        else
+                        {
+                                            <a class="style-icon" asp-area="" asp-controller="Home" asp-action="ToDark" asp-route-viewName="@Context.Request.Path">
+                                <i class="bx bx-sm bx-moon"></i>
+                            </a>
+                        }
+                    }
+                  </li>
+                <!--/ Style Switcher -->
+
+                <!-- Notification -->
+                @*<li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside" aria-expanded="false">
+                    <i class="bx bx-bell bx-sm"></i>
+                    <span class="badge rounded-pill badge-notifications bg-danger">2</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end py-0">
+                    <li class="dropdown-menu-header border-bottom">
+                      <div class="dropdown-header d-flex align-items-center py-3">
+                        <h5 class="text-body me-auto mb-0" data-lang="Notifications"></h5>
+                        <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
+                          data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
+                            class="bx fs-4 bx-envelope-open"></i></a>
+                      </div>
+                    </li>
+                    <li class="dropdown-notifications-list scrollable-container">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1" data-lang="New Service Order"></h6>
+                              <p class="mb-0" data-lang="New Service Order Details 1"></p>
+                              <small class="text-muted" data-lang="1h ago"></small>
+                            </div>
+                            <div class="dropdown-notifications-actions flex-shrink-0">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"><span
+                                  class="badge badge-dot"></span></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"><span
+                                  class="bx bx-x"></span></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1" data-lang="New Task"></h6>
+                              <p class="mb-0" data-lang="New Task Details 1"></p>
+                              <small class="text-muted" data-lang="2h ago"></small>
+                            </div>
+                            <div class="dropdown-notifications-actions flex-shrink-0">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"><span
+                                  class="badge badge-dot"></span></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"><span
+                                  class="bx bx-x"></span></a>
+                            </div>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </li>
+                    <li class="dropdown-menu-footer border-top">
+                      <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center p-3">
+                        View all notifications
+                      </a>
+                    </li>
+                  </ul>
+                </li>*@
+                <!--/ Notification -->
+                                <!-- Notification -->
+                                @*@if (SignInManager.IsSignedIn(User))
+                                {*@
+                                    <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">
+                                            <i class="bx bx-bell bx-sm"></i>
+                                            <span class="badge rounded-pill badge-notifications bg-danger">2</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end py-0">
+                                            <li class="dropdown-menu-header border-bottom">
+                                                <div class="dropdown-header d-flex align-items-center py-3">
+                                                    <h5 class="text-body me-auto mb-0" data-lang="Notifications"></h5>
+                                                    <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read">
+                                                        <i class="bx fs-4 bx-envelope-open"></i>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li class="dropdown-notifications-list scrollable-container">
+                                                <ul id="notifications-container" class="list-group list-group-flush">
+                                                    <li class="px-3 py-2">
+                                                        <div class="d-flex">
+                                                            <!-- رابط يوجه إلى المهمة -->
+                                                            <a asp-controller="" asp-action="">
+                                                                <div class="flex-grow-1">
+                                                                    <h6 class="mb-1" data-lang="New Service Order"></h6>
+                                                                    <p class="mb-0" data-lang="New Service Order Details 1"></p>
+                                                                    <small class="text-muted" data-lang="1h ago"></small>9
+                                                                </div>
+                                                            </a>
+                                                            <!-- / رابط يوجه إلى المهمة -->
+                                                            <div class="dropdown-notifications-actions flex-shrink-0">
+                                                                <!-- تحديد كمقروء -->
+                                                                <a asp-controller="" asp-action="">
+                                                                    <i class='bx bxs-circle fs-6'></i>
+                                                                </a>
+                                                                <!-- / تحديد كمقروء -->
+                                                                <!-- حذف الإشعار -->
+                                                                <a asp-controller="" asp-action="">
+                                                                    <span class="bx bx-x"></span>
+                                                                </a>
+                                                                <!-- / حذف الإشعار -->
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            <button type="button" class="btn btn-label-primary w-100 add-notification-btn">إضافة إشعار</button>
+                                            </li>
+                                            <li class="dropdown-menu-footer border-top">
+                                                <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center p-3">
+                                                    View all notifications
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @*}*@
+                                <!--/ Notification -->
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../assets/img/avatars/1.png" alt="" class="rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../../assets/img/avatars/1.png" alt="" class="rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="lh-1 d-block fw-semibold" data-lang="Text X3"></span>
+                            <small data-lang="Office Manager"></small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-profile-user.html">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle" data-lang="My Profile"></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle" data-lang="Settings"></span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle" data-lang="Log Out"></span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+
+            <!-- Search Small Screens -->
+            <div class="navbar-search-wrapper search-input-wrapper d-none">
+              <input type="text" class="form-control search-input container-fluid border-0" placeholder="Search..."
+                aria-label="Search..." />
+              <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
+            </div>
+          </div>
+        </nav>
+
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+
+          <!-- Content -->
+          @RenderBody()
+          <!-- / Content -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+    
+    <!-- For Popup -->
+   @*     <div class="modal" tabindex="-1" role="dialog" id="form-modal" style="display: block;position:relative">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:min(90vw, 1300px);position:absolute;left:50%;transform:translateX(-50%);">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button onclick="hideInPopup()" type="button" class="close border-0 close-popup-btn btn-label-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="bx bx-x"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <!-- / For Popup -->
+        @{
+            String projName = "مصنع مصنع مصنع";
+            String investorName = "صالح حمود علي قاسم";
+        }
+
+    <div class="modal active" tabindex="-1" role="dialog" id="document-form-pup-form">
+        <div class="modal-dialog" role="document" style="max-width:min(95vw, 1400px);">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="card-body">
+                        <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between p-0 p-sm-3">
+                            <div class="mb-4 mb-xl-0">
+                                <div class="svg-illustration gap-2 d-flex flex-column align-items-start mb-3">
+                                    <span class="app-brand-text h5 fw-semibold mb-0">الجمهورية اليمنية</span>
+                                    <span class="app-brand-text h5 fw-medium mb-0">الهيئة العامة للاستثمار</span>
+                                    <span class="app-brand-text h5 fw-medium mb-0">وثيقة تسجيل مشروع</span>
+                                </div>
+                            </div>
+                            <img src="~/favicon.png" style="width: 120px;" />
+                            <div>
+                                <h5 class="mb-2">
+                                    <span>رقم الطلب: #</span>
+                                    <span id="orderNum"></span>
+                                </h5>
+                                <div class="mb-2">
+                                    <span class="me-1">تاريخ  طلب الحافضة</span>
+                                    <span class="fw-semibold" id="orderIssueDate"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <!-- body  -->
+                        <div class="card-body px-5">
+                            <div class="d-flex justify-content-between">
+                                <span>الأخ/ رئيس تسهيل الاستثمار</span>
+                                <span>المحترم</span>
+                            </div>
+                            <div class="d-flex justify-content-center my-3">
+                                <span class="h5 fw-medium">تحية طيبة وبعد،،</span>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-center my-2" style="gap:5px;padding-inline:150px">
+                                <span class="fw-semibold">الموضوع/ </span>
+                                <span>الموضوع طلب تسجيل (إقامة / توسعة)</span>
+                                <span class="text-primary">@projName</span>
+                                <span>التابع للمستثمر</span>
+                                <span class="text-primary">@investorName</span>
+                            </div>
+                            <div class="d-flex justify-content-center my-4">
+                                <span>
+                                    ،بالإشارة إلى الموضوع أعلاه ، يرجى التكرم بالإطلاع على أو أولويات المعاملة المرفق بهذا
+                                    :والتوجيه لمكاتب النافذة الواحدة
+                                </span>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-center my-5" style="gap:20px;">
+                                @for (int i = 1; i <= 2; i++)
+                                {
+                                    <div class="office-card d-flex flex-column justify-content-center align-items-center">
+                                        <i class='bx bx-buildings main-icon'></i>
+                                        <span class="fw-semibold text">مكتب @i</span>
+                                        <a asp-controller="" asp-action="">
+                                            <i class='bx bxs-x-circle x-icon'></i>
+                                        </a>
+                                    </div>
+                                }
+                                <a asp-controller="" asp-action="" class="add-office-link-wrapper">
+                                    <div class="office-card d-flex flex-column justify-content-center align-items-center">
+                                        <i class='bx bx-plus-circle main-icon add-icon'></i>
+                                        <span class="fw-semibold">إضافة</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <span>وموافقتنا بالرأي كلاً بما يخصه، حتى نتمكن من استكمال إجراءات اصدار شهادة تسجيل المشروع</span>
+                            </div>
+                            <div class="d-flex justify-content-center mb-3 mt-1">
+                                <span>وتقبلوا خالص التقدير،، </span>
+                            </div>
+                            <div class="d-flex justify-content-end my-4" style="gap:7px;">
+                                <a asp-controller="" asp-action="" data-lang="Cancel" class="btn btn-danger"></a>
+                                <a asp-controller="" asp-action="" data-lang="Next" class="btn btn-primary show-confirm-popup"></a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for capturing new activity type -->
+    <div class="modal fade" id="addNewActivityModal" tabindex="-1" role="dialog" aria-labelledby="addNewActivityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="addNewActivityModalLabel" data-lang="Add the new entry"></h5>
+                    <button id="hide-new-option-popup" type="button" class="close border-0 close-popup-btn btn-label-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="bx bx-x"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addNewActivityForm">
+                        <div class="form-group">
+                            <label for="newActivityName" data-lang="The New Entry"></label>
+                            <input type="text" id="newActivityName" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Modal for capturing new activity type -->
+
+    
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+  </div>
+  <!-- / Layout wrapper -->
+
+  <!-- Custom New Option Popup -->
+    <div class="custom-new-option-popup" id="new-option-popup">
+        <input type="hidden" class="sender-select-id" />
+        <div class="popup-content">
+            <h5 data-lang="Add the new entry"></h5>
+            <button type="button" class="btn-label-danger x-btn close-popup" target-popup="#new-option-popup">
+                <span>
+                    <i class="bx bx-x"></i>
+                </span>
+            </button>
+            <div class="form-group">
+                <label for="custom-pop-new-entry" data-lang="The New Entry"></label>
+                <input type="text" class="form-control custom-pop-new-entry" />
+            </div>
+            <p class="err-empty text-danger mt-1 fw-medium d-none" data-lang="Please fill the input field"></p>
+            <button type="button" class="btn btn-primary mt-3 submit-new-option-btn" data-lang="Add"></button>
+        </div>
+    </div>
+  <!-- / Custom New Option Popup -->
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="~/assets/vendor/libs/jquery/jquery.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/popper/popper.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/js/bootstrap.js" asp-append-version="true"></script>
+    <script src="~/lib/bootbox.js/bootbox.min.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/hammer/hammer.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/i18n/i18n.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/typeahead-js/typeahead.js" asp-append-version="true"></script>
+
+    <script src="~/assets/vendor/js/menu.js" asp-append-version="true"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="~/assets/vendor/libs/apex-charts/apexcharts.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/bs-stepper/bs-stepper.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/bootstrap-select/bootstrap-select.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/select2/select2.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/autosize/autosize.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/cleavejs/cleave.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/cleavejs/cleave-phone.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/jquery-repeater/jquery-repeater.js" asp-append-version="true"></script>
+    
+    <!-- jQuery Data Tables -->
+    <script src="~/assets/DataTables/datatables.min.js" asp-append-version="true"></script>
+
+    <!-- Main JS -->
+    <script src="~/assets/js/main.js" asp-append-version="true"></script>
+
+    <!-- Installed Libraries -->
+    <script src="~/custom/lib/sweet_alert_2/swa.js" asp-append-version="true"></script>
+
+    <!-- Page JS -->
+    <script src="~/assets/js/dashboards-analytics.js" asp-append-version="true"></script>
+    <script src="~/assets/js/forms-extras.js" asp-append-version="true"></script>
+    <script src="~/assets/js/form-wizard-numbered.js" asp-append-version="true"></script>
+    <script src="~/assets/js/form-wizard-icons.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Custom JS -->
+    <script src="~/custom/js/lang.js" asp-append-version="true"></script>
+    <script src="~/custom/js/toggleBoxes.js" asp-append-version="true"></script>
+    <script src="~/custom/js/popups.js" asp-append-version="true"></script>
+    <script src="~/custom/js/regions.js" asp-append-version="true"></script>
+    <script src="~/custom/js/newSelectOptions.js" asp-append-version="true"></script>
+    <script src="~/custom/js/files.js" asp-append-version="true"></script>
+    <script src="~/custom/js/calculations.js" asp-append-version="true"></script>
+    <script src="~/custom/js/sanitize.js" asp-append-version="true"></script>
+    <script src="~/custom/js/tempFunctions.js" asp-append-version="true"></script>
+
+    <script src="~/custom/js/printFiles.js" asp-append-version="true"></script>
+    <script src="~/custom/js/downloadFiles.js" asp-append-version="true"></script>
+    <script src="~/custom/js/putToday.js" asp-append-version="true"></script>
+    <script src="~/custom/js/mznValidation.js" asp-append-version="true"></script>
+
+    <!-- Main Custom Script -->
+    <script src="~/custom/js/main.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

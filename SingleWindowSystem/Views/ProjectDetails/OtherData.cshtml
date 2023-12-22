@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Details";
+    ViewData["ViewName"] = "OtherData";
+    Layout = "~/Views/Shared/ProjectDetailsLayout.cshtml";
+    ViewData["Controller"] = "ProjectDetails";
+}
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Other Needs of Water and Electricity"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-other-data-annual-water" data-lang="Estimated Percentage of Water Required for the Project Annually (Cubic Meters)"></label>
+        <input type="text" id="p-details-other-data-annual-water" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-other-data-annual-electrical-energy" data-lang="Estimated Percentage of Electrical Energy Required for the Project Annually (Kilowatts)"></label>
+        <input type="text" id="p-details-other-data-annual-electrical-energy" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Employment Size"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-other-data-local-labor" data-lang="Local Labor"></label>
+        <input type="text" id="p-details-other-data-local-labor" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-other-data-foreign-labor" data-lang="Foreign Labor"></label>
+        <input type="text" id="p-details-other-data-foreign-labor" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-other-data-total-labor" data-lang="Total"></label>
+        <input type="text" id="p-details-other-data-total-labor" class="form-control" value="##" readonly />
+    </div>
+</div>
+

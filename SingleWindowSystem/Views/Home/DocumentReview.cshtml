@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Document";
+}
+
+<div class="container-xxl flex-grow-1 h-100 container-p-y content-area">
+    <div class="row h-100">
+        <!-- Invoice -->
+        <div class="col-12 col-md-9 col-xl-10 mb-4 mb-md-0">
+            <div class="card invoice-preview-card h-100">
+                <iframe src="~/Documents/@ViewData["document_id"]" width="100%" height="100%"></iframe>
+            </div>
+        </div>
+        <!-- /Invoice -->
+        <!-- Invoice Actions -->
+        <div class="invoice-actions col-12 col-md-3 col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-outline-primary d-grid w-100 mb-3" onclick="downloadPdf('@ViewData["document_id"]')" data-lang="Download"></button>
+                    <a class="btn btn-outline-primary d-grid w-100 mb-3" target="_blank" data-lang="Print"
+                       href="javascript:void(0)" onclick="printPdf('@ViewData["document_id"]')">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /Invoice Actions -->
+    </div>
+</div>

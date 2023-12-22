@@ -1,0 +1,535 @@
+﻿@{
+    Layout = null;
+
+    string certificateNum = "12345";
+    string certificateIssueDate = "20-6-2023";
+    string certificateIssuePlace = "المركز الرئيسي";
+    string projName = "مصنع مصنع مصنع";
+    string investmentRequestNum = "89798";
+    string investmentRequestDate = "20-6-2023";
+    string industryAndTradeOfficeApprovalDate = "20-6-2023";
+    string SpecOfficeApprovalNum = "89798";
+    string SpecOfficeApprovalDate = "20-6-2023";
+    string EnvironmentApprovalNum = "89798";
+    string EnvironmentApprovalDate = "20-6-2023";
+    string customsOfficeAprrovalNum = "89798";
+    string customsOfficeAprrovalDate = "20-6-2023";
+    string customsOfficeAprrovalNum2 = "89798";
+    string customsOfficeAprrovalDate2 = "20-6-2023";
+    string customsOfficeBranch = "الحديدة";
+
+    string office = "البيئة";
+}
+
+<html lang="@Context.Session.GetString("lang")" class="@Context.Session.GetString("theme")-style layout-navbar-fixed layout-menu-fixed"
+      dir="@Context.Session.GetString("dir")"
+      data-theme="theme-default"
+      data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title data-lang="@ViewData["page_title_data_lang"]"></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets/img/favicon/favicon.ico" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" asp-append-version="true" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icons.css" asp-append-version="true" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/core.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/theme-default.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/css/demo.css" asp-append-version="true" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/typeahead-js/typeahead.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bs-stepper/bs-stepper.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-select/bootstrap-select.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/select2/select2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.css" asp-append-version="true" />
+
+    <!-- jQuery Data Tables -->
+    <link href="~/assets/DataTables/datatables.min.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/custom/css/site.css" asp-append-version="true" />
+
+    <!-- Installed Libraries -->
+    <link rel="stylesheet" href="~/custom/lib/sweet_alert_2/sweetalert2.min.css" asp-append-version="true" />
+
+    <!-- Dark Theme -->
+    @{
+        if (Context.Session.GetString("theme") == "dark")
+        {
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/core-dark.css" class="template-customizer-core-css" asp-append-version="true">
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/theme-default-dark.css" class="template-customizer-theme-css" asp-append-version="true">
+        }
+    }
+
+</head>
+
+<body>
+    <div class="col-12 col-xl-10 mb-4 mb-md-0 overflow-auto c-scroll vertical-scroll cert-print-mode" style="margin-bottom: 20px!important;">
+        <div class="card invoice-preview-card" style="min-width: 600px;">
+            <div class="card-body pb-0">
+                 <div class="d-flex flex-row align-items-start justify-content-between p-3">
+                    <div class="mb-4 mb-xl-0" style="flex:40%;">
+                        <div class="gap-2 d-flex flex-column align-items-start mb-2">
+                            <span class="app-brand-text h5 fw-semibold mb-0">الجمهورية اليمنية</span>
+                            <span class="app-brand-text h5 fw-medium mb-0">الهيئة العامة للاستثمار</span>
+                        </div>
+                    </div>
+                    <img src="~/custom/img/Emblem_of_Yemen.svg" style="width: 150px;flex:20%" />
+                    <div style="flex:40%;">
+                        <div class="gap-2 d-flex flex-column align-items-start mb-2" style="direction:ltr!important;text-align:left!important;">
+                            <span class="app-brand-text h5 fw-semibold mb-0">Republic of Yemen</span>
+                            <span class="app-brand-text h5 fw-medium mb-0" style="text-transform:uppercase;">General Investment Authority</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body py-3 px-4">
+                <div class="d-flex flex-column gap-1">
+                    <div class="d-flex gap-1">
+                        <span>شهادة تسجيل رقم: </span>
+                        <span class="text-primary">@certificateNum</span>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <span>تاريخ الإصدار: </span>
+                        <span class="text-primary">@certificateIssueDate</span>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <span>مكان الإصدار:</span>
+                        <span class="text-primary">@certificateIssuePlace</span>
+                    </div>
+
+                </div>
+                <div class="document-content-box">
+                    <div class="d-flex flex-wrap justify-content-center gap-1">
+                        <span>بشأن إقامة مشروع</span>
+                        <span class="text-primary">@projName</span>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center text-decoration-underline p-2 gap-1">
+                        <span>وفقا لأحكام قانون الاستثمار رقم (</span>
+                        <span>15</span>
+                        <span>)</span>
+                        <span>لعام</span>
+                        <span>2010</span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul>
+                            <li>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span>بناء على نموذج طلب الاستثمار المقدم برقم</span>
+                                    <span class="text-primary">@investmentRequestNum</span>
+                                    <span>وتاريخ</span>
+                                    <span class="text-primary">@investmentRequestDate</span>
+                                    <span>بشأن التسجيل لإقامة المشروع أعلاه</span>
+                                </div>
+                            </li>
+                            
+                        @if (office == "الصناعة والتجارة")
+                        {
+                            <li class="mt-1">
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span>وعلى موافقتي مكتب الصناعة والتجارة بالهيئة بتاريخ</span>
+                                    <span class="text-primary">@industryAndTradeOfficeApprovalDate</span>
+                                    <span>ومكتب المواصفات والمقاييس وضبط الجودة برقم (</span>
+                                    <span class="text-primary">@SpecOfficeApprovalNum</span>
+                                    <span>)</span>
+                                    <span>بتاريخ</span>
+                                    <span class="text-primary">@SpecOfficeApprovalDate</span>
+                                </div>
+                            </li>
+                        }
+                        @if (office == "البيئة")
+                        {
+                            <li class="mt-1">
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span>وعلى موافقة مكتب البيئة بالهيئة برقم (</span>
+                                    <span class="text-primary">@EnvironmentApprovalNum</span>
+                                    <span>)</span>
+                                    <span>بتاريخ</span>
+                                    <span class="text-primary">@EnvironmentApprovalDate</span>
+                                </div>
+                            </li>
+                        }
+                        @if (office == "الجمارك")
+                        {
+                            <li class="mt-1">
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span>وعلى موافقتي مكتب الجمارك بالهيئة برقم (</span>
+                                    <span class="text-primary">@customsOfficeAprrovalNum</span>
+                                    <span>)</span>
+                                    <span>بتاريخ: </span>
+                                    <span class="text-primary">@customsOfficeAprrovalDate</span>
+                                    <span>ورقم (</span>
+                                    <span class="text-primary">@customsOfficeAprrovalNum2</span>
+                                    <span>)</span>
+                                    <span>بتاريخ</span>
+                                    <span class="text-primary">@customsOfficeAprrovalDate2</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <div class="d-flex flex-wrap text-decoration-underline p-2 gap-1">
+                        <span>وبعد استيفاء الإجراءات والبيانات المطلوبة يتم مايلي:</span>
+                    </div>
+                    <div>
+                        <ol>
+                            <li>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span>تشهد الهيئة العامة للاستثمار أن المشروع أعلاه قد تم تسجيله في سجل المشاريع الاستثمارية في الهيئة بالرقم أعلاه وفقا للبيانات التالية: </span>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">بيانات المشروع الأساسية</h6>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="reg-cert-project-name">اسم المشروع</label>
+                                        <input type="text" id="reg-cert-project-name" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="reg-cert-project-owner-name">اسم صاحب المشروع</label>
+                                        <input type="text" id="reg-cert-project-owner-name" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="reg-cert-company">شركة</label>
+                                        <input type="text" id="reg-cert-company" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form after-break">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">مراحل تنفيذ المشروع</h6>
+                                    </div>
+                                    <div class="table-responsive no-datatable">
+                                        <table class="table border-top m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>المرحلة</th>
+                                                    <th>تاريخ بدء التنفيذ</th>
+                                                    <th>تاريخ إتمام التنفيذ</th>
+                                                    <th>تاريخ بدء الانتاج / النشاط</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < 1; i++)
+                                                {
+                                                    <tr>
+                                                        <td>الأولى</td>
+                                                        <td>20-6-2023</td>
+                                                        <td>20-6-2023</td>
+                                                        <td>20-6-2023</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form after-break">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">منتجات المشروع وطاقته الانتاجية</h6>
+                                    </div>
+                                    <div class="table-responsive no-datatable">
+                                        <table class="table border-top m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>م</th>
+                                                    <th>المنتج</th>
+                                                    <th>الكمية</th>
+                                                    <th>الوحدة</th>
+                                                    <th>الطاقة الانتاجية القصوى السنوية*</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 1; i <= 2; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td>
+                                                        <td>مياه معدنية</td>
+                                                        <td>عبوة (750) ملي متر</td>
+                                                        <td>كرتون</td>
+                                                        <td>1800000</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">موقع المشروع</h6>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">المنطقة</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">المديرية</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">المحافظة</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">مالك المشروع</h6>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">اسم صاحب المشروع</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">عنوانه</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">رقم الهاتف</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">الفاكس</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="proj-owner-mail-box-sized-box"></div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">ص.ب</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">مصادر التمويل</h6>
+                                    </div>
+                                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container first fix-margin">
+                                        <div class="content-header mt-0 mb-1">
+                                            <span class="d-block">ذاتي</span>
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">محلي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6 before-break">
+                                            <label class="form-label" for="">أجنبي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container fix-margin">
+                                        <div class="content-header mt-0 mb-1">
+                                            <span class="d-block">تسهيلات بنكية</span>
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">محلي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">أجنبي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container last fix-margin">
+                                        <div class="content-header mt-0 mb-1">
+                                            <span class="d-block">أخرى</span>
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">محلي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">أجنبي (بالدولار الأمريكي)</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 box-of-inputs show-only-form">
+                                    <div class="content-header mt-0 mb-1">
+                                        <h6 class="mb-0">بيانات أخرى</h6>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">الشكل القانوني</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">التكلفة الاستثمارية</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                        <label class="form-label" for="">الموجودات الثابتة</label>
+                                        <input type="text" id="" class="form-control" readonly />
+                                    </div>
+                                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container first last fix-margin">
+                                        <div class="content-header mt-0 mb-1">
+                                            <span class="d-block">عدد العمالة</span>
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">محلي</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                            <label class="form-label" for="">أجنبي</label>
+                                            <input type="text" id="" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mt-3">
+                                <span>يمنح المشروع المزايا المحددة في القوانين ذات العلاقة</span>
+                            </li>
+                            <li class="mt-1">
+                                <span>تعتبر الملحق رقم (1) بهذه الشهادة جزء منها</span>
+                            </li>
+                            <li class="mt-1">
+                                <span>يتمتع المشروع بخدمات النافذة الواحدة بموجب أحكام هذه الشهادة</span>
+                            </li>
+                            @if (office == "المواصفات والمقاييس والجودة")
+                            {
+                                <li class="mt-1">
+                                    <span>يلتزم صاحب المشروع بالضوابط والاشتراطات الواردة في موافقة مكتب المواصفات والمقاييس وضبط الجودة بالهيئة برقم (</span>
+                                    <span class="text-primary">@SpecOfficeApprovalNum</span>
+                                    <span>) بتاريخ </span>
+                                    <span class="text-primary">@SpecOfficeApprovalDate</span>
+                                    <span></span>
+                                </li>   
+                            }
+                            @if (office == "الصناعة والتجارة")
+                            {
+                                <li class="mt-1">
+                                    <span>يلتزم صاحب المشروع بالضوابط والاشتراطات الواردة في موافقة مكتب الصناعة والتجارة بالهيئة بتاريخ:</span>
+                                    <span class="text-primary">@industryAndTradeOfficeApprovalDate</span>
+                                    <span>والتسجيل في السجل الصناعي خلال 60 يوم من تاريخ صدور هذه الشهادة</span>
+                                </li>            
+                            }
+                            @if (office == "البيئة")
+                            {
+                                <li class="mt-1">
+                                    <span>يلتزم صاحب المشروع بالاشتراطات الواردة في تقرير مكتب البيئة في الهيئة برقم (</span>
+                                    <span class="text-primary">@EnvironmentApprovalNum</span>
+                                    <span>) بتاريخ </span>
+                                    <span class="text-primary">@EnvironmentApprovalDate</span>
+                                </li>
+                                
+                            }
+                            <li class="mt-1">
+                                <span>مدة سريان هذه الشهادة عام من تاريخ صدورها قابلة للتجديد</span>
+                            </li>
+                            <li class="mt-1">
+                                <span>يعمل بهذه الشهادة من تاريخ صدورها</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <hr />
+                    <div class="px-3 before-break after-break">
+                        <div class="fw-semibold">
+                            <span>قوائم واحتياجات المشروع من الموجودات الثابتة المقدمة من القطاع المختص والموافق عليها من قبل مكتب الجمارك في </span>
+                            <span class="text-primary">@customsOfficeBranch</span>
+                            <span>برقم (</span>
+                            <span class="text-primary">@customsOfficeAprrovalNum</span>
+                            <span>)</span>
+                            <span>وتاريخ</span>
+                            <span class="text-primary">@customsOfficeAprrovalDate</span>
+                            <span>معفاة من الرسوم الجمركية بموجب قانون الجمارك "ملحق رقم 1"</span>
+                        </div>
+                        <div class="row g-3 box-of-inputs show-only-form">
+                        <div class="content-header mt-0 mb-1">
+                            <h6 class="mb-0">القوائم والإحتياجات</h6>
+                        </div>
+                        <div class="table-responsive no-datatable">
+                            <table class="table border-top m-0">
+                                <thead>
+                                    <tr>
+                                        <th>م</th>
+                                        <th>البيان</th>
+                                        <th>الوحدة</th>
+                                        <th>الكمية</th>
+                                        <th>القيمة بالدولار الأمريكي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 1; i <= 15; i++)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>وحدة تحلية المياة المعدنية</td>
+                                            <td>وحدة</td>
+                                            <td>1</td>
+                                            <td>180000</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <th colspan="4">الإجمالي بالدولار الأمريكي</th>
+                                        <td>1240000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                        <div class="mt-3">
+                            <span class="fw-semibold">ملاحظات</span>
+                            <ul>
+                                <li>عدم استخدام المعدات المعفاة في غير الأغراض التي أعفيت من أجلها أو التصرف بها أو نقلها إلا بعد العودة إلى الهيئة ومكتب الجمارك بالهيئة</li>
+                                <li>عدم الإفراج عن الآلات والمعدات إلا بعد إكتمال البناء والتجهيزات الإنشائية للمشروع</li>
+                            </ul>
+                        </div>    
+                    </div>
+                    <hr />
+                    <div class="px-3">
+                    <div class="row g-3 box-of-inputs show-only-form">
+                        <div class="content-header mt-0 mb-1">
+                            <h6 class="mb-0">بيان العمالة الأجنبية المسموح توظيفها في المشروع "ملحق رقم 2"</h6>
+                        </div>
+                        <div class="table-responsive no-datatable">
+                            <table class="table border-top m-0">
+                                <thead>
+                                    <tr>
+                                        <th>م</th>
+                                        <th>التخصص</th>
+                                        <th>العدد</th>
+                                        <th>الأعمال التي سيؤولون القيام بها</th>
+                                        <th>المدة</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>فني تشغيل</td>
+                                            <td>2</td>
+                                            <td>تركيب وتشغيل الآلات وتدريب العمالة المحلية</td>
+                                            <td>##</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                @* <div class="d-flex justify-content-end my-4" style="gap:7px;">
+                    <a href="javascript:void(0)" data-lang="Previous Page" class="btn btn-label-secondary disabled"></a>
+                    <a href="javascript:void(0)" data-lang="Next Page" class="btn btn-primary show-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

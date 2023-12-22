@@ -1,0 +1,188 @@
+﻿@{
+    Layout = null;
+
+    string thisCertNo = "00000";
+    string certificateNum = "12345";
+    string fieldDescentDate = "20-6-2023";
+    string businessStartupDate = "20-6-2023";
+
+    string certificateIssueDate = "20-6-2023";
+    string certificateIssuePlace = "المركز الرئيسي";
+    string projName = "مصنع مصنع مصنع";
+    string investmentRequestNum = "89798";
+    string investmentRequestDate = "20-6-2023";
+    string industryAndTradeOfficeApprovalDate = "20-6-2023";
+    string SpecOfficeApprovalNum = "89798";
+    string SpecOfficeApprovalDate = "20-6-2023";
+    string EnvironmentApprovalNum = "89798";
+    string EnvironmentApprovalDate = "20-6-2023";
+    string customsOfficeAprrovalNum = "89798";
+    string customsOfficeAprrovalDate = "20-6-2023";
+    string customsOfficeAprrovalNum2 = "89798";
+    string customsOfficeAprrovalDate2 = "20-6-2023";
+    string customsOfficeBranch = "الحديدة";
+
+    string office = "البيئة";
+}
+
+<html lang="@Context.Session.GetString("lang")" class="@Context.Session.GetString("theme")-style layout-navbar-fixed layout-menu-fixed"
+      dir="@Context.Session.GetString("dir")"
+      data-theme="theme-default"
+      data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title data-lang="@ViewData["page_title_data_lang"]"></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets/img/favicon/favicon.ico" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" asp-append-version="true" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icons.css" asp-append-version="true" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/core.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/theme-default.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/css/demo.css" asp-append-version="true" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/typeahead-js/typeahead.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bs-stepper/bs-stepper.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-select/bootstrap-select.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/select2/select2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.css" asp-append-version="true" />
+
+    <!-- jQuery Data Tables -->
+    <link href="~/assets/DataTables/datatables.min.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/custom/css/site.css" asp-append-version="true" />
+
+    <!-- Installed Libraries -->
+    <link rel="stylesheet" href="~/custom/lib/sweet_alert_2/sweetalert2.min.css" asp-append-version="true" />
+
+    <!-- Dark Theme -->
+    @{
+        if (Context.Session.GetString("theme") == "dark")
+        {
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/core-dark.css" class="template-customizer-core-css" asp-append-version="true">
+            <link rel="stylesheet" type="text/css" href="~/assets/vendor/css/rtl/theme-default-dark.css" class="template-customizer-theme-css" asp-append-version="true">
+        }
+    }
+
+</head>
+
+<body>
+    <div class="col-12 col-xl-10 mb-4 mb-md-0 overflow-auto c-scroll vertical-scroll cert-print-mode" style="margin-bottom: 20px!important;">
+        <div class="card invoice-preview-card" style="min-width: 600px;">
+            <div class="card-body pb-0">
+                <div class="d-flex flex-row align-items-start justify-content-between p-3">
+                    <div class="mb-4 mb-xl-0" style="flex:40%;">
+                        <div class="gap-2 d-flex flex-column align-items-start mb-2">
+                            <span class="app-brand-text h5 fw-semibold mb-0">الجمهورية اليمنية</span>
+                            <span class="app-brand-text h5 fw-medium mb-0">الهيئة العامة للاستثمار</span>
+                        </div>
+                    </div>
+                    <img src="~/custom/img/Emblem_of_Yemen.svg" style="width: 150px;flex:20%" />
+                    <div style="flex:40%;">
+                        <div class="gap-2 d-flex flex-column align-items-start mb-2" style="direction:ltr!important;text-align:left!important;">
+                            <span class="app-brand-text h5 fw-semibold mb-0">Republic of Yemen</span>
+                            <span class="app-brand-text h5 fw-medium mb-0" style="text-transform:uppercase;">General Investment Authority</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body py-3 px-4">
+                <div class="d-flex flex-column gap-1">
+                    <div class="d-flex gap-1">
+                        <span>شهادة تسجيل رقم: </span>
+                        <span class="text-primary">@certificateNum</span>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <span>تاريخ الإصدار: </span>
+                        <span class="text-primary">@certificateIssueDate</span>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <span>مكان الإصدار:</span>
+                        <span class="text-primary">@certificateIssuePlace</span>
+                    </div>
+
+                </div>
+                <div class="document-content-box">
+                    <div class="d-flex flex-wrap justify-content-center gap-1">
+                        <span>شهادة رقم (</span>
+                        <span class="text-primary">@thisCertNo</span>
+                        <span>)</span>
+                        <span>بشأن بداية الانتاج لمشروع/</span>
+                        <span class="text-primary">@projName</span>
+                    </div>
+                    <div class="px-3">
+                        <div class="row g-3 box-of-inputs show-only-form">
+                            <div class="content-header mt-0 mb-1">
+                                <h6 class="mb-0">بيانات المشروع</h6>
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="reg-cert-project-name">اسم المشروع</label>
+                                <input type="text" id="reg-cert-project-name" class="form-control" readonly />
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="reg-cert-project-location">موقع المشروع</label>
+                                <input type="text" id="reg-cert-project-location" class="form-control" readonly />
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="reg-cert-no">رقم شهادة تسجيل المشروع</label>
+                                <input type="text" id="reg-cert-no" class="form-control" readonly />
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="reg-cert-issue-place">مكان صدور شهادة تسجيل المشروع</label>
+                                <input type="text" id="reg-cert-issue-place" class="form-control" readonly />
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="reg-cert-issue-date">تاريخ صدور شهادة تسجيل المشروع</label>
+                                <input type="text" id="reg-cert-issue-date" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="row g-3 box-of-inputs show-only-form">
+                            <div class="content-header mt-0 mb-1">
+                                <h6 class="mb-0">بيانات صاحب المشروع</h6>
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="project-owner-name">اسم صاحب المشروع</label>
+                                <input type="text" id="project-owner-name" class="form-control" readonly />
+                            </div>
+                            <div class="col-lg-6 col-xl-12 col-xxl-6">
+                                <label class="form-label" for="proj-owner-address">عنوان سكن صاحب المشروع</label>
+                                <input type="text" id="proj-owner-address" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <span>وبناء على تقرير النزول الميداني المشترك للمشروع بتاريخ</span>
+                            <span class="text-primary">@fieldDescentDate</span>
+                            <span>من قبل قطاع المشروعات ومكتب الضرائب بالهيئة..</span>
+                            <br />
+                            <span>تشهد الهيئة العامة للاستثمار بأن المشروع المذكور أعلاه قد بدأ في الانتاج بتاريخ</span>
+                            <span class="text-primary">@businessStartupDate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

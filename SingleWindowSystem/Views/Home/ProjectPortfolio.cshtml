@@ -1,0 +1,245 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Portfolio";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+    </script>
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="row">
+        <div class="col-xl-8 mb-4">
+            <div class="card px-4 pb-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Portfolio"></h6>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-no" data-lang="Portfolio No"></label>
+                        <input type="text" id="proj-portfolio-no" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-proj-name" data-lang="Project Name"></label>
+                        <input type="text" id="proj-portfolio-proj-name" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-proj-owner" data-lang="Project Owner"></label>
+                        <input type="text" id="proj-portfolio-proj-owner" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Status2"></h6>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-status-service-status" data-lang="Service Status"></label>
+                        <input type="text" id="proj-portfolio-status-service-status" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-status-starting-date" data-lang="Starting Date"></label>
+                        <input type="text" id="proj-portfolio-status-starting-date" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="proj-portfolio-status-end-date" data-lang="End Date"></label>
+                        <input type="text" id="proj-portfolio-status-end-date" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Basic Service Sub-Requests: Project Registration"></h6>
+                    </div>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table py-4 px-2">
+                            <thead>
+                                <tr>
+                                    <th data-lang="ID"></th>
+                                    <th data-lang="Service"></th>
+                                    <th data-lang="Office"></th>
+                                    <th data-lang="State"></th>
+                                    <th data-lang="Actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @{
+                                    for (int i = 1; i <= 5; i++)
+                                    {
+                                        <tr>
+                                            <td><span>@i</span></td>
+                                            <td><span data-lang="Text X4"></span></td>
+                                            <td><span data-lang="Text X2"></span></td>
+                                            <td><span data-lang="Text X2"></span></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <i class='bx bxs-chevrons-right me-2'></i>
+                                                            <span data-lang="Track"></span>
+                                                        </a>
+                                                        <a class="dropdown-item" asp-area="" asp-controller="ProjectDetails" asp-action="Index">
+                                                            <i class='bx bxs-show me-2'></i>
+                                                            <span data-lang="Show"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card px-4 pb-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Certificate"></h6>
+                    </div>
+                    <div class="col-12">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Show Certificate"></span>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a href="javascript:void(0)" onclick="printPage('ProjectDocuments', 'ProjectRegistrationDocument')" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Print Certificate"></span>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Export Certificate"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Applicant"></h6>
+                    </div>
+                    <div class="col-md-6 col-xl-12">
+                        <label class="form-label" for="proj-portfolio-applicant-name" data-lang="Name"></label>
+                        <input type="text" id="proj-portfolio-applicant-name" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6 col-xl-12">
+                        <label class="form-label" for="proj-portfolio-applicant-status" data-lang="Status"></label>
+                        <input type="text" id="proj-portfolio-applicant-status" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6 col-xl-12">
+                        <label class="form-label" for="proj-portfolio-applicant-date" data-lang="Date"></label>
+                        <input type="text" id="proj-portfolio-applicant-date" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Others"></h6>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="proj-portfolio-in-charge-employee" data-lang="In Charge Employee"></label>
+                        <input type="text" id="proj-portfolio-in-charge-employee" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Sample"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Document"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Approvals"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Outputs"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,230 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    @await RenderSectionAsync("SubpageScripts", required: false)
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area no-scroll">
+    <div class="row h-100">
+        <div class="col-12 h-100 overflow-hidden">
+            <div class="bs-stepper wizard-vertical vertical wizard-vertical-icons-example pb-2 h-100 mt-2">
+                <div class="bs-stepper-header py-3 h-100 overflow-auto c-scroll">
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Index")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Index" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class="bx bx-detail fs-5"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Conclusion"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Timeline")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Timeline" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-time-five fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Timeline"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Products" || ViewData["ViewName"].ToString() == "Products_2")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Products" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxl-product-hunt fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Products"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "InvestmentCost")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="InvestmentCost" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-dollar fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Investment Cost"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "FundingSources")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="FundingSources" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-bank fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Funding Sources"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "ProjectOwner")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="ProjectOwner" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-user fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Project Owner"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "OtherData")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="OtherData" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-data fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Other Data"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "FixedAssets")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="FixedAssets" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-briefcase fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Fixed Assets"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "ProductionInputs")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="ProductionInputs" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-log-in-circle fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Production Inputs"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "LaborNeeds")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="LaborNeeds" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-body fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Labor Needs"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "EnvironmentalImpact")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="EnvironmentalImpact" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-tree fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Environmental Impact"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Certificate")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Certificate" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-dock-left fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Certificate"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "LawsAndArticles")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="LawsAndArticles" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-list-ul fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Laws and Articles"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "ProductionRequirements")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="ProductionRequirements" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-shape-square fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Production Requirements"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Modifications")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Modifications" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bxs-edit-alt fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Modifications"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{
+                        if (ViewData["ViewName"].ToString() == "Extensions")  WriteLiteral("active");
+ }">
+                        <a asp-controller="ProjectDetails" asp-action="Extensions" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-add-to-queue fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Extensions"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Fees")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Fees" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-dollar-circle fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Fees"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Documents")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Documents" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-file fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="The Documents"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Tracking")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Tracking" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-right-indent fs-5'></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="Tracking"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="subnav-btn @{ if (ViewData["ViewName"].ToString() == "Notes")  WriteLiteral("active"); }">
+                        <a asp-controller="ProjectDetails" asp-action="Notes" class="step-trigger">
+                            <span class="bs-stepper-circle w-px-30 h-px-30">
+                                <i class='bx bx-notepad fs-5' ></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title lh-base subnav-btn-text" data-lang="The Notes"></span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="bs-stepper-content py-3 h-100 c-scroll" style="overflow-y:scroll;">
+                    <form onSubmit="return false" class="show-only-form">
+                        <!-- Page Content -->
+                        <div>
+                            @RenderBody()
+                        </div>
+                        <!-- / Page Content -->
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

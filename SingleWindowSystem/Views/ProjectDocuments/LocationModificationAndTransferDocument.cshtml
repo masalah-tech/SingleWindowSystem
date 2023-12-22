@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Location Modification and Transfer Document";
+
+    String orderNum = "1234";
+    String orderIssueDate = "09/08/2023";
+    String projName = "مصنع مصنع مصنع";
+    String projRegNum = "00000";
+    String projRegDate = "12/06/2023";
+    String investorName = "صالح حمود علي قاسم";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y content-area proj-reg-doc">
+    <div class="row invoice-preview justify-content-center">
+        <!-- Invoice -->
+        <div class="col-12 col-md-10 mb-4 mb-md-0">
+            <div class="card invoice-preview-card">
+                <div class="card-body">
+                    <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between p-0 p-sm-3">
+                        <div class="mb-4 mb-xl-0">
+                            <div class="svg-illustration gap-2 d-flex flex-column align-items-start mb-3">
+                                <span class="app-brand-text h5 fw-semibold mb-0">الجمهورية اليمنية</span>
+                                <span class="app-brand-text h5 fw-medium mb-0">الهيئة العامة للاستثمار</span>
+                                <span class="app-brand-text h5 fw-medium mb-0">وثيقة تسجيل مشروع</span>
+                            </div>
+                        </div>
+                        <img src="~/favicon.png" style="width: 120px;" />
+                        <div>
+                            <h5 class="mb-2">
+                                <span>رقم الطلب: #</span>
+                                <span>@orderNum</span>
+                            </h5>
+                            <div class="mb-2">
+                                <span class="me-1">تاريخ الإصدار</span>
+                                <span class="fw-semibold">@orderIssueDate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body px-5">
+                    <div class="d-flex justify-content-between">
+                        <span>الأخ/رئيس قطاع التسهيلات الحكومية</span>
+                        <span>المحترم</span>
+                    </div>
+                    <div class="d-flex justify-content-center my-3">
+                        <span class="h5 fw-medium">تحية طيبة... وبعد</span>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center my-2" style="gap:5px;padding-inline:150px">
+                        <span class="fw-semibold">الموضوع/ </span>
+                        <span>مشروع </span>
+                        <span class="text-primary">@projName</span>
+                        <span>المسجل برقم </span>
+                        <span class="text-primary">@projRegNum</span>
+                        <span>الصادر بتاريخ</span>
+                        <span class="text-primary">@projRegDate</span>
+                        <span>التابع للمستثمر</span>
+                        <span class="text-primary">@investorName</span>
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <span>
+                            بالإشارة الى الموضوع أعلاه فقد تقدم المستثمر بطلب تعديل موقع المشروع أعلاه وعليه يرجى موافاتنا بتقارير
+                            النزول الميداني الخاصة بمكاتب:
+                        </span>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center my-5" style="gap:20px;">
+                        @for (int i = 1; i <= 2; i++)
+                        {
+                            <div class="office-card d-flex flex-column justify-content-center align-items-center">
+                                <i class='bx bx-buildings main-icon'></i>
+                                <span class="fw-semibold text">مكتب @i</span>
+                                <a asp-controller="" asp-action="">
+                                    <i class='bx bxs-x-circle x-icon'></i>
+                                </a>
+                            </div>
+                        }
+                        <a asp-controller="" asp-action="" class="add-office-link-wrapper">
+                            <div class="office-card d-flex flex-column justify-content-center align-items-center">
+                                <i class='bx bx-plus-circle main-icon add-icon'></i>
+                                <span class="fw-semibold">إضافة</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <span>ليتسنى لنا استكمال الإجراءات اللازمة.</span>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 mt-1">
+                        <span>وتقبلوا خالص تحياتنا ،،،</span>
+                    </div>
+                    <div class="d-flex justify-content-end my-4" style="gap:7px;">
+                        <a asp-controller="" asp-action="" data-lang="Cancel" class="btn btn-danger"></a>
+                        <a href="javascript:void(0)" data-lang="Next" class="btn btn-primary show-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Popup -->
+<div class="confirmation-popup" id="confirm-service-follow-up">
+    <form id="confirmation-form" class="conf-popup-box conf-popup-form">
+        <h4 data-lang="Confirmation of the Follow-up of the Service"></h4>
+        <button type="button" class="btn-label-danger x-btn close-confirm-popup" confirm-popup-target="#confirm-service-follow-up">
+            <span>
+                <i class="bx bx-x"></i>
+            </span>
+        </button>
+        <div class="row">
+            <div class="col-12">
+                <label class="form-label" for="confirmation-popup-choose-person">إختر الشخص</label>
+                <select id="confirmation-popup-choose-person" class="select form-select">
+                    <option value="">رئيس الهيئة</option>
+                    <option value="">مكتب التسهيلات</option>
+                    <option value="">مكتب دائرة الخدمة</option>
+                    <option value="">مكتب الشئون القانونية</option>
+                    <option value="">رئيس قطاع المشاريع</option>
+                    <option value="" selected>مدير دائرة المشاريع الصناعية</option>
+                    <option value="">مدير دائرة المشاريع الاستراتيجية</option>
+                    <option value="">مدير دائرة المشاريع الزراعية</option>
+                    <option value="">ضابط المشروع 1</option>
+                    <option value="">ضابط المشروع 2</option>
+                    <option value="">السكرتارية</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-4" style="gap:7px;">
+            <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger close-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+            <input type="submit" class="btn btn-primary" value="إرسال">
+        </div>
+    </form>
+</div>
+<!-- / Confirmation Popup -->

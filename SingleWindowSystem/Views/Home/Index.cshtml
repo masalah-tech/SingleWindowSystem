@@ -1,0 +1,520 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewData["page_title_data_lang"] = "Main Page";
+
+    // قيم تجي من الباك إند
+    String numOfRegisteredProjects = "5300";
+    String numOfProjectsUnderRegistration = "750";
+    String numOfFinishedProjects = "10050";
+
+    String numOfCurrentOrders = "242";
+    String numOfDoneOrders = "345";
+    String numOfOutstandingOrders = "12";
+
+    String numOfCurrentOrderFolders = "200";
+    String numOfDoneOrderFolders = "344";
+    String numOfOutstandingOrderFolders = "234";
+    // / قيم تجي من الباك إند
+
+    // حسابات المشاريع
+    decimal numOfAllProjects =
+        decimal.Parse(numOfRegisteredProjects) + decimal.Parse(numOfProjectsUnderRegistration) + decimal.Parse(numOfFinishedProjects);
+
+    String percentageOfRegisteredProjects = ((decimal.Parse(numOfRegisteredProjects) / numOfAllProjects) * 100).ToString("0.00");
+    String percentageOfProjectsUnderRegistration = ((decimal.Parse(numOfProjectsUnderRegistration) / numOfAllProjects) * 100).ToString("0.00");
+    String percentageOfFinishedProjects = ((decimal.Parse(numOfFinishedProjects) / numOfAllProjects) * 100).ToString("0.00");
+    // / حسابات المشاريع
+
+    // حسابات الطلبات
+    decimal numOfAllOrders =
+        decimal.Parse(numOfCurrentOrders) + decimal.Parse(numOfDoneOrders) + decimal.Parse(numOfOutstandingOrders);
+
+    String percentageOfCurrentOrders = ((decimal.Parse(numOfCurrentOrders) / numOfAllOrders) * 100).ToString("0.00");
+    String percentageOfDoneOrders = ((decimal.Parse(numOfDoneOrders) / numOfAllOrders) * 100).ToString("0.00");
+    String percentageOfOutstandingOrders = ((decimal.Parse(numOfOutstandingOrders) / numOfAllOrders) * 100).ToString("0.00");
+    // / حسابات الطلبات
+
+    // حسابات حوافظ الطلبات
+    decimal numOfAllOrderFolders =
+        decimal.Parse(numOfCurrentOrderFolders) + decimal.Parse(numOfDoneOrderFolders) + decimal.Parse(numOfOutstandingOrderFolders);
+
+    String percentageOfCurrentOrderFolders = ((decimal.Parse(numOfCurrentOrderFolders) / numOfAllOrderFolders) * 100).ToString("0.00");
+    String percentageOfDoneOrderFolders = ((decimal.Parse(numOfDoneOrderFolders) / numOfAllOrderFolders) * 100).ToString("0.00");
+    String percentageOfOutstandingOrderFolders = ((decimal.Parse(numOfOutstandingOrderFolders) / numOfAllOrderFolders) * 100).ToString("0.00");
+    // / حسابات حوافظ الطلبات
+
+    //
+    String totalCompletionRate = (
+            (
+                decimal.Parse(percentageOfRegisteredProjects) +
+                decimal.Parse(percentageOfDoneOrders) +
+                decimal.Parse(percentageOfDoneOrderFolders)
+            ) / 3.00m
+        ).ToString("0.00");
+    //
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="row">
+        <!-- Radial bar Chart -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0" data-lang="Completion Rate"></h5>
+                </div>
+                <div class="card-body">
+                    <div id="radialBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /Radial bar Chart -->
+
+        <!-- Projects Charts -->
+        <div class="col-md-6 col-lg-4 mt-4">
+            <div class="card">
+                <h5 class="card-header" data-lang="Projects"></h5>
+                <div class="card-body">
+                    <canvas id="projectsChart" class="chartjs mb-4" data-height="350"></canvas>
+                    <ul class="doughnut-legend d-flex justify-content-around pt-1 ps-0 mb-2">
+                        <li class="ct-series-0 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Registered"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(40, 208, 148); width: @(percentageOfRegisteredProjects)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfRegisteredProjects</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-1 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Under Registration"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(253, 172, 52); width: @(percentageOfProjectsUnderRegistration)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfProjectsUnderRegistration</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-2 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Finished"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(90 141 238); width: @(percentageOfFinishedProjects)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfFinishedProjects</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- / Projects Chart -->
+
+        <!-- Order Folders Charts -->
+        <div class="col-md-6 col-lg-4 mt-4">
+            <div class="card">
+                <h5 class="card-header" data-lang="Order Folders"></h5>
+                <div class="card-body">
+                    <canvas id="orderFoldersChart" class="chartjs mb-4" data-height="350"></canvas>
+                    <ul class="doughnut-legend d-flex justify-content-around pt-1 ps-0 mb-2">
+                        <li class="ct-series-0 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Current"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(132 208 255); width:@(percentageOfCurrentOrderFolders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfCurrentOrderFolders</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-1 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Done"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(40 218 198); width:@(percentageOfDoneOrderFolders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfDoneOrderFolders</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-2 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Outstanding"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(41 154 255); width:@(percentageOfOutstandingOrderFolders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfOutstandingOrderFolders</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- / Order Folders Charts -->
+
+        <!-- Orders Chart -->
+        <div class="col-md-6 col-lg-4 mt-4">
+            <div class="card">
+                <h5 class="card-header" data-lang="Orders"></h5>
+                <div class="card-body">
+                    <canvas id="ordersChart" class="chartjs mb-4" data-height="350"></canvas>
+                    <ul class="doughnut-legend d-flex justify-content-around pt-1 ps-0 mb-2">
+                        <li class="ct-series-0 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Current"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(43 154 255); width: @(percentageOfCurrentOrders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfCurrentOrders</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-1 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Done"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(255 129 50); width: @(percentageOfDoneOrders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfDoneOrders</span>
+                            </div>
+                        </li>
+                        <li class="ct-series-2 d-flex flex-column">
+                            <h5 class="fw-bold mb-0 fs-6" data-lang="Outstanding"></h5>
+                            <span class="badge badge-dot rounded-pill my-2 cursor-pointer"
+                                    style="background-color: rgb(255 232 0); width: @(percentageOfOutstandingOrders)px; height: 6px"></span>
+                            <div class="text-muted">
+                                <span>%</span>
+                                <span>@percentageOfOutstandingOrders</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- / Orders Chart -->
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <!-- Vendors JS -->
+    <script src="~/assets/vendor/libs/chartjs/chartjs.js" asp-append-version="true"></script>
+    <script src="~/assets/vendor/libs/apex-charts/apexcharts.js" asp-append-version="true"></script>
+
+    <script>
+
+        const lang = document.querySelector("html").getAttribute("lang");
+
+        // Apex charts
+        (function () {
+            let cardColor, headingColor, axisColor, borderColor, radialTrackColor;
+
+            if (isDarkStyle) {
+                cardColor = config.colors_dark.cardColor;
+                headingColor = config.colors_dark.headingColor;
+                axisColor = config.colors_dark.axisColor;
+                borderColor = config.colors_dark.borderColor;
+                radialTrackColor = '#36435C';
+            } else {
+                cardColor = config.colors.white;
+                headingColor = config.colors.headingColor;
+                axisColor = config.colors.axisColor;
+                borderColor = config.colors.borderColor;
+                radialTrackColor = config.colors_label.secondary;
+            }
+
+            // Color constant
+            const chartColors = {
+                column: {
+                    series1: '#826af9',
+                    series2: '#d2b0ff',
+                    bg: '#f8d3ff'
+                },
+                donut: {
+                    series1: '#fee802',
+                    series2: '#3fd0bd',
+                    series3: '#826bf8',
+                    series4: '#2b9bf4'
+                },
+                area: {
+                    series1: '#29dac7',
+                    series2: '#60f2ca',
+                    series3: '#a5f8cd'
+                }
+            };
+
+            // Heat chart data generator
+            function generateDataHeat(count, yrange) {
+                let i = 0;
+                let series = [];
+                while (i < count) {
+                    let x = 'w' + (i + 1).toString();
+                    let y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+                    series.push({
+                        x: x,
+                        y: y
+                    });
+                    i++;
+                }
+                return series;
+            }
+
+            // Radial Bar Chart
+            // --------------------------------------------------------------------
+            const radialBarChartEl = document.querySelector('#radialBarChart'),
+                radialBarChartConfig = {
+                    chart: {
+                        height: 380,
+                        fontFamily: 'Tajawal, sans-serif',
+                        type: 'radialBar'
+                    },
+                    colors: [chartColors.donut.series3, chartColors.donut.series2, chartColors.donut.series4],
+                    plotOptions: {
+                        radialBar: {
+                            size: 185,
+                            hollow: {
+                                size: '40%'
+                            },
+                            track: {
+                                margin: 10,
+                                background: radialTrackColor
+                            },
+                            dataLabels: {
+                                name: {
+                                    fontSize: '2rem',
+                                    fontFamily: 'Tajawal, sans-serif'
+                                },
+                                value: {
+                                    fontSize: '1.2rem',
+                                    color: headingColor,
+                                    fontFamily: 'Tajawal, sans-serif'
+                                },
+                                total: {
+                                    show: true,
+                                    fontSize: '1.3rem',
+                                    color: chartColors.donut.series4,
+                                    label: lang == "ar" ? "معدل الإنجاز" : "Completion Rate",
+                                    formatter: function (w) {
+                                        return '@(totalCompletionRate)%';
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    grid: {
+                        borderColor: borderColor,
+                        padding: {
+                            top: -25,
+                            bottom: -20
+                        }
+                    },
+                    legend: {
+                        show: true,
+                        position: 'bottom',
+                        labels: {
+                            colors: axisColor,
+                            useSeriesColors: false
+                        }
+                    },
+                    stroke: {
+                        lineCap: 'round'
+                    },
+                    series: [@(percentageOfRegisteredProjects), @(percentageOfDoneOrderFolders), @(percentageOfDoneOrders)],
+                    labels: [
+                        lang == "ar" ? "المشاريع" : "Projects",
+                        lang == "ar" ? "حوافظ الطلبات" : "Order Folders",
+                        lang == "ar" ? "الطلبات" : "Orders"
+                    ]
+                };
+            if (typeof radialBarChartEl !== undefined && radialBarChartEl !== null) {
+                const radialChart = new ApexCharts(radialBarChartEl, radialBarChartConfig);
+                radialChart.render();
+            }
+
+        })();
+        // / Apex charts
+
+        // chartjs
+        (function () {
+            // Color Variables
+            const purpleColor = '#836AF9',
+                yellowColor = '#ffe800',
+                cyanColor = '#28dac6',
+                orangeColor = '#FF8132',
+                orangeLightColor = '#FDAC34',
+                oceanBlueColor = '#299AFF',
+                greyColor = '#4F5D70',
+                greyLightColor = '#EDF1F4',
+                blueColor = '#2B9AFF',
+                blueLightColor = '#84D0FF';
+
+            let borderColor, axisColor;
+
+            if (isDarkStyle) {
+                borderColor = config.colors_dark.borderColor;
+                axisColor = config.colors_dark.axisColor; // x & y axis tick color
+            } else {
+                borderColor = config.colors.borderColor; // same as template border color
+                axisColor = config.colors.axisColor; // x & y axis tick color\
+            }
+
+            // Set height according to their data-height
+            // --------------------------------------------------------------------
+            const chartList = document.querySelectorAll('.chartjs');
+            chartList.forEach(function (chartListItem) {
+                chartListItem.height = chartListItem.dataset.height;
+            });
+
+
+            // Projects Chart
+            const projectsChart = document.getElementById('projectsChart');
+            if (projectsChart) {
+                const projectsChartVar = new Chart(projectsChart, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Registered', 'Under Registration', 'Finished'],
+                        datasets: [
+                            {
+                                data: [@(percentageOfRegisteredProjects), @(percentageOfProjectsUnderRegistration), @(percentageOfFinishedProjects)],
+                                backgroundColor: [cyanColor, orangeLightColor, config.colors.primary],
+                                borderWidth: 0,
+                                pointStyle: 'rectRounded'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: {
+                            duration: 500
+                        },
+                        cutout: '68%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.labels || '',
+                                            value = context.parsed;
+                                        const output = ' ' + label + ' : ' + value + ' %';
+                                        return output;
+                                    }
+                                },
+                                // Updated default tooltip UI
+                                rtl: isRtl,
+                                backgroundColor: config.colors.white,
+                                titleColor: config.colors.black,
+                                bodyColor: config.colors.black,
+                                borderWidth: 1,
+                                borderColor: borderColor
+                            }
+                        }
+                    }
+                });
+            }
+            // / Projects Chart
+
+            // Order Folders Chart
+            const orderFoldersChart = document.getElementById('orderFoldersChart');
+            if (orderFoldersChart) {
+                const orderFoldersChartVar = new Chart(orderFoldersChart, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Registered', 'Under Registration', 'Finished'],
+                        datasets: [
+                            {
+                                data: [@(percentageOfCurrentOrderFolders), @(percentageOfDoneOrderFolders), @(percentageOfOutstandingOrderFolders)],
+                                backgroundColor: [blueLightColor, cyanColor, oceanBlueColor],
+                                borderWidth: 0,
+                                pointStyle: 'rectRounded'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: {
+                            duration: 500
+                        },
+                        cutout: '68%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.labels || '',
+                                            value = context.parsed;
+                                        const output = ' ' + label + ' : ' + value + ' %';
+                                        return output;
+                                    }
+                                },
+                                // Updated default tooltip UI
+                                rtl: isRtl,
+                                backgroundColor: config.colors.white,
+                                titleColor: config.colors.black,
+                                bodyColor: config.colors.black,
+                                borderWidth: 1,
+                                borderColor: borderColor
+                            }
+                        }
+                    }
+                });
+            }
+            // / Order Folders Chart
+
+            // Orders Chart
+            const ordersChart = document.getElementById('ordersChart');
+            if (ordersChart) {
+                const ordersChartVar = new Chart(ordersChart, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Registered', 'Under Registration', 'Finished'],
+                        datasets: [
+                            {
+                                data: [@(percentageOfCurrentOrders), @(percentageOfDoneOrders), @(percentageOfOutstandingOrders)],
+                                backgroundColor: [blueColor, orangeColor, yellowColor],
+                                borderWidth: 0,
+                                pointStyle: 'rectRounded'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: {
+                            duration: 500
+                        },
+                        cutout: '68%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.labels || '',
+                                            value = context.parsed;
+                                        const output = ' ' + label + ' : ' + value + ' %';
+                                        return output;
+                                    }
+                                },
+                                // Updated default tooltip UI
+                                rtl: isRtl,
+                                backgroundColor: config.colors.white,
+                                titleColor: config.colors.black,
+                                bodyColor: config.colors.black,
+                                borderWidth: 1,
+                                borderColor: borderColor
+                            }
+                        }
+                    }
+                });
+            }
+            // / Orders Chart
+
+
+        })();
+        // / chartjs
+        
+    </script>
+}

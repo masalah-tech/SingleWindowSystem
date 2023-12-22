@@ -1,0 +1,467 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Search";
+    ViewData["ViewName"] = "Search";
+    ViewData["Controller"] = "Home";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.submit-form', function (e) {
+            e.preventDefault();
+            var selectedService = $('#confirmation-popup-choose-service').val();
+            var url = $(this).attr('href') + '?service=' + encodeURIComponent(selectedService);
+            window.location.href = url;
+        });
+    </script>
+}
+
+<!-- Basic Layout -->
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-keyword" data-lang="Keyword"></label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-keyword2" class="input-group-text">
+                                    <i class="bx bx-key"></i>
+                                </span>
+                                <input type="text" class="form-control" id="basic-icon-default-keyword"
+                                    placeholder="##" aria-label="##"
+                                    aria-describedby="basic-icon-default-keyword2" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-pname" data-lang="Project Name"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-pname2" class="input-group-text">
+                                        <i class="bx bxs-book-content"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-pname"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-pname2" />
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-firm-name" data-lang="Firm Name Trade Name"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-firm-name2" class="input-group-text">
+                                        <i class='bx bx-buildings' ></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-firm-name"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-firm-name2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-order-num" data-lang="Order Number"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-order-num2" class="input-group-text">
+                                        <i class='bx bx-hash'></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-order-num"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-order-num2" />
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-sector" data-lang="Sector Activity Type"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-sector2" class="input-group-text">
+                                        <i class='bx bx-intersect' ></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-sector"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-sector2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="search-decision-issue-date" class="form-label" data-lang="Decision Issue Date"></label>
+                            <select class="form-select" id="search-decision-issue-date" aria-label="Decision Issue Date">
+                                <option value="" selected data-lang="Between"></option>
+                                <option value="" data-lang="Choice 2"></option>
+                                <option value="" data-lang="Choice 3"></option>
+                                <option value="" data-lang="Choice 4"></option>
+                            </select>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="flex-grow-1">
+                                <input type="date" class="form-control"/>
+                            </div>
+                            <span class="flex-grow-0 d-flex align-items-center mx-2" data-lang="And"></span>
+                            <div class="flex-grow-1">
+                                <input type="date" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="search-project-approval" class="form-label" data-lang="Project Approval"></label>
+                            <select class="form-select" id="search-project-approval" aria-label="Project Approval">
+                                <option value="" selected data-lang="Approved"></option>
+                                <option value="" data-lang="Choice 2"></option>
+                                <option value="" data-lang="Choice 3"></option>
+                                <option value="" data-lang="Choice 4"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="search-project-governorate" class="form-label" data-lang="Governorate"></label>
+                            <select class="form-select" id="search-project-governorate" aria-label="Governorate">
+                                <option value="" selected data-lang="Sanaa"></option>
+                                <option value="" data-lang="Amran"></option>
+                                <option value="" data-lang="Taiz"></option>
+                                <option value="" data-lang="Ibb"></option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="search-project-state" class="form-label" data-lang="State"></label>
+                            <select class="form-select" id="search-project-state" aria-label="State">
+                                <option value="" selected data-lang="All"></option>
+                                <option value="" data-lang="Choice 2"></option>
+                                <option value="" data-lang="Choice 3"></option>
+                                <option value="" data-lang="Choice 4"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-fname" data-lang="First Name"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-fname2" class="input-group-text">
+                                        <i class="bx bxs-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-fname"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-fname2" />
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-lname" data-lang="Last Name"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-lname2" class="input-group-text">
+                                        <i class="bx bxs-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-lname"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-lname2" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-default-decision-num" data-lang="Decision Number"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-decision-num2" class="input-group-text">
+                                        <i class='bx bx-hash'></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-decision-num"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-decision-num2" />
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-subsector" data-lang="Subsector"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-sector2" class="input-group-text">
+                                        <i class='bx bx-intersect' ></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-default-sector"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-subsector2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="search-decision-establishment-date" class="form-label" data-lang="Establishment Date"></label>
+                            <select class="form-select" id="search-decision-issue-date" aria-label="Establishment Date">
+                                <option value="" selected data-lang="Between"></option>
+                                <option value="" data-lang="Choice 2"></option>
+                                <option value="" data-lang="Choice 3"></option>
+                                <option value="" data-lang="Choice 4"></option>
+                            </select>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="flex-grow-1">
+                                <input type="date" class="form-control"/>
+                            </div>
+                            <span class="flex-grow-0 d-flex align-items-center mx-2" data-lang="And"></span>
+                            <div class="flex-grow-1">
+                                <input type="date" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="mb-3 col-md-6">
+                                <label for="search-project-created-by" class="form-label" data-lang="Created by"></label>
+                                <select class="form-select" id="search-project-approval" aria-label="Created by">
+                                    <option value="" selected data-lang="Choice 1"></option>
+                                    <option value="" data-lang="Choice 2"></option>
+                                    <option value="" data-lang="Choice 3"></option>
+                                    <option value="" data-lang="Choice 4"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <select class="form-select" id="search-project-governorate" aria-label="">
+                                    <option value="" selected data-lang="All"></option>
+                                    <option value="" data-lang="Choice 2"></option>
+                                    <option value="" data-lang="Choice 3"></option>
+                                    <option value="" data-lang="Choice 4"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-tax-number" data-lang="Tax Number"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-decision-tax-number2" class="input-group-text">
+                                        <i class='bx bx-hash'></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-tax-number"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-decision-tax-number2" />
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-icon-issue-place" data-lang="Issue Place"></label>
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-issue-place2" class="input-group-text">
+                                        <i class='bx bx-buildings' ></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="basic-icon-issue-place"
+                                        placeholder="##" aria-label="##"
+                                        aria-describedby="basic-icon-default-issue-place2" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card py-2 px-4">
+        <h5 class="card-header" data-lang="Search Results"></h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="Project Name"></th>
+                    <th data-lang="Project Owner"></th>
+                    <th data-lang="Actions"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong data-lang="Text X7"></strong></td>
+                    <td data-lang="Text X4"></td>
+                    <td>
+                        <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Show"></span>
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <i class="bx bx-edit-alt me-1"></i>
+                                <span data-lang="Add a Primary Service"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

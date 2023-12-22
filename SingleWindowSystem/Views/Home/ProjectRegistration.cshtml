@@ -1,0 +1,1310 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Registration";
+    ViewData["ViewName"] = "ProjectRegistration";
+    ViewData["Controller"] = "Home";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area no-scroll">
+    <div class="row container-l2">
+        <div class="col-12 container-l3">
+            <div class="bs-stepper wizard-numbered container-l4">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#data-about-the-project">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">1</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title lh-base" data-lang="Data About the Project"></span>
+                        </span>
+                    </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#data-about-the-project-owner">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title lh-base" data-lang="Data About the Project Owner"></span>
+                        </span>
+                    </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step lh-base" data-target="#other-data">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">3</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title" data-lang="Other Data"></span>
+                        </span>
+                    </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content c-scroll container-l5">
+                    <form onSubmit="return false" class="container-l6">
+                        <div id="data-about-the-project" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Primary Project Data"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-project-name" data-lang="Project Name"></label>
+                                                <input type="text" id="proj-reg-primary-proj-data-project-name" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-activity-type" data-lang="Activity Type"></label>
+                                                <select id="proj-reg-primary-proj-data-activity-type" class="select form-select">
+                                                    <option value="" selected data-lang="Commercial"></option>
+                                                    <option value="" data-lang="Choice 2"></option>
+                                                    <option value="" data-lang="Choice 3"></option>
+                                                    <option value="" data-lang="Choice 4"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-order-type" data-lang="Order Type"></label>
+                                                <select id="proj-reg-primary-proj-data-order-type" class="select form-select">
+                                                    <option value="" selected data-lang="New (Establishment)"></option>
+                                                    <option value="" data-lang="Expansion"></option>
+                                                    <option value="" data-lang="Development"></option>
+                                                    <option value="" data-lang="Benefit"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-activity-description" data-lang="Activity Description"></label>
+                                                <textarea
+                                                    id="proj-reg-primary-proj-data-activity-description"
+                                                    class="form-control no-resize"
+                                                    placeholder="##"
+                                                    aria-label="Activity Description"
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs governorate-controls-directorate">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Location"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-governorate" data-lang="Governorate"></label>
+                                                <select id="proj-reg-proj-loc-governorate" class="select form-select governorates-select">
+                                                    <!-- Options are generated from the script "countriesStatesCities.js" -->
+                                                </select>
+                                            </div>
+                                            @*<div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-governorate" data-lang="Governorate"></label>
+                                                <input id="color" list="proj-reg-proj-loc-governorate" class="form-control">
+                                                <datalist id="proj-reg-proj-loc-governorate" class="governorates-select">
+                                                    <!-- Options are generated from the script "countriesStatesCities.js" -->
+                                                </datalist>
+                                            </div>*@
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-directorate" data-lang="Directorate"></label>
+                                                <select id="proj-reg-proj-loc-directorate" class="select form-select directorates-select">
+                                                    @* Options are generated from the script "countriesStatesCities.js" *@
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-region" data-lang="Region"></label>
+                                                <input type="text" id="proj-reg-proj-loc-region" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-street-1" data-lang="Street 1"></label>
+                                                <input type="text" id="proj-reg-proj-loc-street-1" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-street-2" data-lang="Street 2"></label>
+                                                <input type="text" id="proj-reg-proj-loc-street-2" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-administrative-address" data-lang="Administrative Address"></label>
+                                                <input type="text" id="proj-reg-proj-loc-administrative-address" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-phone-number" data-lang="Phone Number"></label>
+                                                <input type="text" id="proj-reg-proj-loc-phone-number" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-fax" data-lang="Fax"></label>
+                                                <input type="text" id="proj-reg-proj-loc-fax" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-cellular" data-lang="Cellular"></label>
+                                                <input type="text" id="proj-reg-proj-loc-cellular" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-mail-box" data-lang="Mail Box"></label>
+                                                <input type="text" id="proj-reg-proj-loc-mail-box" class="form-control" value="00000" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-loc-email" data-lang="Email"></label>
+                                                <input type="email" id="proj-reg-proj-loc-email" class="form-control" placeholder="firm@@xyz.com" />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Land Area Required for the Project"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-land-area-num">
+                                                    <span data-lang="Area as a Number"></span>
+                                                    (<span data-lang="Square Meters"></span>)
+                                                </label>
+                                                <input type="number" id="proj-reg-proj-land-area-num" class="form-control sanitize min-0" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-land-area-text">
+                                                    <span data-lang="Area as Text"></span>
+                                                    (<span data-lang="Square Meters"></span>)
+                                                </label>
+                                                <input type="text" id="proj-reg-proj-land-area-text" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-land-area-ownership-type" data-lang="Ownership Type"></label>
+                                                <select class="form-select" id="proj-reg-proj-land-area-ownership-type" aria-label="Ownership Type">
+                                                    <option value="" selected data-lang="Private Ownership"></option>
+                                                    <option value="" data-lang="Country Ownership"></option>
+                                                    <option value="" data-lang="Rent"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Implementation Timeline"></h6>
+                                            </div>
+                                            <div class="timeline-boxes-wrapper">
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Procedure for Registration and Other Licensing"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-1-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-1-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-1-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-1-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-1-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-1-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Land Preparation Civil and Construction Works and Infrastructure"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-2-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-2-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-2-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-2-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-2-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-2-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Import and Installation of Machinery Equipment and Supplies Necessary for the Project"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-3-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-3-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-3-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-3-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-3-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-3-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Start the Trial Run"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-4-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-4-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-4-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-4-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-4-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-4-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Implementation Kickoff"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-5-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-5-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-5-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-5-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-5-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-5-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Implementation End"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-6-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-6-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-6-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-6-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-6-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-6-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="Production Start / Commercial Activity"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-7-from" data-lang="From"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-7-from" class="form-control" />
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-7-to" data-lang="To"></label>
+                                                                    <input type="date" id="proj-reg-timeline-frame-7-to" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-7-notes" data-lang="Notes"></label>
+                                                            <textarea
+                                                                id="proj-reg-timeline-frame-7-notes"
+                                                                class="form-control no-resize"
+                                                                placeholder="##"
+                                                                aria-label="Notes"
+                                                            ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Products and Services Offered by the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row">
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 d-flex flex-column justify-content-between">
+                                                        <label class="form-label" for="proj-reg-products-form-repeater-1-1" data-lang="Product / Service"></label>
+                                                        <input type="text" id="proj-reg-products-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0 d-flex flex-column justify-content-between">
+                                                        <label class="form-label" for="proj-reg-products-form-repeater-1-2" data-lang="Annual Production Capacity (Unit)"></label>
+                                                        <input type="text" id="proj-reg-products-form-repeater-1-2" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0 d-flex flex-column justify-content-between">
+                                                        <label class="form-label" for="proj-reg-products-form-repeater-1-3" data-lang="Annual Production Capacity (Quantity)"></label>
+                                                        <input type="number" id="proj-reg-products-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0">
+                                                        <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                        <i class="bx bx-x me-1"></i>
+                                                        <span class="align-middle" data-lang="Delete"></span>
+                                                        </button>
+                                                    </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Data and Indicators (Project Investment Cost)"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-4 col-12 mb-0 contains-other-option">
+                                                            <label class="form-label" for="proj-reg-investment-cost-form-repeater-1-1" data-lang="Statement"></label>
+                                                            <select class="form-select" id="proj-reg-investment-cost-form-repeater-1-1" aria-label="Statement">
+                                                                <option value="" selected data-lang="Establishment Expenses"></option>
+                                                                <option value="" data-lang="Land and Location Preparation"></option>
+                                                                <option value="" data-lang="Buildings and Constructions"></option>
+                                                                <option value="" data-lang="Machinery, Equipment and Supplies"></option>
+                                                                <option value="" data-lang="Working Capital (for Three Months)"></option>
+                                                                <option value="" data-lang="Other Costs (Must be Specified)" class="other-option-trigger"></option>
+                                                            </select>
+
+                                                            <label class="form-label d-none" for="proj-reg-investment-cost-form-repeater-1-2"></label>
+                                                            <input type="text" id="proj-reg-investment-cost-form-repeater-1-2" class="form-control mt-2 other-option-target" placeholder="##" />
+
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-investment-cost-form-repeater-1-3" data-lang="Cost in USD"></label>
+                                                            <input type="number" id="proj-reg-investment-cost-form-repeater-1-3" class="form-control operand" value="0.00" step="0.01" min="0.00" />
+                                                        </div>
+
+                                                        <div class="mb-3 col-lg-2 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                            <i class="bx bx-x me-1"></i>
+                                                            <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mt-1">
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="proj-reg-investment-cost-total" data-lang="Total in USD"></label>
+                                                    <input type="text" id="proj-reg-investment-cost-total" class="form-control target" value="0.00" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs percentage-input-container calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Funding Sources"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-4 col-12 mb-0 contains-other-option">
+                                                            <label class="form-label" for="proj-reg-funding-src-form-repeater-1-1" data-lang="Funding Type"></label>
+                                                            <select class="form-select" id="proj-reg-funding-src-form-repeater-1-1" aria-label="Funding Type">
+                                                                <option value="" selected data-lang="Self-funding"></option>
+                                                                <option value="" data-lang="Bank Facilities"></option>
+                                                                <option value="" data-lang="Others (Must be Specified)"></option>
+                                                            </select>
+
+                                                            <label class="form-label d-none" for="proj-reg-funding-src-form-repeater-1-2"></label>
+                                                            <input type="text" id="proj-reg-funding-src-form-repeater-1-2" class="form-control mt-2 other-option-target" placeholder="##" />
+
+                                                        </div>
+                                                        <div class="mb-3 col-lg-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-funding-src-form-repeater-1-3" data-lang="Amount in USD"></label>
+                                                            <input type="number" id="proj-reg-funding-src-form-repeater-1-3" class="form-control operand" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-2 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-funding-src-form-repeater-1-7" data-lang="Funding Type Ratio"></label>
+                                                            <input type="number" id="proj-reg-funding-src-form-repeater-1-7" class="form-control percentage-input" value="100.00" step="0.01" min="0" max="100" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-2 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                            <i class="bx bx-x me-1"></i>
+                                                            <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <p class="alert alert-danger percentage-err d-none">
+                                                    <i class='bx bx-error-circle'></i>
+                                                    <span data-lang="The sum of the funding type percentages must be equal to 100"></span>
+                                                </p>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mt-1">
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="proj-reg-funding-src-total" data-lang="Total in USD"></label>
+                                                    <input type="text" id="proj-reg-funding-src-total" class="form-control target" value="0" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                    <button type="button" class="btn btn-label-secondary btn-prev" disabled>
+                                    <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                    <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-next">
+                                    <span class="d-none d-sm-inline-block" data-lang="Next"></span>
+                                    <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="data-about-the-project-owner" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Legal Form"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-legal-form-type" data-lang="Legal Form Type"></label>
+                                                <select id="proj-reg-legal-form-type" class="select form-select condition-select">
+                                                    <option value="" selected data-lang="Individual"></option>
+                                                    <option value="" data-lang="Existing Companies"></option>
+                                                    <option value="" data-lang="Companies Under Incorporation"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        @*legal form: individual*@
+                                        <div class="box-target active flex-column">
+                                            <div class="row g-3 box-of-inputs mb-0-forcefully">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Project Owner Name (Individual)"></h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-first-name" data-lang="First Name"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-first-name" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-second-name" data-lang="Second Name"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-second-name" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-third-name" data-lang="Third Name"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-third-name" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-last-name" data-lang="Last Name"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-last-name" class="form-control" placeholder="##" />
+                                                </div>
+                                                @*<div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-id-card" data-lang="ID Card or Passport Number"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-id-card" class="form-control" placeholder="##" />
+                                                </div>*@
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-phone-number" data-lang="Phone Number"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-phone-number" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-fax" data-lang="Fax"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-fax" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-cellular" data-lang="Cellular"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-cellular" class="form-control" placeholder="##" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-mail-box" data-lang="Mail Box"></label>
+                                                    <input type="text" id="proj-reg-proj-owner-mail-box" class="form-control" value="00000" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-email" data-lang="Email"></label>
+                                                    <input type="email" id="proj-reg-proj-owner-email" class="form-control" placeholder="##" />
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Personal Document"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-place" data-lang="Issue Place"></label>
+                                                <input type="text" id="proj-reg-proj-owner-p-doc-issue-place" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-date" data-lang="Issue Date"></label>
+                                                <input type="date" id="proj-reg-proj-owner-p-doc-issue-date" class="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-p-doc-expire-date" data-lang="Expire Date"></label>
+                                                <input type="date" id="proj-reg-proj-owner-p-doc-expire-date" class="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-p-doc-document-type" data-lang="Document Type"></label>
+                                                <select class="form-select" id="proj-reg-proj-owner-p-doc-document-type" aria-label="Representative Status">
+                                                    <option value="1" selected data-lang="ID Card"></option>
+                                                    <option value="2" data-lang="Passport"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-document-number" data-lang="Document Number"></label>
+                                                <input type="text" id="proj-reg-proj-owner-document-number" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                <div class="wrapper upload">
+                                                <div class="file-upload">
+                                                    <input type="file" name="file_1" required />
+                                                    <div class="details">
+                                                        <div class="file-statement">
+                                                            <span data-lang="A Copy of the Company's Memorandum of Association and Articles of Association"></span>
+                                                        </div>
+                                                        <div class="file-name-wrapper">
+                                                            <span data-lang="File name"></span>:
+                                                            <span class="file-name"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="file-btn">
+                                                        <span data-lang="Upload"></span>
+                                                        <i class='bx bx-upload'></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        @* / legal form: individual*@
+
+                                        @*legal form: existing-companies*@
+                                        <div class="row g-3 box-of-inputs box-target">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Owner Name (Existing Companies)"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-name" data-lang="Commercial Name"></label>
+                                                <input type="text" id="proj-reg-proj-owner-existing-companies-commercial-name" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-company-type" data-lang="Company Type Legal Form"></label>
+                                                <input type="text" id="proj-reg-proj-owner-existing-companies-company-type" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-registration-no" data-lang="Commercial Registration No"></label>
+                                                <input type="number" id="proj-reg-proj-owner-existing-companies-commercial-registration-no" class="form-control sanitize min-0" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-registration-date" data-lang="Commercial Registration Date"></label>
+                                                <input type="date" id="proj-reg-proj-owner-existing-companies-commercial-registration-date" class="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-company-activity" data-lang="Company Activity"></label>
+                                                <input type="text" id="proj-reg-proj-owner-existing-companies-company-activity" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-company-location" data-lang="Company Location"></label>
+                                                <input type="text" id="proj-reg-proj-owner-existing-companies-company-location" class="form-control" placeholder="##" />
+                                            </div>
+                                        </div>
+                                        @* / legal form :existing-companies*@
+
+                                        @*legal form: companies-under-incorporation*@
+                                        <div class="row g-3 box-of-inputs box-target percentage-input-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Owner Name (Companies Under Incorporation)"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row">
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-1" data-lang="Founder Name"></label>
+                                                        <input type="text" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-2" data-lang="Nationality"></label>
+                                                        <input type="text" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-2" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-3" data-lang="Contribution Percentage"></label>
+                                                        <input type="number" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-3" class="form-control percentage-input" value="100.00" step="0.01" min="0" max="100" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-4" data-lang="ID Card or Passport Number"></label>
+                                                        <input type="text" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-4" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-5" data-lang="Issue Place"></label>
+                                                        <input type="text" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-5" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                        <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-6" data-lang="Issue Date"></label>
+                                                        <input type="date" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-6" class="form-control" placeholder="##" />
+                                                    </div>
+                                                    <div class="mb-3 col-lg-12 col-12 d-flex align-items-center mb-0">
+                                                        <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                            <i class="bx bx-x me-1"></i>
+                                                            <span class="align-middle" data-lang="Delete"></span>
+                                                        </button>
+                                                    </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <p class="alert alert-danger percentage-err d-none">
+                                                    <i class='bx bx-error-circle'></i>
+                                                    <span data-lang="The sum of the contribution percentages must be equal to 100"></span>
+                                                </p>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* / legal form: companies-under-incorporation*@
+
+                                        <div class="row g-3 box-of-inputs country-controls-governorate governorate-controls-directorate">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Owner's Address"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-country" data-lang="Country"></label>
+                                                <select id="proj-reg-proj-owner-country" class="select form-select countries-select">
+                                                    @* Options are generated from the script "countriesStatesCities.js" *@
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-covernorate" data-lang="Governorate"></label>
+                                                <select id="proj-reg-proj-owner-covernorate" class="select form-select governorates-select">
+                                                    @* Options are generated from the script "countriesStatesCities.js" *@
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-directorate" data-lang="Directorate"></label>
+                                                <select id="proj-reg-proj-owner-directorate" class="select form-select directorates-select">
+                                                    @* Options are generated from the script "countriesStatesCities.js" *@
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-region" data-lang="Region"></label>
+                                                <input type="text" id="proj-reg-proj-owner-region" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-street-1" data-lang="Street 1"></label>
+                                                <input type="text" id="proj-reg-proj-owner-street-1" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-owner-street-2" data-lang="Street 2"></label>
+                                                <input type="text" id="proj-reg-proj-owner-street-2" class="form-control" placeholder="##" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Investor Representative Data"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-representative-name" data-lang="Representative Name"></label>
+                                                <input type="text" id="proj-reg-representative-data-representative-name" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-id-card" data-lang="ID Card or Passport Number"></label>
+                                                <input type="text" id="proj-reg-representative-data-id-card" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-id-card-issue-place" data-lang="Issue Place"></label>
+                                                <input type="text" id="proj-reg-representative-data-id-card-issue-place" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-id-card-issue-date" data-lang="Issue Date"></label>
+                                                <input type="date" id="proj-reg-representative-data-id-card-issue-date" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-phone-number" data-lang="Phone Number"></label>
+                                                <input type="text" id="proj-reg-representative-data-phone-number" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-cellular" data-lang="Cellular"></label>
+                                                <input type="text" id="proj-reg-representative-data-cellular" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-fax" data-lang="Fax"></label>
+                                                <input type="text" id="proj-reg-representative-data-fax" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-email" data-lang="Email"></label>
+                                                <input type="email" id="proj-reg-representative-data-email" class="form-control" placeholder="##" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-representative-data-mail-box" data-lang="Mail Box"></label>
+                                                <input type="text" id="proj-reg-representative-data-mail-box" class="form-control" value="00000" />
+                                            </div>
+                                            <div class="col-md-6 contains-other-option">
+                                                <label class="form-label" for="proj-reg-representative-data-status" data-lang="Representative Status"></label>
+                                                <select class="form-select" id="proj-reg-representative-data-status" aria-label="Representative Status">
+                                                    <option value="" selected data-lang="Representative Status Representative"></option>
+                                                    <option value="" data-lang="Partner"></option>
+                                                    <option value="" data-lang="Relationship Officer"></option>
+                                                    <option value="" data-lang="Company Organization Manager"></option>
+                                                    <option value="" data-lang="Others (Must be Specified)"></option>
+                                                </select>
+
+                                                <input type="text" class="form-control mt-2 other-option-target" placeholder="##" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Other Projects Owned by the Investor"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                    <div data-repeater-item>
+                                                        <div class="row align-items-start">
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                                <label class="form-label" for="proj-reg-other-proj-form-repeater-1-1" data-lang="Project Name"></label>
+                                                                <input type="text" id="proj-reg-other-proj-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0">
+                                                                <label class="form-label" for="proj-reg-other-proj-form-repeater-1-2" data-lang="Registration Decision Number"></label>
+                                                                <input type="number" id="proj-reg-other-proj-form-repeater-1-2" class="form-control sanitize min-0" value="0" min="0" />
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0">
+                                                                <label class="form-label" for="proj-reg-other-proj-form-repeater-1-3" data-lang="Issue Date"></label>
+                                                                <input type="date" id="proj-reg-other-proj-form-repeater-1-3" class="form-control" placeholder="##" />
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0">
+                                                                <label class="form-label" for="proj-reg-other-proj-form-repeater-1-4" data-lang="Issue Place"></label>
+                                                                <input type="text" id="proj-reg-other-proj-form-repeater-1-4" class="form-control" placeholder="##" />
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-center mb-0">
+                                                                <button type="button" class="btn btn-label-danger mt-4 w-xl-100" data-repeater-delete>
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>  
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary" data-repeater-create>
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                  <button type="button" class="btn btn-primary btn-prev">
+                                    <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                    <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                  </button>
+                                  <button type="button" class="btn btn-primary btn-next">
+                                    <span class="d-none d-sm-inline-block" data-lang="Next"></span>
+                                    <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                  </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="other-data" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="The Project Needs of Water and Electricity"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-needs-water-annually">
+                                                    <span data-lang="The Estimated Percentage of Water Required for the Project Annually"></span>
+                                                    (<span data-lang="Cubic Meters"></span>)
+                                                </label>
+                                                <input type="number" id="proj-reg-proj-needs-water-annually" class="form-control sanitize min-0" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-needs-water-src" data-lang="Source"></label>
+                                                <select id="proj-reg-proj-needs-water-src" class="select form-select">
+                                                    <option value="" selected data-lang="Public"></option>
+                                                    <option value="" data-lang="Own Source"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-needs-electricity-annually">
+                                                    <span data-lang="The Estimated Percentage of Electricity Required for the Project Annually"></span>
+                                                    (<span data-lang="Kilowatt"></span>)
+                                                </label>
+                                                <input type="number" id="proj-reg-proj-needs-electricity-annually" class="form-control sanitize min-0" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="proj-reg-proj-needs-electricity-src" data-lang="Source"></label>
+                                                <select id="proj-reg-proj-needs-electricity-src" class="select form-select">
+                                                    <option value="" selected data-lang="Public"></option>
+                                                    <option value="" data-lang="Own Source"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Employment Size"></h6>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="proj-reg-employment-size-local-labor" data-lang="Local Labor">
+                                                </label>
+                                                <input type="number" id="proj-reg-employment-size-local-labor" class="form-control operand" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="proj-reg-employment-size-foreign-labor" data-lang="Foreign Labor">
+                                                </label>
+                                                <input type="number" id="proj-reg-employment-size-foreign-labor" class="form-control operand" value="0" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="proj-reg-employment-size-total-labor" data-lang="Total">
+                                                </label>
+                                                <input type="number" id="proj-reg-employment-size-total-labor" class="form-control target" value="0" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Machinery Equipment and Supplies Required for the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-equipment-form-repeater-1-1" data-lang="Statement"></label>
+                                                            <input type="text" id="proj-reg-equipment-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-equipment-form-repeater-1-2">
+                                                                <span data-lang="Local"></span> /
+                                                                <span data-lang="Imported"></span>
+                                                            </label>
+                                                            <select id="proj-reg-equipment-form-repeater-1-2" class="select form-select">
+                                                                <option value="" selected data-lang="Local"></option>
+                                                                <option value="" data-lang="Imported"></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-equipment-form-repeater-1-3" data-lang="Unit"></label>
+                                                            <input type="text" id="proj-reg-equipment-form-repeater-1-3" class="form-control" placeholder="##" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-equipment-form-repeater-1-4" data-lang="Quantity"></label>
+                                                            <input type="number" id="proj-reg-equipment-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-equipment-form-repeater-1-5" data-lang="Cost in USD"></label>
+                                                            <input type="number" id="proj-reg-equipment-form-repeater-1-5" class="form-control operand" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mt-2 col-lg-12 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger" data-repeater-delete>
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class='col-lg-6'>
+                                                <label class="form-label" for="proj-reg-equipment-machinery-total" data-lang="Total">
+                                                </label>
+                                                <input type="text" id="proj-reg-equipment-machinery-total" class="form-control target" readonly value="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Requirements for the Project Annually in Terms of Production Inputs, with the Exception of Water and Electricity"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-1" data-lang="Statement"></label>
+                                                            <input type="text" id="proj-reg-production-inputs-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-2">
+                                                                <span data-lang="Local"></span> /
+                                                                <span data-lang="Imported"></span>
+                                                            </label>
+                                                            <select id="proj-reg-production-inputs-form-repeater-1-2" class="select form-select">
+                                                                <option value="" selected data-lang="Local"></option>
+                                                                <option value="" data-lang="Imported"></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-3" data-lang="Unit"></label>
+                                                            <input type="text" id="proj-reg-production-inputs-form-repeater-1-3" class="form-control" placeholder="##" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-4" data-lang="Quantity"></label>
+                                                            <input type="number" id="proj-reg-production-inputs-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-5" data-lang="Cost in USD"></label>
+                                                            <input type="number" id="proj-reg-production-inputs-form-repeater-1-5" class="form-control operand" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mt-2 col-lg-12 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger" data-repeater-delete>
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class='col-lg-6'>
+                                                <label class="form-label" for="proj-reg-production-inputs-total" data-lang="Total">
+                                                </label>
+                                                <input type="text" id="proj-reg-production-inputs-total" class="form-control target" readonly value="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="The Project Labor Needs Types and Annual Costs"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-1" data-lang="Role / Job Required"></label>
+                                                            <input type="text" id="proj-reg-labor-needs-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-2" data-lang="Number (Yemeni)"></label>
+                                                            <input type="number" id="proj-reg-labor-needs-form-repeater-1-2" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-3" data-lang="Number (Foreigners)"></label>
+                                                            <input type="number" id="proj-reg-labor-needs-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-4" data-lang="Duration (Months)"></label>
+                                                            <input type="number" id="proj-reg-labor-needs-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-5" data-lang="Annual Wage (in USD)"></label>
+                                                            <input type="number" id="proj-reg-labor-needs-form-repeater-1-5" class="form-control operand" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mt-3 col-lg-12 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger" data-repeater-delete>
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary" data-repeater-create>
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="row g-3 mt-3">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label" for="proj-reg-labor-needs-final-total" data-lang="Total Annual Wages in USD"></label>
+                                                        <input type="text" id="proj-reg-labor-needs-final-total" class="form-control target" value="0" readonly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Environmental Impact Assessment of the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-start">
+                                                        <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0 contains-other-option">
+                                                            <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-1" data-lang="Waste Type for the Project Activity"></label>
+                                                            <select class="form-select" id="proj-reg-environmental-impact-form-repeater-1-1" aria-label="Waste Type for the Project Activity">
+                                                                <option value="" selected data-lang="Solid Waste"></option>
+                                                                <option value="" data-lang="Liquid Waste"></option>
+                                                                <option value="" data-lang="Gaseous Waste"></option>
+                                                                <option value="" data-lang="Others" class="other-option-trigger"></option>
+                                                            </select>
+
+                                                            <label class="form-label d-none" for="proj-reg-environmental-impact-form-repeater-1-2"></label>
+                                                            <input type="text" id="proj-reg-environmental-impact-form-repeater-1-2" class="form-control mt-2 other-option-target" placeholder="##" />
+
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-3" data-lang="Its Size"></label>
+                                                            <input type="number" id="proj-reg-environmental-impact-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                                                            <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-4" data-lang="Suggested Treatment Methods"></label>
+                                                            <textarea
+                                                                id="proj-reg-environmental-impact-form-repeater-1-4"
+                                                                class="form-control"
+                                                                placeholder="##"
+                                                                aria-label="Suggested Treatment Methods"
+                                                            ></textarea>
+                                                        </div>
+                                                        <div class="mt-3 col-lg-12 col-xl-2 col-12 d-flex align-items-center mb-0">
+                                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                            <i class="bx bx-x me-1"></i>
+                                                            <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                <button type="button" class="btn btn-primary" data-repeater-create>
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs on-companies">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Documents Required to Register the Corporate Investment Project"></h6>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_1" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Company's Memorandum of Association and Articles of Association"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_2" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Document of Possession of the Proposed Site for the Establishment of the Project"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_3" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="Authorization for the Authorized Person"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_4" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="The ID Card of the Authorized Person"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_5" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Valid Commercial Register"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_6" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Environmental Impact Assessment Study for Projects That Require it"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Applicant Data"></h6>
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-name" data-lang="Name">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-name" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-status" data-lang="Status">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-status" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-date" data-lang="Date">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-date" class="form-control put-today" readonly value="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                    <button type="button" class="btn btn-primary btn-prev">
+                                    <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                    <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                    </button>
+                                    <button type="submit" class="btn btn-success btn-submit" data-lang="Submit"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

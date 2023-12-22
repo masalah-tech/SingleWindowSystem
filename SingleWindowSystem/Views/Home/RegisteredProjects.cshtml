@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Registered Projects";
+    ViewData["ViewName"] = "RegisteredProjects";
+    ViewData["Controller"] = "Home";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+
+            var table = $('.table').DataTable({
+                
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            }) 
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+            
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.submit-form', function (e) {
+            e.preventDefault();
+            var selectedService = $('#confirmation-popup-choose-service').val();
+            var url = $(this).attr('href') + '?service=' + encodeURIComponent(selectedService);
+            window.location.href = url;
+        });
+    </script>
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="card py-4 px-5">
+        <div class="table-responsive text-nowrap">
+            <table class="table py-4 px-2">
+                <thead>
+                    <tr>
+                        <th data-lang="ID"></th>
+                        <th data-lang="Project Name"></th>
+                        <th data-lang="Activity Type"></th>
+                        <th data-lang="Project Owner Name"></th>
+                        <th data-lang="Actions"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @{
+                        for (int i = 1; i <= 110; i++)
+                        {
+                            <tr>
+                                <td><span>@i</span></td>
+                                <td><span data-lang="Text X7"></span></td>
+                                <td><span data-lang="Text X4"></span></td>
+                                <td><span data-lang="Text X7"></span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" asp-area="" asp-controller="ProjectDetails" asp-action="Index">
+                                                <i class="bx bx-edit-alt me-1"></i>
+                                                <span data-lang="Show"></span>
+                                            </a>
+                                            <a class="dropdown-item show-confirm-popup" confirm-popup-target="#add-primary-service" href="javascript:void(0);">
+                                                <i class="bx bx-edit-alt me-1"></i>
+                                                <span data-lang="Add a Primary Service"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>      
+                        }
+                    }
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Confirmation Popup -->
+<div class="confirmation-popup" id="add-primary-service">
+    <form id="confirmation-form" class="conf-popup-box conf-popup-form">
+        <h4 data-lang="Primary Services"></h4>
+        <button type="button" class="btn-label-danger x-btn close-confirm-popup" confirm-popup-target="#add-primary-service">
+            <span>
+                <i class="bx bx-x"></i>
+            </span>
+        </button>
+        <div class="row">
+            <div class="col-12">
+                <label class="form-label" for="confirmation-popup-choose-service" data-lang="Choose the Service"></label>
+                <select id="confirmation-popup-choose-service" class="select form-select">
+                    <option value="Issuing a business start-up certificate" data-lang="Issuing a business start-up certificate" selected></option>
+                    <option value="Issuing an input exemption certificate for the first time" data-lang="Issuing an input exemption certificate for the first time"></option>
+                    <option value="Issuing a certificate of exemption for entries for the second time and beyond" data-lang="Issuing a certificate of exemption for entries for the second time and beyond"></option>
+                    <option value="Issuing a certificate for adding machines" data-lang="Issuing a certificate for adding machines"></option>
+                    <option value="Issuing a certificate for the renewal of the project implementation phases" data-lang="Issuing a certificate for the renewal of the project implementation phases"></option>
+                    <option value="Issuance of a replacement document" data-lang="Issuance of a replacement document"></option>
+                    <option value="Website modification and transfer" data-lang="Website modification and transfer"></option>
+                    <option value="Issuance of a certificate of ownership modification" data-lang="Issuance of a certificate of ownership modification"></option>
+                    <option value="Issuing a certificate of amending the legal form" data-lang="Issuing a certificate of amending the legal form"></option>
+                    <option value="Issuing a project name amendment certificate" data-lang="Issuing a project name amendment certificate"></option>
+                    <option value="Cancellation of registration certificate / decision / license" data-lang="Cancellation of registration certificate / decision / license"></option>
+                    <option value="Issuing a project expansion certificate" data-lang="Issuing a project expansion certificate"></option>
+                    <option value="Issuance of project benefit certificate" data-lang="Issuance of project benefit certificate"></option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-4" style="gap:7px;">
+            <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger close-confirm-popup" confirm-popup-target="#add-primary-service"></a>
+            <a asp-controller="Service" asp-action="RequestPrimaryService" data-lang="Request" class="btn btn-primary submit-form"></a>
+        </div>
+    </form>
+</div>

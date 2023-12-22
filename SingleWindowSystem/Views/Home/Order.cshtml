@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Order";
+
+    string OrderApprovalDocumentId = "99";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="row">
+        <div class="col-xl-8 mb-4">
+            <div class="card px-4 pb-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Order"></h6>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-order-no" data-lang="Order No"></label>
+                        <input type="text" id="order-order-no" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-proj-name" data-lang="Project Name"></label>
+                        <input type="text" id="order-proj-name" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-proj-owner" data-lang="Project Owner"></label>
+                        <input type="text" id="order-proj-owner" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-office" data-lang="Office"></label>
+                        <input type="text" id="order-office" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-service" data-lang="Service"></label>
+                        <input type="text" id="order-service" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-state" data-lang="State"></label>
+                        <input type="text" id="order-state" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="The Approval"></h6>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-approval-decision-number" data-lang="Decision Number"></label>
+                        <input type="text" id="order-approval-decision-number" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-approval-decision-date" data-lang="Decision Date"></label>
+                        <input type="text" id="order-approval-decision-date" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="order-approval-to" data-lang="To"></label>
+                        <input type="text" id="order-approval-to" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6 d-flex flex-column justify-content-end">
+                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="@OrderApprovalDocumentId" class="btn btn-outline-primary d-block w-100">
+                            <span data-lang="Document"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card px-4 pb-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Date"></h6>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="order-date-start-date" data-lang="Starting Date"></label>
+                        <input type="text" id="order-date-start-date" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="order-date-end-date" data-lang="End Date"></label>
+                        <input type="text" id="order-date-end-date" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Notes"></h6>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="order-notes-notes" data-lang="Notes"></label>
+                        <textarea id="order-notes-notes"
+                                  class="form-control no-resize"
+                                  placeholder="##"
+                                  aria-label="Activity Description" readonly style="height:150px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

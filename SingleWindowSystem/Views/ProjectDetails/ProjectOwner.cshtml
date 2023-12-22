@@ -1,0 +1,274 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Details";
+    ViewData["ViewName"] = "ProjectOwner";
+    Layout = "~/Views/Shared/ProjectDetailsLayout.cshtml";
+    ViewData["Controller"] = "ProjectDetails";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section SubpageScripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            //setTimeout(wrapUpperTools,100)
+            //function wrapUpperTools() {
+            //    document.querySelectorAll(".table").forEach(sTable => {
+            //        const searchBox = sTable.querySelector(".DataTables_Table_0_filter");
+            //        const lengthBox = sTable.querySelector(".DataTables_Table_0_filter");
+
+            //        console.log(searchBox);
+
+            //    })
+            //}
+
+        });
+    </script>
+}
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Project Owner's Name"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-name" data-lang="The Name"></label>
+        <input type="text" id="p-details-p-owner-name" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-nationality" data-lang="The Nationality"></label>
+        <input type="text" id="p-details-p-owner-nationality" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-identity" data-lang="Owner's Identity (ID Card Number or Commercial Registration No)"></label>
+        <input type="text" id="p-details-p-owner-identity" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-legal-form" data-lang="The Legal Form"></label>
+        <input type="text" id="p-details-p-owner-legal-form" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-activity" data-lang="The Activity"></label>
+        <input type="text" id="p-details-p-owner-activity" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-location" data-lang="The Location"></label>
+        <input type="text" id="p-details-p-owner-location" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Project Owner's Address"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-governorate" data-lang="Governorate"></label>
+        <input type="text" id="p-details-p-owner-governorate" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-directorate" data-lang="Directorate"></label>
+        <input type="text" id="p-details-p-owner-directorate" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-region" data-lang="Region"></label>
+        <input type="text" id="p-details-p-owner-region" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-street" data-lang="Street"></label>
+        <input type="text" id="p-details-p-owner-street" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Contact Information"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-phone-number" data-lang="Phone Number"></label>
+        <input type="text" id="p-details-p-owner-phone-number" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-fax" data-lang="Fax"></label>
+        <input type="text" id="p-details-p-owner-fax" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-circular" data-lang="Circular"></label>
+        <input type="text" id="p-details-p-owner-circular" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-mail-box" data-lang="Mail Box"></label>
+        <input type="text" id="p-details-p-owner-mail-box" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-p-owner-email" data-lang="Email"></label>
+        <input type="text" id="p-details-p-owner-email" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="The Founders"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table c-scroll vertical-scroll">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Founder Name"></th>
+                    <th data-lang="The Nationality"></th>
+                    <th data-lang="Contribution Percentage (%)"></th>
+                    <th data-lang="ID Card or Passport Number"></th>
+                    <th data-lang="Issue Place"></th>
+                    <th data-lang="Issue Date"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @for (int i = 1; i <= 50; i++)
+                {
+                    <tr>
+                        <td><span>@i</span></td>
+                        <td><span data-lang="Text X4"></span></td>
+                        <td><span data-lang="Text X2"></span></td>
+                        <td>%<span data-lang="Zero X2"></span></td>
+                        <td><span data-lang="Zero X5"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Information about the Investor's/Company's Representative"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table c-scroll">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Representative Name"></th>
+                    <th data-lang="The Nationality"></th>
+                    <th data-lang="ID Card or Passport Number"></th>
+                    <th data-lang="Issue Place"></th>
+                    <th data-lang="Issue Date"></th>
+                    <th data-lang="Place of Residence (Province)"></th>
+                    <th data-lang="Place of Residence (City)"></th>
+                    <th data-lang="Place of Residence (Street)"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @for (int i = 0; i < 50; i++)
+                {
+                    <tr>
+                        <td><span>@i</span></td>
+                        <td><span data-lang="Text X4"></span></td>
+                        <td><span data-lang="Text X2"></span></td>
+                        <td><span data-lang="Zero X5"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Other Projects Owned by the Investor"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Project Name"></th>
+                    <th data-lang="Registration Decision Number"></th>
+                    <th data-lang="Release Date"></th>
+                    <th data-lang="Project Location"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @for (int i = 0; i < 15; i++)
+                {
+                    <tr>
+                        <td><span>@i</span></td>
+                        <td><span data-lang="Text X4"></span></td>
+                        <td><span data-lang="Zero X5"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

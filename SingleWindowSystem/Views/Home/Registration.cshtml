@@ -1,0 +1,1891 @@
+﻿@model ProjectRegistrationViewModel
+
+@{
+    ViewData["page_title_data_lang"] = "Project Registration";
+    int conterForTimeFream = 0;
+   
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area no-scroll">
+    <div class="row container-l2">
+        <div class="col-12 container-l3">
+            <div class="bs-stepper wizard-numbered container-l4 custom">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#data-about-the-project">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">1</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title lh-base" data-lang="Data About the Project"></span>
+                        </span>
+                    </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#data-about-the-project-owner">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title lh-base" data-lang="Data About the Project Owner"></span>
+                        </span>
+                    </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step lh-base" data-target="#other-data">
+                    <button type="button" class="step-trigger">
+                        <span class="bs-stepper-circle">3</span>
+                        <span class="bs-stepper-label">
+                        <span class="bs-stepper-title" data-lang="Other Data"></span>
+                        </span>
+                    </button>
+                    </div>
+                    <div class="order-no">
+                        <span data-lang="Order No:"></span>
+                        <span>####</span>
+                    </div>
+                </div>
+                <div class="bs-stepper-content c-scroll container-l5">
+                    <form class="container-l6 mzn-validation" novalidate>
+                    @*<form class="container-l6">*@
+                        @*first side start*@
+                        <div id="data-about-the-project" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs first">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Primary Project Data"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-project-name" data-lang="Project Name"></label>
+                                                <input required asp-for="projectViewModel.ProjectName_Name" type="text" id="proj-reg-primary-proj-data-project-name" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.ProjectName_Name" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label"  for="proj-reg-primary-proj-data-activity-type" data-lang="Activity Type"></label>
+                                                <select required asp-for="projectViewModel.ActivityType" kg="@*@(new SelectList(_unitOfWork.TypeOfActivityRepository.FindAll(a=>a.Deffult==true)," Name","Name"))*@" id="proj-reg-primary-proj-data-activity-type" custom-id="proj-reg-primary-proj-data-activity-type" class="formValidationSelect2 select form-select has-new-options">
+                                                    <option value="Select" data-lang="Select Activity Type" selected></option>
+                                                    <option value="addNew" data-lang="Others (Must be Specified)"></option>
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.ActivityType" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-order-type" data-lang="Order Type"></label>
+                                                <select required asp-for="projectViewModel.TypeOfApplcation" id="proj-reg-primary-proj-data-order-type" custom-id="proj-reg-primary-proj-data-order-type" class="select form-select">
+                                                    <option value="1" selected data-lang="New (Establishment)"></option>
+                                                    <option value="2" data-lang="Expansion"></option>
+                                                    <option value="3" data-lang="Development"></option>
+                                                    <option value="4" data-lang="Benefit"></option>
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.TypeOfApplcation" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-primary-proj-data-activity-description" data-lang="Activity Description"></label>
+                                                <textarea required asp-for="projectViewModel.Description"
+                                                    id="proj-reg-primary-proj-data-activity-description"
+                                                    class="form-control no-resize"
+                                                    placeholder="##"
+                                                    aria-label="Activity Description"
+                                                ></textarea>
+                                                <span asp-validation-for="projectViewModel.Description" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs governorate-controls-directorate">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Location and Land Area Required for the Project"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-governorate" data-lang="Governorate"></label>
+                                                <select required asp-for="projectViewModel.LandArea_StatePrvice" id="proj-reg-proj-loc-governorate" custom-id="proj-reg-proj-loc-governorate" class="select form-select governorates-select has-new-options" controls-directorate="#proj-reg-proj-loc-directorate">
+                                                    <option value="Select" data-lang="--- Select the governorate ---" selected></option>
+                                                    <!-- Options are generated from the script "regions.js" -->
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.LandArea_StatePrvice" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-directorate" data-lang="Directorate"></label>
+                                                <select required asp-for="projectViewModel.LandArea_City" id="proj-reg-proj-loc-directorate" custom-id="proj-reg-proj-loc-directorate" class="select form-select directorates-select has-new-options">
+                                                    <option value="Select" data-lang="--- Select the directorate ---" selected></option>
+                                                    @* Options are generated from the script "regions.js" *@
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.LandArea_City" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-region" data-lang="Region"></label>
+                                                <input required asp-for="projectViewModel.LandArea_PostalCode" id="proj-reg-proj-loc-region" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.LandArea_PostalCode" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-street-1" data-lang="Street 1"></label>
+                                                <input required asp-for="projectViewModel.LandArea_StreetAddress1"  id="proj-reg-proj-loc-street-1" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.LandArea_StreetAddress1" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-land-area-num">
+                                                    <span data-lang="Area as a Number"></span>
+                                                    (<span data-lang="Square Meters"></span>)
+                                                </label>
+                                                <input required asp-for="projectViewModel.LandArea_AreaInFigures" type="text" id="proj-reg-proj-land-area-num" class="form-control sanitize min-0" value="0" min="0" />
+                                                <span asp-validation-for="projectViewModel.LandArea_AreaInFigures" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-land-area-text">
+                                                    <span data-lang="Area as Text"></span>
+                                                    (<span data-lang="Square Meters"></span>)
+                                                </label>
+                                                <input required asp-for="projectViewModel.LandArea_AreaInWord" id="proj-reg-proj-land-area-text" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.LandArea_AreaInWord" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-land-area-ownership-type" data-lang="Ownership Type"></label>
+                                                <select required asp-for="projectViewModel.LandArea_TypeOfOwnership" class="form-select" id="proj-reg-proj-land-area-ownership-type" custom-id="proj-reg-proj-land-area-ownership-type" aria-label="Ownership Type">
+                                                    <option value="0" selected data-lang="Private Ownership"></option>
+                                                    <option value="1" data-lang="Country Ownership"></option>
+                                                    <option value="2" data-lang="Rent"></option>
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.LandArea_TypeOfOwnership" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs regions-container governorate-controls-directorate">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Administrative Address"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-country" data-lang="Country"></label>
+                                                <select required asp-for="projectViewModel.AS_Country" id="proj-reg-proj-owner-country" custom-id="proj-reg-proj-owner-country" class="select form-select countries-select controls-gov-and-direc">
+                                                    @* Options are generated from the script "regions.js" *@
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.AS_Country" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-ad-governorate" data-lang="Governorate"></label>
+                                                <select required asp-for="projectViewModel.AS_StatePrvice" id="proj-reg-ad-governorate" custom-id="proj-reg-ad-governorate" class="select form-select governorates-select has-new-options" controls-directorate="#proj-reg-ad-directorate">
+                                                    <option value="Select" data-lang="--- Select the governorate ---" selected></option>
+                                                    <!-- Options are generated from the script "regions.js" -->
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.AS_StatePrvice" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-ad-directorate" data-lang="Directorate"></label>
+                                                <select required asp-for="projectViewModel.AS_City" id="proj-reg-ad-directorate" custom-id="proj-reg-ad-directorate" class="select form-select directorates-select has-new-options">
+                                                    <option value="Select" data-lang="--- Select the directorate ---" selected></option>
+                                                    @* Options are generated from the script "regions.js" *@
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.AS_City" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-region" data-lang="Region"></label>
+                                                <input required asp-for="projectViewModel.AS_PostalCode" id="proj-reg-proj-loc-region" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.AS_PostalCode" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-street-1" data-lang="Street 1"></label>
+                                                <input required asp-for="projectViewModel.AS_StreetAddress1" id="proj-reg-proj-loc-street-1" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.AS_StreetAddress1" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-phone-number" data-lang="Phone Number"></label>
+                                                <input required asp-for="projectViewModel.ASPhoneNumber" id="proj-reg-proj-loc-phone-number" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.ASPhoneNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-fax" data-lang="Fax"></label>
+                                                <input required asp-for="projectViewModel.ASFaxNumber" id="proj-reg-proj-loc-fax" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.ASFaxNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-cellular" data-lang="Cellular"></label>
+                                                <input required asp-for="projectViewModel.ASMobileNumber" id="proj-reg-proj-loc-cellular" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="projectViewModel.ASMobileNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-mail-box" data-lang="Mail Box"></label>
+                                                <input required asp-for="projectViewModel.ASPOBox" id="proj-reg-proj-loc-mail-box" class="form-control" value="00000" />
+                                                <span asp-validation-for="projectViewModel.ASPOBox" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-loc-email" data-lang="Email"></label>
+                                                <input required asp-for="projectViewModel.ASEmailAddress" id="proj-reg-proj-loc-email" class="form-control" placeholder="firm@@xyz.com" />
+                                                <span asp-validation-for="projectViewModel.ASEmailAddress" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Implementation Timeline"></h6>
+                                            </div>
+                                            <div class="timeline-boxes-wrapper">
+                                               @* @foreach (var timeFream in timeframeTypes)
+                                                {*@
+                                                <div class="sub-box-of-inputs timeline-box">
+                                                    <div class="content-header">
+                                                        <span class="d-block" data-lang="@*@timeFream.Name*@"></span>   
+                                                    </div>
+                                                    <div>
+                                                        <input asp-for="timeframeViewModels[conterForTimeFream].TypeOfTimeframeID" value="@*@timeFream.Id*@" type="hidden" />
+                                                        <div>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div class="mzn-input-container">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-1-from" data-lang="From"></label>
+                                                                    <input required asp-for="timeframeViewModels[conterForTimeFream].DateOfStart" id="proj-reg-timeline-frame-1-from" class="form-control" />
+                                                                    <span asp-validation-for="timeframeViewModels[conterForTimeFream].DateOfStart" class="text-danger"></span>
+                                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                                </div>
+                                                                <div class="mzn-input-container">
+                                                                    <label class="form-label" for="proj-reg-timeline-frame-1-to" data-lang="To"></label>
+                                                                    <input required asp-for="timeframeViewModels[conterForTimeFream].DateOfEnd" id="proj-reg-timeline-frame-1-to" class="form-control" />
+                                                                    <span asp-validation-for="timeframeViewModels[conterForTimeFream].DateOfEnd" class="text-danger"></span>
+                                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2 mzn-input-container">
+                                                            <label class="form-label" for="proj-reg-timeline-frame-1-notes" data-lang="Notes"></label>
+                                                            <textarea required asp-for="timeframeViewModels[conterForTimeFream].Remarks"
+                                                                        id="proj-reg-timeline-frame-1-notes"
+                                                                        class="form-control no-resize"
+                                                                        placeholder="##"
+                                                                        aria-label="Notes"></textarea>
+                                                            <span asp-validation-for="timeframeViewModels[conterForTimeFream].Remarks" class="text-danger"></span>
+                                                            <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                  @*  conterForTimeFream += 1;
+                                                }*@
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Products and Services Offered by the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater" id="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mzn-input-container mb-3 col-lg-6 col-xl-4 col-12 mb-0 d-flex flex-column justify-content-between">
+                                                                <label class="form-label" for="proj-reg-products-form-repeater-1-1" data-lang="Product / Service"></label>
+                                                                <input type="text" required name="productViewModel[].ProductOrService" id="proj-reg-products-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                                <span name="productViewModel[].ProductOrService" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0 d-flex flex-column justify-content-between mzn-input-container">
+                                                            <label class="form-label" for="proj-reg-products-form-repeater-1-2" data-lang="Annual Production Capacity (Unit)"></label>
+                                                                <select required name="productViewModel[].UintName" id="proj-reg-products-form-repeater-1-2" custom-id="proj-reg-products-form-repeater-1-2" class="select form-select has-new-options">
+                                                                <option value="Select" data-lang="Select Uint" selected></option>
+                                                                <option value="addNew" data-lang="Others (Must be Specified)"></option>
+                                                            </select>
+                                                            <span name="productViewModel[].UintName" class="text-danger"></span>
+                                                            <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                        </div>
+                                                        <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0 d-flex flex-column justify-content-between mzn-input-container">
+                                                            <label class="form-label" for="proj-reg-products-form-repeater-1-3" data-lang="Annual Production Capacity (Quantity)"></label>
+                                                            <input required type="number" name="productViewModel[].Quantity" id="proj-reg-products-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                            <span name="productViewModel[].Quantity" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                        </div>
+                                                        <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                            <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container" id="proj-invest-cost">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Data and Indicators (Project Investment Cost)"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row align-items-start">
+                                                            <div class="mb-3 col-lg-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-investment-cost-form-repeater-1-1" data-lang="Statement"></label>
+                                                                <select required name="costViewModel[].TypeOfCostName" kg="@*@typeOFCost*@" class="form-select has-new-options" id="proj-reg-investment-cost-form-repeater-1-1" custom-id="proj-reg-investment-cost-form-repeater-1-1" aria-label="Statement">
+                                                                    <option value="Select" data-lang="Select Type Of Cost" selected></option>
+                                                                    <option value="Test 1" data-lang="Test 1"></option>
+                                                                    <option value="Test 2" data-lang="Test 2"></option>
+                                                                    <option value="Test 3" data-lang="Test 3"></option>
+                                                                    <option value="" data-lang="Other Costs (Must be Specified)"></option>
+                                                                </select>
+                                                                <label class="form-label d-none" for="proj-reg-investment-cost-form-repeater-1-2"></label>
+                                                                <span name="costViewModel[].TypeOfCostName" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-investment-cost-form-repeater-1-3" data-lang="Cost in USD"></label>
+                                                                <input type="number" required name="costViewModel[].Amount" id="proj-reg-investment-cost-form-repeater-1-3" class="form-control operand" cal-container="#proj-invest-cost" value="0" min="0" />
+                                                                 <span name="costViewModel[].Amount" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+
+                                                            <div class="mb-3 col-lg-2 col-12 d-flex align-items-center mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mt-1">
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-investment-cost-total" data-lang="Total in USD"></label>
+                                                    <input required asp-for="projectViewModel.TotalCost" step="0-01" id="proj-reg-investment-cost-total" class="form-control target" value="0" readonly />
+                                                    <span asp-validation-for="projectViewModel.TotalCost" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="proj-reg-funding-sources" class="row g-3 box-of-inputs percentage-input-container calculation-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Funding Sources"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row align-items-start">
+                                                            <div class="mb-3 col-lg-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-funding-src-form-repeater-1-1" data-lang="Funding Type"></label>
+                                                                <select required name="fundingViewModel[].TypeOfFundingName" kg="@*@typeOFFunding*@" class="form-select has-new-options" id="proj-reg-funding-src-form-repeater-1-1" custom-id="proj-reg-funding-src-form-repeater-1-1" aria-label="Funding Type">
+                                                                        <option value="Select" data-lang="Select Type Of Funding" selected></option>
+                                                                </select>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-funding-src-form-repeater-1-3" data-lang="Amount in USD"></label>
+                                                                <input type="number" required name="fundingViewModel[].Amount" id="proj-reg-funding-src-form-repeater-1-3" class="form-control operand" cal-container="#proj-reg-funding-sources" value="0" min="0" />
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-2 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-funding-src-form-repeater-1-7" data-lang="Funding Type Ratio"></label>
+                                                                <input type="number" required name="fundingViewModel[].PercentageTheFundingType" id="proj-reg-funding-src-form-repeater-1-7" class="form-control percentage-input" cal-container="#proj-reg-funding-sources" value="100.00" step="0.01" min="0" max="100" />
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-2 col-12 d-flex align-items-center mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <p class="alert alert-danger percentage-err d-none">
+                                                    <i class='bx bx-error-circle'></i>
+                                                    <span data-lang="The sum of the funding type percentages must be equal to 100"></span>
+                                                </p>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                                </div>
+                                                <div class="row g-3 mt-1">
+                                                    <div class="col-md-4 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-funding-src-total" data-lang="Total in USD"></label>
+                                                        <input required asp-for="projectViewModel.TotalFunding" step="0.01" id="proj-reg-funding-src-total" class="form-control target" value="0" readonly />
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                    <button type="button" class="btn btn-label-secondary btn-prev" disabled>
+                                        <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                        <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-next">
+                                        <span class="d-none d-sm-inline-block" data-lang="Next"></span>
+                                        <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @*first side end*@
+
+                        <div id="data-about-the-project-owner" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs first">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Legal Form"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-legal-form-type" data-lang="Legal Form Type"></label>
+                                                <select required asp-for="projectViewModel.TypeOfOwner" id="proj-reg-legal-form-type" custom-id="proj-reg-legal-form-type" class="select form-select condition-select">
+                                                    @@*if (typeOfUser!=0)*@{
+                                                        <option value="individual-data-box" selected data-lang="Individual"></option>
+                                                        <option value="existing-companies-data-box" data-lang="Existing Companies"></option>
+                                                        <option value="companies-under-incorporation-data-box" data-lang="Companies Under Incorporation"></option>
+                                                    }
+                                                    else
+                                                    {
+                                                    <option value="individual-data-box" selected data-lang="Individual"></option>
+                                                    }
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.TypeOfOwner" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        @*legal form: individual*@
+                                        <div id="individual-data-box" class="active box-target flex-column">
+                                            <div class="row g-3 box-of-inputs mb-0-forcefully">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Project Owner Name (Individual)"></h6>
+                                                </div>
+                                                <input type="hidden" asp-for="addUserViewModel.UserId" />
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-first-name" data-lang="First Name"></label>
+                                                    <input required asp-for="addUserViewModel.FirstName" id="proj-reg-proj-owner-first-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.FirstName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-second-name" data-lang="Second Name"></label>
+                                                    <input required asp-for="addUserViewModel.SecondName" id="proj-reg-proj-owner-second-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.SecondName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-third-name" data-lang="Third Name"></label>
+                                                    <input required asp-for="addUserViewModel.ThirdName" id="proj-reg-proj-owner-third-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.ThirdName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-last-name" data-lang="Last Name"></label>
+                                                    <input required asp-for="addUserViewModel.LastName" id="proj-reg-proj-owner-last-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.LastName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                @*<div class="col-md-6">
+                                                    <label class="form-label" for="proj-reg-proj-owner-last-name" data-lang="Username"></label>
+                                                <input asp-for="addUserViewModel.Username" id="proj-reg-proj-owner-last-name" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="addUserViewModel.Username" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="form-floating deleteforEdit">
+                                                    <input asp-for="addUserViewModel.Password" class="form-control " autocomplete="new-password" aria-required="true" />
+                                                    <label asp-for="addUserViewModel.ConfirmPassword"></label>
+                                                    <span asp-validation-for="addUserViewModel.ConfirmPassword" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="form-floating deleteforEdit">
+                                                    <input asp-for="addUserViewModel.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                                                    <label asp-for="ConfirmPassword"></label>
+                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>*@
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-email" data-lang="Email"></label>
+                                                    <input required type="email" asp-for="addUserViewModel.Email" id="proj-reg-proj-owner-email" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.Email" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-phone-number" data-lang="Phone Number"></label>
+                                                    <input required asp-for="addUserViewModel.PhoneNumber" id="proj-reg-proj-owner-phone-number" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.PhoneNumber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-cellular" data-lang="Cellular"></label>
+                                                    <input required asp-for="addUserViewModel.MobileNummber" id="proj-reg-proj-owner-cellular" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.MobileNummber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-fax" data-lang="Fax"></label>
+                                                    <input required asp-for="addUserViewModel.FaxNumber" id="proj-reg-proj-owner-fax" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.FaxNumber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-mail-box" data-lang="Mail Box"></label>
+                                                    <input required asp-for="addUserViewModel.POBox" id="proj-reg-proj-owner-mail-box" class="form-control" value="00000" />
+                                                    <span asp-validation-for="addUserViewModel.POBox" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-mail-box" data-lang="Nationality Name"></label>
+                                                    <input required asp-for="addUserViewModel.NationalityName" id="proj-reg-proj-owner-nationality-name" class="form-control" value="##" />
+                                                    <span asp-validation-for="addUserViewModel.NationalityName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs regions-container country-controls-governorate governorate-controls-directorate">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Project Owner's Address"></h6>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-country" data-lang="Country"></label>
+                                                    <select required asp-for="addUserViewModel.Country" id="proj-reg-proj-owner-country" custom-id="proj-reg-proj-owner-country" class="select form-select countries-select controls-gov-and-direc">
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="addUserViewModel.Country" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-covernorate" data-lang="Governorate"></label>
+                                                    <select required asp-for="addUserViewModel.StatePrvice" id="proj-reg-proj-owner-covernorate" custom-id="proj-reg-proj-owner-covernorate" class="select form-select governorates-select has-new-options" controls-directorate="#proj-reg-proj-owner-directorate">
+                                                        >
+                                                        <option value="Select" data-lang="--- Select the governorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="addUserViewModel.StatePrvice" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-directorate" data-lang="Directorate"></label>
+                                                    <select required asp-for="addUserViewModel.City" id="proj-reg-proj-owner-directorate" custom-id="proj-reg-proj-owner-directorate" class="select form-select directorates-select has-new-options">
+                                                        <option value="Select" data-lang="--- Select the directorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="addUserViewModel.City" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-region" data-lang="Region"></label>
+                                                    <input required asp-for="addUserViewModel.PostalCode" id="proj-reg-proj-owner-region" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.PostalCode" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-1" data-lang="Street 1"></label>
+                                                    <input required asp-for="addUserViewModel.StreetAddress1" id="proj-reg-proj-owner-street-1" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.StreetAddress1" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-2" data-lang="Street 2"></label>
+                                                    <input required asp-for="addUserViewModel.StreetAddress2" id="proj-reg-proj-owner-street-2" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.StreetAddress2" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Personal Document"></h6>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-place" data-lang="Issue Place"></label>
+                                                    <input required asp-for="addUserViewModel.SNNDocumentPlaceOfIssue" id="proj-reg-proj-owner-p-doc-issue-place" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.SNNDocumentPlaceOfIssue" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-date" data-lang="Issue Date"></label>
+                                                    <input required asp-for="addUserViewModel.SNNDocumentDateOfIssue" id="proj-reg-proj-owner-p-doc-issue-date" class="form-control" />
+                                                    <span asp-validation-for="addUserViewModel.SNNDocumentDateOfIssue" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-expire-date" data-lang="Expire Date"></label>
+                                                    <input required asp-for="addUserViewModel.SNNDocumentDateOfExpiry" id="proj-reg-proj-owner-p-doc-expire-date" class="form-control" />
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-document-type" data-lang="Document Type"></label>
+                                                    <select required asp-for="addUserViewModel.TypeOfSSNDocument" class="form-select" id="proj-reg-proj-owner-p-doc-document-type" custom-id="proj-reg-proj-owner-p-doc-document-type" aria-label="Representative Status">
+                                                        <option value="0" selected data-lang="ID Card"></option>
+                                                        <option value="1" data-lang="Passport"></option>
+                                                    </select>
+                                                    <span asp-validation-for="addUserViewModel.TypeOfSSNDocument" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-document-number" data-lang="Document Number"></label>
+                                                    <input required asp-for="addUserViewModel.SNNDocumentNo" id="proj-reg-proj-owner-document-number" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="addUserViewModel.SNNDocumentNo" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                    <div class="wrapper upload">
+                                                        <div class="file-upload">
+                                                            @*<input required asp-for="addUserViewModel.SNNDocumentFile"  required />*@
+                                                        <div class="details">
+                                                            <div class="file-statement">
+                                                                <span data-lang="Owner Personal Document File"></span>
+                                                            </div>
+                                                            <div class="file-name-wrapper">
+                                                                <span data-lang="File name"></span>:
+                                                                <span class="file-name"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-btn">
+                                                            <span data-lang="Upload"></span>
+                                                            <i class='bx bx-upload'></i>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <span asp-validation-for="addUserViewModel.SNNDocumentFile" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* / legal form: individual*@
+
+                                        @*legal form: existing-companies*@
+                                        <div id="existing-companies-data-box" class="row g-3 box-of-inputs box-target">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Owner Name (Existing Companies)"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-name" data-lang="Company Type Legal Form"></label>
+                                                <input asp-for="companyViewModel.CommercialName" id="proj-reg-proj-owner-existing-companies-commercial-name" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.CommercialName" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-company-type" data-lang="Legal Statue"></label>
+                                                <select asp-for="companyViewModel.LegalStatusId" kg="@*@(new SelectList(_unitOfWork.LegalStatusRepository.GetAll()," Id","Name"))*@" id="proj-reg-proj-owner-existing-companies-company-type" custom-id="proj-reg-proj-owner-existing-companies-company-type" class="select form-select has-new-options">
+                                                    <option value="Select" data-lang="Select Legal Statue" selected></option>
+                                                </select>
+                                                <span asp-validation-for="companyViewModel.LegalStatusId" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-registration-no" data-lang="Commercial Registration No"></label>
+                                                <input asp-for="companyViewModel.CommercialRegisterNo" id="proj-reg-proj-owner-existing-companies-commercial-registration-no" class="form-control sanitize min-0" value="0" min="0" />
+                                                <span asp-validation-for="companyViewModel.CommercialRegisterNo" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-commercial-registration-date" data-lang="Commercial Registration Date"></label>
+                                                <input asp-for="companyViewModel.CommercialRegisterDateOfIssue" id="proj-reg-proj-owner-existing-companies-commercial-registration-date" class="form-control" />
+                                                <span asp-validation-for="companyViewModel.CommercialRegisterDateOfIssue" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                <div class="wrapper upload">
+                                                    <div class="file-upload">
+                                                        @*<input asp-for="companyViewModel.CommercialRegisterFile" name="file_1" required />*@
+                                                        <div class="details">
+                                                            <div class="file-statement">
+                                                                <span data-lang="Commercial Registration File"></span>
+                                                            </div>
+                                                            <div class="file-name-wrapper">
+                                                                <span data-lang="File name"></span>:
+                                                                <span class="file-name"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-btn">
+                                                            <span data-lang="Upload"></span>
+                                                            <i class='bx bx-upload'></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span asp-validation-for="companyViewModel.CommercialRegisterFile" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-existing-companies-company-activity" data-lang="Company Activity"></label>
+                                                <input asp-for="companyViewModel.CompanyActivity" id="proj-reg-proj-owner-existing-companies-company-activity" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.CompanyActivity" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-representative-data-phone-number" data-lang="Phone Number"></label>
+                                                <input asp-for="companyViewModel.PhoneNumber" id="proj-reg-representative-data-phone-number" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.PhoneNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-representative-data-cellular" data-lang="Cellular"></label>
+                                                <input asp-for="companyViewModel.MobileNumber" id="proj-reg-representative-data-cellular" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.MobileNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-representative-data-fax" data-lang="Fax"></label>
+                                                <input asp-for="companyViewModel.FaxNumber" id="proj-reg-representative-data-fax" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.FaxNumber" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-representative-data-email" data-lang="Email"></label>
+                                                <input asp-for="companyViewModel.EmailAddress" id="proj-reg-representative-data-email" class="form-control" placeholder="##" />
+                                                <span asp-validation-for="companyViewModel.EmailAddress" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-representative-data-mail-box" data-lang="Mail Box"></label>
+                                                <input asp-for="companyViewModel.POBox" id="proj-reg-representative-data-mail-box" class="form-control" value="00000" />
+                                                <span asp-validation-for="companyViewModel.POBox" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-mail-box" data-lang="Nationality Name"></label>
+                                                <input asp-for="addUserViewModel.NationalityName" id="proj-reg-proj-owner-nationality-name" class="form-control" value="##" />
+                                                <span asp-validation-for="addUserViewModel.NationalityName" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs country-controls-governorate governorate-controls-directorate">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Company Location"></h6>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-country" data-lang="Country"></label>
+                                                    <select asp-for="companyViewModel.Country" id="proj-reg-proj-Company-country" custom-id="proj-reg-proj-Company-country" class="select form-select countries-select controls-gov-and-direc">
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="companyViewModel.Country" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-company-loc-covernorate" data-lang="Governorate"></label>
+                                                    <select asp-for="companyViewModel.StatePrvice" id="proj-reg-company-loc-covernorate" custom-id="proj-reg-company-loc-covernorate" class="select form-select governorates-select has-new-options" controls-directorate="#proj-reg-company-loc-directorate">
+                                                        <option value="Select" data-lang="--- Select the governorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="companyViewModel.StatePrvice" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-company-loc-directorate" data-lang="Directorate"></label>
+                                                    <select asp-for="companyViewModel.City" id="proj-reg-company-loc-directorate" custom-id="proj-reg-company-loc-directorate" class="select form-select directorates-select has-new-options">
+                                                        <option value="Select" data-lang="--- Select the directorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="companyViewModel.City" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-region" data-lang="Region"></label>
+                                                    <input asp-for="companyViewModel.PostalCode" id="proj-reg-proj-Company-region" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="companyViewModel.PostalCode" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-1" data-lang="Street 1"></label>
+                                                    <input asp-for="companyViewModel.StreetAddress1" id="proj-reg-proj-Company-street-1" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="companyViewModel.StreetAddress1" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                               
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-2" data-lang="Street 2"></label>
+                                                    <input asp-for="companyViewModel.StreetAddress2" id="proj-reg-proj-Company-street-2" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="companyViewModel.StreetAddress2" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* / legal form :existing-companies*@
+
+                                        @*legal form: companies-under-incorporation*@
+                                        <div id="companies-under-incorporation-data-box" class="row g-3 box-of-inputs box-target percentage-input-container">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Project Owner Name (Companies Under Incorporation)"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-1" data-lang="Founder Name"></label>
+                                                                <input type="text" name="founderViewModel[].FullName" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                                <span name="founderViewModel[].FullName" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-2" data-lang="Nationality"></label>
+                                                                <select name="founderViewModel[].NationalityName" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-2" custom-id="proj-reg-proj-owner-under-incorporation-form-repeater-1-2" class="select form-select countries-select">
+                                                                    @* Options are generated from the script "regions.js" *@
+                                                                </select>
+                                                                <span name="founderViewModel[].NationalityName" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-3" data-lang="Contribution Percentage"></label>
+                                                                <input type="number" name="founderViewModel[].ContributionPercentage" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-3" class="form-control sanitze min-0 percentage-input" cal-container="#companies-under-incorporation-data-box" value="100.00" step="0.01" min="0" max="100" />
+                                                                <span name="founderViewModel[].ContributionPercentage" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-4" data-lang="Document Type"></label>
+                                                                <select name="founderViewModel[].TypeOfSSNDocument" class="form-select" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-4" custom-id="proj-reg-proj-owner-under-incorporation-form-repeater-1-4" aria-label="Representative Status">
+                                                                    <option value="0" selected data-lang="ID Card"></option>
+                                                                    <option value="1" data-lang="Passport"></option>
+                                                                </select>
+                                                                <span name="founderViewModel[].TypeOfSSNDocument" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-5" data-lang="Issue Place"></label>
+                                                                <input type="text" name="founderViewModel[].SNNDocumentPlaceOfIssue" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-5" class="form-control" placeholder="##" />
+                                                                <span name="founderViewModel[].SNNDocumentPlaceOfIssue" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-6" data-lang="Issue Date"></label>
+                                                                <input type="date" name="founderViewModel[].SNNDocumentDateOfIssue" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-6" class="form-control" placeholder="##" />
+                                                                <span name="founderViewModel[].SNNDocumentDateOfIssue" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-under-incorporation-form-repeater-1-6" data-lang="Expire Date"></label>
+                                                                <input type="date" name="founderViewModel[].SNNDocumentDateOfExpiry" id="proj-reg-proj-owner-under-incorporation-form-repeater-1-7" class="form-control" placeholder="##" />
+                                                                <span name="founderViewModel[].SNNDocumentDateOfExpiry" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-proj-owner-document-number" data-lang="Document Number"></label>
+                                                                <input type="number" name="founderViewModel[].SNNDocumentNo" id="proj-reg-proj-owner-document-number" class="form-control" placeholder="##" />
+                                                                <span name="founderViewModel[].SNNDocumentNo" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-md-6 mzn-input-container">
+                                                                <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                                <div class="wrapper upload">
+                                                                    <div class="file-upload">
+                                                                        @*<input name="founderViewModel[].SNNDocumentFile" type="file" />*@
+                                                                        <input name="founderViewModel[].SNNDocumentFile" type="file" />
+                                                                        <div class="details">
+                                                                            <div class="file-statement">
+                                                                                <span data-lang="Founder Personal Document File"></span>
+                                                                            </div>
+                                                                            <div class="file-name-wrapper">
+                                                                                <span data-lang="File name"></span>:
+                                                                                <span class="file-name"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="file-btn">
+                                                                            <span data-lang="Upload"></span>
+                                                                            <i class='bx bx-upload'></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <span name="founderViewModel[].SNNDocumentFile" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <p class="alert alert-danger percentage-err d-none">
+                                                    <i class='bx bx-error-circle'></i>
+                                                    <span data-lang="The sum of the contribution percentages must be equal to 100"></span>
+                                                </p>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* / legal form: companies-under-incorporation*@
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Natinality Of Invesment"></h6>
+                                            </div>
+                                            <div class="col-md-6 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-proj-owner-p-doc-document-type" data-lang="Natinality"></label>
+                                                <select required asp-for="projectViewModel.NatinalityOfInvesment" class="form-select" id="proj-reg-proj-owner-p-doc-document-type" custom-id="proj-reg-proj-owner-p-doc-document-type" aria-label="Representative Status">
+                                                    <option value="0" selected data-lang="Yemeni"></option>
+                                                    <option value="1" data-lang="Foreign"></option>
+                                                    <option value="2" data-lang="Subscriber"></option>
+                                                </select>
+                                                <span asp-validation-for="projectViewModel.NatinalityOfInvesment" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                         </div>
+                                 @*        -------------------------       representativeViewModel -----------------------------------------------*@
+                                        <div class="">
+                                            <div class="row g-3 box-of-inputs mb-0-forcefully">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Investor Representative Data"></h6>
+                                                </div>
+                                                <input type="hidden" asp-for="representativeViewModel.UserId" />
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-first-name" data-lang="First Name"></label>
+                                                    <input required asp-for="representativeViewModel.FirstName" id="proj-reg-proj-representative-first-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.UserId" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-second-name" data-lang="Second Name"></label>
+                                                    <input required asp-for="representativeViewModel.SecondName" id="proj-reg-proj-representative-second-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.SecondName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-third-name" data-lang="Third Name"></label>
+                                                    <input required asp-for="representativeViewModel.ThirdName" id="proj-reg-proj-representative-third-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.ThirdName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-last-name" data-lang="Last Name"></label>
+                                                    <input required asp-for="representativeViewModel.LastName" id="proj-reg-proj-representative-last-name" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.LastName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-email" data-lang="Email"></label>
+                                                    <input required type="text" asp-for="representativeViewModel.Email" id="proj-reg-proj-representative-email" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.Email" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-phone-number" data-lang="Phone Number"></label>
+                                                    <input required asp-for="representativeViewModel.PhoneNumber" id="proj-reg-proj-representative-phone-number" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.PhoneNumber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-cellular" data-lang="Cellular"></label>
+                                                    <input required asp-for="representativeViewModel.MobileNummber" id="proj-reg-proj-representative-cellular" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.MobileNummber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-fax" data-lang="Fax"></label>
+                                                    <input required asp-for="representativeViewModel.FaxNumber" id="proj-reg-proj-representative-fax" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.FaxNumber" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-mail-box" data-lang="Mail Box"></label>
+                                                    <input required asp-for="representativeViewModel.POBox" id="proj-reg-proj-owner-representative-box" class="form-control" value="00000" />
+                                                    <span asp-validation-for="representativeViewModel.POBox" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-representative-mail-box" data-lang="Nationality Name"></label>
+                                                    <input required asp-for="representativeViewModel.NationalityName" id="proj-reg-proj-representative-nationality-name" class="form-control" value="##" />
+                                                    <span asp-validation-for="representativeViewModel.NationalityName" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+
+                                                <div class="row g-3 box-of-inputs special-sub-box">
+                                                    <div class="content-header mt-0 mb-1">
+                                                        <h6 class="mb-0" data-lang="Representative Document"></h6>
+                                                    </div>
+                                                    <div class="col-md-6 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-representative-data-status" data-lang="Representative Status"></label>
+                                                        <select required asp-for="representativeViewModel.Representation" kg="@*@Representation*@" id="proj-reg-representative-data-status" custom-id="proj-reg-representative-data-status" class="form-select has-new-options" aria-label="Representative Status">
+                                                            <option value="" selected data-lang="select Representation"></option>
+                                                            <option value="" data-lang="Others (Must be Specified)"></option>
+                                                        </select>
+                                                        <span asp-validation-for="representativeViewModel.Representation" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                    <div class="col-md-6 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-place" data-lang="Issue Place"></label>
+                                                        <input required asp-for="representativeViewModel.RDocumentPlaceOfIssue" id="proj-reg-proj-owner-p-doc-issue-place" class="form-control" placeholder="##" />
+                                                        <span asp-validation-for="representativeViewModel.RDocumentPlaceOfIssue" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                    <div class="col-md-6 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-date" data-lang="Issue Date"></label>
+                                                        <input required asp-for="representativeViewModel.RDocumentDateOfIssue" id="proj-reg-proj-owner-p-doc-issue-date" class="form-control" />
+                                                        <span asp-validation-for="representativeViewModel.RDocumentDateOfIssue" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+
+                                                    <div class="col-md-6 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-proj-owner-document-number" data-lang="Document Number"></label>
+                                                        <input required asp-for="representativeViewModel.RDocumentNo" id="proj-reg-proj-owner-document-number" class="form-control" placeholder="##" />
+                                                        <span asp-validation-for="representativeViewModel.RDocumentNo" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+
+
+                                                    <div class="col-md-6 mzn-input-container">
+                                                        <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                        <div class="wrapper upload">
+                                                            <div class="file-upload">
+                                                                @*<input required asp-for="representativeViewModel.RDocumentFile" required />*@
+                                                                <div class="details">
+                                                                    <div class="file-statement">
+                                                                        <span data-lang="Representative Document"></span>
+                                                                    </div>
+                                                                    <div class="file-name-wrapper">
+                                                                        <span data-lang="File name"></span>:
+                                                                        <span class="file-name"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="file-btn">
+                                                                    <span data-lang="Upload"></span>
+                                                                    <i class='bx bx-upload'></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="representativeViewModel.RDocumentFile" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs regions-container country-controls-governorate governorate-controls-directorate">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Representative Address"></h6>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-country" data-lang="Country"></label>
+                                                    <select required asp-for="representativeViewModel.Country" id="proj-reg-proj-owner-country" custom-id="proj-reg-proj-owner-country" class="select form-select countries-select controls-gov-and-direc">
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="representativeViewModel.Country" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-rep-addr-covernorate" data-lang="Governorate"></label>
+                                                    <select required asp-for="representativeViewModel.StatePrvice" id="proj-reg-rep-addr-covernorate" custom-id="proj-reg-rep-addr-covernorate" class="select form-select governorates-select has-new-options" controls-directorate="#proj-reg-rep-addr-directorate">
+                                                        <option value="Select" data-lang="--- Select the governorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="representativeViewModel.StatePrvice" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-rep-addr-directorate" data-lang="Directorate"></label>
+                                                    <select required asp-for="representativeViewModel.City" id="proj-reg-rep-addr-directorate" custom-id="proj-reg-rep-addr-directorate" class="select form-select directorates-select has-new-options">
+                                                        <option value="Select" data-lang="--- Select the directorate ---" selected></option>
+                                                        @* Options are generated from the script "regions.js" *@
+                                                    </select>
+                                                    <span asp-validation-for="representativeViewModel.City" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-region" data-lang="Region"></label>
+                                                    <input required asp-for="representativeViewModel.PostalCode" id="proj-reg-proj-owner-region" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.PostalCode" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-1" data-lang="Street 1"></label>
+                                                    <input required asp-for="representativeViewModel.StreetAddress1" id="proj-reg-proj-owner-street-1" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.StreetAddress1" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-street-2" data-lang="Street 2"></label>
+                                                    <input required asp-for="representativeViewModel.StreetAddress2" id="proj-reg-proj-owner-street-2" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.StreetAddress2" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs mt-0">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <h6 class="mb-0" data-lang="Personal Document"></h6>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-place" data-lang="Issue Place"></label>
+                                                    <input required asp-for="representativeViewModel.SNNDocumentPlaceOfIssue" id="proj-reg-proj-owner-p-doc-issue-place" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.SNNDocumentPlaceOfIssue" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-issue-date" data-lang="Issue Date"></label>
+                                                    <input required asp-for="representativeViewModel.SNNDocumentDateOfIssue" id="proj-reg-proj-owner-p-doc-issue-date" class="form-control" />
+                                                    <span asp-validation-for="representativeViewModel.SNNDocumentDateOfIssue" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-expire-date" data-lang="Expire Date"></label>
+                                                    <input required asp-for="representativeViewModel.SNNDocumentDateOfExpiry" id="proj-reg-proj-owner-p-doc-expire-date" class="form-control" />
+                                                    <span asp-validation-for="representativeViewModel.SNNDocumentDateOfExpiry" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-p-doc-document-type" data-lang="Document Type"></label>
+                                                    <select required asp-for="representativeViewModel.TypeOfSSNDocument" class="form-select" id="proj-reg-proj-owner-p-doc-document-type" custom-id="proj-reg-proj-owner-p-doc-document-type" aria-label="Representative Status">
+                                                        <option value="0" selected data-lang="ID Card"></option>
+                                                        <option value="1" data-lang="Passport"></option>
+                                                    </select>
+                                                    <span asp-validation-for="representativeViewModel.TypeOfSSNDocument" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-proj-owner-document-number" data-lang="Document Number"></label>
+                                                    <input required asp-for="representativeViewModel.SNNDocumentNo" id="proj-reg-proj-owner-document-number" class="form-control" placeholder="##" />
+                                                    <span asp-validation-for="representativeViewModel.SNNDocumentNo" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mzn-input-container">
+                                                    <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                    <div class="wrapper upload">
+                                                        <div class="file-upload">
+                                                            @*<input required asp-for="representativeViewModel.SNNDocumentFile" required />*@
+                                                            <div class="details">
+                                                                <div class="file-statement">
+                                                                    <span data-lang="Owner Personal Document File"></span>
+                                                                </div>
+                                                                <div class="file-name-wrapper">
+                                                                    <span data-lang="File name"></span>:
+                                                                    <span class="file-name"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="file-btn">
+                                                                <span data-lang="Upload"></span>
+                                                                <i class='bx bx-upload'></i>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="representativeViewModel.SNNDocumentFile" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        @*        -------------------------       representativeViewModel -----------------------------------------------*@
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Other Projects Owned by the Investor"></h6>
+                                            </div>
+                                            <div class="table-responsive text-nowrap">
+                                            <table class="table py-4 px-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-lang="ID"></th>
+                                                        <th data-lang="Project Name"></th>
+                                                        <th data-lang="Registration Decision Number"></th>
+                                                        <th data-lang="Issue Date"></th>
+                                                        <th data-lang="Issue Place"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-border-bottom-0">
+                                                    @{
+                                                        for (int i = 1; i <= 110; i++)
+                                                        {
+                                                            <tr>
+                                                                <td><span>@i</span></td>
+                                                                <td><span data-lang="Text X7"></span></td>
+                                                                <td><span data-lang="Zero X5"></span></td>
+                                                                <td><span data-lang="Text X3"></span></td>
+                                                                <td><span data-lang="Text X2"></span></td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                  <button type="button" class="btn btn-primary btn-prev">
+                                    <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                    <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                  </button>
+                                  <button type="button" class="btn btn-primary btn-next">
+                                    <span class="d-none d-sm-inline-block" data-lang="Next"></span>
+                                    <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                  </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="other-data" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs first">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="The Project Needs of Water and Electricity"></h6>
+                                            </div>
+                                            <div class="row g-3 box-of-inputs special-sub-box calculation-container first" id="estimated-water-percentage">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <span class="d-block" data-lang="The Estimated Percentage of Water Required for the Project Annually"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-local-labor" data-lang="Private">
+                                                    </label>
+                                                    <input type="number" required asp-for="projectViewModel.QuantityEstimatedWaterPrivate" id="proj-reg-employment-size-local-labor" class="form-control operand" cal-container="#estimated-water-percentage" value="0" min="0" />
+                                                    <span asp-validation-for="projectViewModel.QuantityEstimatedWaterPrivate" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-foreign-labor" data-lang="Government">
+                                                    </label>
+                                                    <input type="number" required asp-for="projectViewModel.QuantityEstimatedWaterGovernment" id="proj-reg-employment-size-foreign-labor" class="form-control operand" cal-container="#estimated-water-percentage" value="0" min="0" />
+                                                    <span asp-validation-for="projectViewModel.QuantityEstimatedWaterGovernment" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-total-labor" data-lang="Total">
+                                                    </label>
+                                                    <input required asp-for="projectViewModel.EstimatedWaterPerYearInCM" id="proj-reg-employment-size-total-labor" class="form-control target" value="0" readonly />
+                                                    <span asp-validation-for="projectViewModel.EstimatedWaterPerYearInCM" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3 box-of-inputs special-sub-box calculation-container" id="estimated-electricity-percentage">
+                                                <div class="content-header mt-0 mb-1">
+                                                    <span class="d-block" data-lang="The Estimated Percentage of Electricity Required for the Project Annually"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-local-labor" data-lang="Private">
+                                                    </label>
+                                                    <input type="number" required asp-for="projectViewModel.QuantityEstimatedElectricityPrivate" id="proj-reg-employment-size-local-labor" class="form-control operand" cal-container="#estimated-electricity-percentage" value="0" min="0" />
+                                                    <span asp-validation-for="projectViewModel.QuantityEstimatedElectricityPrivate" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-foreign-labor" data-lang="Government">
+                                                    </label>
+                                                    <input type="number" required asp-for="projectViewModel.QuantityEstimatedElectricityGovernment" id="proj-reg-employment-size-foreign-labor" class="form-control operand" cal-container="#estimated-electricity-percentage" value="0" min="0" />
+                                                    <span asp-validation-for="projectViewModel.QuantityEstimatedElectricityGovernment" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                                <div class="col-md-4 mzn-input-container">
+                                                    <label class="form-label" for="proj-reg-employment-size-total-labor" data-lang="Total">
+                                                    </label>
+                                                    <input required asp-for="projectViewModel.EstimatedElectricityPerYearInKW" id="proj-reg-employment-size-total-labor" class="form-control target" value="0" readonly />
+                                                    <span asp-validation-for="projectViewModel.EstimatedElectricityPerYearInKW" class="text-danger"></span>
+                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container" id="emp-size">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Employment Size"></h6>
+                                            </div>
+                                            <div class="col-md-4 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-employment-size-local-labor" data-lang="Local Labor">
+                                                </label>
+                                                <input type="number" required asp-for="projectViewModel.LocalLaberCount" id="proj-reg-employment-size-local-labor" class="form-control operand" value="0" cal-container="#emp-size" min="0" />
+                                                <span asp-validation-for="projectViewModel.LocalLaberCount" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-4 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-employment-size-foreign-labor" data-lang="Foreign Labor">
+                                                </label>
+                                                <input type="number" required asp-for="projectViewModel.ForeignLaberCount" id="proj-reg-employment-size-foreign-labor" class="form-control operand" cal-container="#emp-size" value="0" min="0" />
+                                                <span asp-validation-for="projectViewModel.ForeignLaberCount" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                            <div class="col-md-4 mzn-input-container">
+                                                <label class="form-label" for="proj-reg-employment-size-total-labor" data-lang="Total">
+                                                </label>
+                                                <input required asp-for="projectViewModel.TotalLaberCount" id="proj-reg-employment-size-total-labor" class="form-control target" value="0" readonly />
+                                                <span asp-validation-for="projectViewModel.TotalLaberCount" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container" id="machine-equipment-required">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Machinery Equipment and Supplies Required for the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-equipment-form-repeater-1-1" data-lang="Statement"></label>
+                                                                <input required type="text" name="equipmentNeededViewModel[].Item" id="proj-reg-equipment-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                                <span name="equipmentNeededViewModel[].Item" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-equipment-form-repeater-1-2">
+                                                                    <span data-lang="Local"></span> /
+                                                                    <span data-lang="Imported"></span>
+                                                                </label>
+                                                                <select required name="equipmentNeededViewModel[].TypeOfSource" id="proj-reg-equipment-form-repeater-1-2" custom-id="proj-reg-equipment-form-repeater-1-2" class="select form-select">
+                                                                    <option value="0" selected data-lang="Local"></option>
+                                                                    <option value="1" data-lang="Imported"></option>
+                                                                </select>
+                                                                <span name="equipmentNeededViewModel[].TypeOfSource" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-equipment-form-repeater-1-3" data-lang="Unit"></label>
+                                                                <select required name="equipmentNeededViewModel[].UintName" kg="@*@(new SelectList(_unitOfWork.UintRepository.FindAll(a=>a.Deffult==true)," Name","Name"))*@" id="proj-reg-equipment-form-repeater-1-3" custom-id="proj-reg-equipment-form-repeater-1-3" class="select form-select has-new-options">
+                                                                    <option value="Select" data-lang="Select Uint" selected></option>
+                                                                    <option value="addNew" data-lang="Others (Must be Specified)"></option>
+                                                                </select>
+                                                                <span name="equipmentNeededViewModel[].UintName" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-equipment-form-repeater-1-4" data-lang="Quantity"></label>
+                                                                <input type="number" required name="equipmentNeededViewModel[].Qunantity" id="proj-reg-equipment-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span name="equipmentNeededViewModel[].Qunantity" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-equipment-form-repeater-1-5" data-lang="Cost in USD"></label>
+                                                                <input type="number" required name="equipmentNeededViewModel[].Amount" id="proj-reg-equipment-form-repeater-1-5" class="form-control operand" cal-container="#machine-equipment-required" value="0" min="0" />
+                                                                <span name="equipmentNeededViewModel[].Amount" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class='col-lg-6 mzn-input-container'>
+                                                <label class="form-label" for="proj-reg-equipment-machinery-total" data-lang="Total">
+                                                </label>
+                                                <input required asp-for="AmountOfEquipmentNedded" id="proj-reg-equipment-machinery-total" class="form-control target" readonly value="0" />
+                                                <span asp-validation-for="AmountOfEquipmentNedded" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container" id="input-requirments">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Requirements for the Project Annually in Terms of Production Inputs, with the Exception of Water and Electricity"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-1" data-lang="Statement"></label>
+                                                                <input type="text" required name="productionInputsRequirementViewmodel[].Item" id="proj-reg-production-inputs-form-repeater-1-1" class="form-control" placeholder="##" />
+                                                                <span name="productionInputsRequirementViewmodel[].Item" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-2">
+                                                                    <span data-lang="Local"></span> /
+                                                                    <span data-lang="Imported"></span>
+                                                                </label>
+                                                                <select required name="productionInputsRequirementViewmodel[].TypeOfSource" id="proj-reg-production-inputs-form-repeater-1-2" custom-id="proj-reg-production-inputs-form-repeater-1-2" class="select form-select">
+                                                                    <option value="0" selected data-lang="Local"></option>
+                                                                    <option value="1" data-lang="Imported"></option>
+                                                                </select>
+                                                                <span name="productionInputsRequirementViewmodel[].TypeOfSource" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-3" data-lang="Unit"></label>
+                                                                <select required name="productionInputsRequirementViewmodel[].UintName" kg="@*@(new SelectList(_unitOfWork.UintRepository.FindAll(a=>a.Deffult==true)," Name","Name"))*@" id="proj-reg-production-inputs-form-repeater-1-3" custom-id="proj-reg-production-inputs-form-repeater-1-3" class="select form-select has-new-options">
+                                                                    <option value="Select" data-lang="Select Uint" selected></option>
+                                                                    <option value="addNew" data-lang="Others (Must be Specified)"></option>
+                                                                </select>
+                                                                <span name="productionInputsRequirementViewmodel[].UintName" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-4" data-lang="Quantity"></label>
+                                                                <input type="number" required name="productionInputsRequirementViewmodel[].Quantity" id="proj-reg-production-inputs-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span name="productionInputsRequirementViewmodel[].Quantity" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-production-inputs-form-repeater-1-5" data-lang="Cost in USD"></label>
+                                                                <input type="number" required name="productionInputsRequirementViewmodel[].Amount" id="proj-reg-production-inputs-form-repeater-1-5" class="form-control operand" cal-container="#input-requirments" value="0" min="0" />
+                                                                <span name="productionInputsRequirementViewmodel[].Amount" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class='col-lg-6 mzn-input-container'>
+                                                <label class="form-label" for="proj-reg-production-inputs-total" data-lang="Total">
+                                                </label>
+                                                <input required asp-for="AmountOfProductionInputsRequirement" id="proj-reg-production-inputs-total" class="form-control target" readonly value="0" />
+                                                <span asp-validation-for="AmountOfProductionInputsRequirement" class="text-danger"></span>
+                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs calculation-container" id="labor-needs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="The Project Labor Needs Types and Annual Costs"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-1" data-lang="Role / Job Required"></label>
+                                                                <input type="text" required name="laborViewModel[].RequiredPosition" id="bs-validation-name" @*id="proj-reg-labor-needs-form-repeater-1-1"*@ class="form-control" placeholder="##" />
+                                                                <span name="laborViewModel[].RequiredPosition" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-2" data-lang="Number (Yemeni)"></label>
+                                                                <input type="number" required name="laborViewModel[].NumberOfYemeni" id="proj-reg-labor-needs-form-repeater-1-2" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span name="laborViewModel[].NumberOfYemeni" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-3" data-lang="Number (Foreigners)"></label>
+                                                                <input type="number" required name="laborViewModel[].NumberOfForeign" id="proj-reg-labor-needs-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span name="laborViewModel[].NumberOfForeign" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-4" data-lang="Duration (Months)"></label>
+                                                                <input type="number" required name="laborViewModel[].PeriodByMonth" id="proj-reg-labor-needs-form-repeater-1-4" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span name="laborViewModel[].PeriodByMonth" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-labor-needs-form-repeater-1-5" data-lang="Annual Wage (in USD)"></label>
+                                                                <input type="number" required name="laborViewModel[].AnnualSalaryUSD" id="proj-reg-labor-needs-form-repeater-1-5" class="form-control operand" cal-container="#labor-needs" value="0" min="0" />
+                                                                <span name="laborViewModel[].AnnualSalaryUSD" class="text-danger"></span>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="row g-3 mt-3">
+                                                    <div class="col-md-4 mzn-input-container">
+                                                        <label class="form-label" for="proj-reg-labor-needs-final-total" data-lang="Total Annual Wages in USD"></label>
+                                                        <input required asp-for="projectViewModel.TotalAnnualSalary4Labors" id="proj-reg-labor-needs-final-total" class="form-control target" value="0" readonly />
+                                                        <span asp-validation-for="projectViewModel.TotalAnnualSalary4Labors" class="text-danger"></span>
+                                                        <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Environmental Impact Assessment of the Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-1" data-lang="Waste Type for the Project Activity"></label>
+                                                                <select required name="environmentImpactViewModel[].TypeOfResidueName" kg="@*@TypeOfResidue*@" class="form-select has-new-options" id="proj-reg-environmental-impact-form-repeater-1-1" custom-id="proj-reg-environmental-impact-form-repeater-1-1" aria-label="Waste Type for the Project Activity">
+                                                                    <option value="Select" data-lang="Select Type Of Residue" selected></option>
+                                                                    <option value="addNew" data-lang="Others (Must be Specified)"></option>
+                                                                </select>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-2 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-3" data-lang="Its Size"></label>
+                                                                <input required name="environmentImpactViewModel[].Size" type="text" id="proj-reg-environmental-impact-form-repeater-1-3" class="form-control sanitize min-0" value="0" min="0" />
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0 mzn-input-container">
+                                                                <label class="form-label" for="proj-reg-environmental-impact-form-repeater-1-4" data-lang="Suggested Treatment Methods"></label>
+                                                                <textarea required name="environmentImpactViewModel[].ProposedTreatmentMethods"
+                                                                          id="proj-reg-environmental-impact-form-repeater-1-4"
+                                                                          class="form-control"
+                                                                          placeholder="##"
+                                                                          aria-label="Suggested Treatment Methods"></textarea>
+                                                                <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                       @* <div class="row g-3 box-of-inputs on-companies">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Documents Required to Register the Corporate Investment Project"></h6>
+                                            </div>
+
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file"  />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Company's Memorandum of Association and Articles of Association"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+
+
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_2" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Document of Possession of the Proposed Site for the Establishment of the Project"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_3" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="Authorization for the Authorized Person"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_4" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="The ID Card of the Authorized Person"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file" name="file_5" />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Valid Commercial Register"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="wrapper upload col-lg-6">
+                                              <div class="file-upload">
+                                                <input type="file"  />
+                                                <div class="details">
+                                                    <div class="file-statement">
+                                                        <span data-lang="A Copy of the Environmental Impact Assessment Study for Projects That Require it"></span>
+                                                    </div>
+                                                    <div class="file-name-wrapper">
+                                                        <span data-lang="File name"></span>:
+                                                        <span class="file-name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-btn">
+                                                    <span data-lang="Upload"></span>
+                                                    <i class='bx bx-upload'></i>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>*@
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Documents Required to Register Investment Project"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                            <div class="items-container">
+                                                <div class="repeater-item">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mzn-input-container">
+                                                            <label class="form-label" for="proj-reg-representative-data-status" data-lang="Document Type"></label>
+                                                            <select required name="documentViewModel[].DocumentType" kg="@*@TypeOfDocument*@" id="proj-reg-representative-data-status" custom-id="proj-reg-representative-data-status" class="form-select" aria-label="Representative Status">
+                                                                <option>test 1</option>
+                                                                <option>test 2</option>
+                                                                <option>test 3</option>
+                                                            </select>
+                                                        </div>
+                                                            <div class="col-md-6 mzn-input-container">
+                                                            <span class="form-label" for="proj-reg-proj-owner-document-number" data-lang="The Document"></span>
+                                                            <div class="wrapper upload">
+                                                                <div class="file-upload">
+                                                                        @*<input required name="documentViewModel[].DocumentFile" type="file" required />*@
+                                                                    <div class="details">
+                                                                        <div class="file-statement">
+                                                                            <span data-lang="Representative Document"></span>
+                                                                        </div>
+                                                                        <div class="file-name-wrapper">
+                                                                            <span data-lang="File name"></span>:
+                                                                            <span class="file-name"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="file-btn">
+                                                                        <span data-lang="Upload"></span>
+                                                                        <i class='bx bx-upload'></i>
+                                                                    </div>
+                                                                </div>
+                                                                    <span class="mzn-validate-err d-none" data-lang="Please fill out this field"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                            <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                <i class="bx bx-x me-1"></i>
+                                                                <span class="align-middle" data-lang="Delete"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                            <div class="mb-0">
+                                                <button type="button" class="btn btn-primary add-row-btn">
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle" data-lang="Add"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Applicant Data"></h6>
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-name" data-lang="Name">
+                                                </label>
+                                                <input required type="text" id="proj-reg-applicant-data-name" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-status" data-lang="Status">
+                                                </label>
+                                                <input required type="text" id="proj-reg-applicant-data-status" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-date" data-lang="Date">
+                                                </label>
+                                                <input required type="text" id="proj-reg-applicant-data-date" class="form-control put-today" readonly value="" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="d-flex col-12 justify-content-between stepper-btns">
+                                    <button type="button" class="btn btn-primary btn-prev">
+                                    <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                    <span class="d-none d-sm-inline-block" data-lang="Previous"></span>
+                                    </button>
+                                    <div class="submit-container">
+                                        <button type="submit" class="btn btn-success btn-submit" data-lang="Submit"></button>
+                                        <div class=missed-fields-msg>
+                                            <p data-lang="There are some missed fields, please fill them out"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        sortFormsetIds = ($itemsContainer) => {
+            var rows = $itemsContainer.children(".repeater-item")
+            console.log("ddd");
+            $.each(rows, function (i, row) {
+                $(this).children("div").find("input, select").each(function (j, element) {
+                    var newString = $(this).attr("name");
+                    newString = newString.replace(/\[.*?\]/g, "");
+                    $(this).attr("id", "id-" + i + "-" + newString.replace("Forms.", ""));
+                    $(this).attr("name", $(this).attr("name").replace(/\[.*?\]/g, `[${i}]`));
+                    console.log(newString);
+                })
+            })
+        }
+
+        // controlOtherOptionPopups("proj-reg-primary-proj-data-activity-type");
+        // controlOtherOptionPopups("proj-reg-products-form-repeater-1-2");
+
+        // Data tables
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+        // / Data tables
+     
+    </script>
+}

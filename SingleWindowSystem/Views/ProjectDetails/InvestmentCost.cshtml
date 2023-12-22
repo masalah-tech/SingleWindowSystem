@@ -1,0 +1,216 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Details";
+    ViewData["ViewName"] = "InvestmentCost";
+    Layout = "~/Views/Shared/ProjectDetailsLayout.cshtml";
+    ViewData["Controller"] = "ProjectDetails";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section SubpageScripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                searching: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: [1], orderable: false },
+                    { targets: [2], orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+    </script>
+}
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Investment Cost"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Statement"></th>
+                    <th data-lang="Cost in USD"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <tr>
+                    <td><span>1</span></td>
+                    <td><span data-lang="Establishment Expenses"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>2</span></td>
+                    <td><span data-lang="Land and Location Preparation"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>3</span></td>
+                    <td><span data-lang="Buildings and Constructions"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>4</span></td>
+                    <td><span data-lang="Machinery, Equipment and Supplies"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>5</span></td>
+                    <td><span data-lang="Working Capital (for Three Months)"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@*
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Other Costs"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Statement"></th>
+                    <th data-lang="Cost in USD"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <tr>
+                    <td><span>1</span></td>
+                    <td><span data-lang="Cost 1"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>2</span></td>
+                    <td><span data-lang="Cost 2"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>3</span></td>
+                    <td><span data-lang="Cost 3"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="The Extensions"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Statement"></th>
+                    <th data-lang="Decision Number"></th>
+                    <th data-lang="The Date"></th>
+                    <th data-lang="Cost in USD"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <tr>
+                    <td><span>1</span></td>
+                    <td><span data-lang="Extensions 1"></span></td>
+                    <td><span data-lang="Zero X5"></span></td>
+                    <td><span data-lang="Text X3"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>2</span></td>
+                    <td><span data-lang="Extensions 2"></span></td>
+                    <td><span data-lang="Zero X5"></span></td>
+                    <td><span data-lang="Text X3"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+                <tr>
+                    <td><span>3</span></td>
+                    <td><span data-lang="Extensions 3"></span></td>
+                    <td><span data-lang="Zero X5"></span></td>
+                    <td><span data-lang="Text X3"></span></td>
+                    <td><span data-lang="Zero X4"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Total Costs"></h6>
+    </div>
+    <div class="mt-2">
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="p-details-investment-cost-total-costs" data-lang="Total Costs in USD"></label>
+                <input type="text" id="p-details-investment-cost-total-costs" class="form-control" value="##" readonly />
+            </div>
+        </div>
+    </div>
+</div>*@

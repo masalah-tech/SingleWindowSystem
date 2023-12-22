@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Details";
+    ViewData["ViewName"] = "Fees";
+    Layout = "~/Views/Shared/ProjectDetailsLayout.cshtml";
+    ViewData["Controller"] = "ProjectDetails";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+}
+
+@section SubpageScripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                searching: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: [1], orderable: false },
+                    { targets: [2], orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+    </script>
+}
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Fees"></h6>
+    </div>
+    <div class="table-responsive text-nowrap c-scroll vertical-scroll mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-lang="ID"></th>
+                    <th data-lang="Statement"></th>
+                    <th data-lang="Cost in USD"></th>
+                    <th data-lang="State"></th>
+                    <th data-lang="Date"></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @for (int i = 1; i <= 15; i++)
+                {
+                    <tr>
+                        <td><span>@i</span></td>
+                        <td><span data-lang="Text X5"></span></td>
+                        <td><span data-lang="Zero X4"></span></td>
+                        <td><span data-lang="Text X1"></span></td>
+                        <td><span data-lang="Text X3"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

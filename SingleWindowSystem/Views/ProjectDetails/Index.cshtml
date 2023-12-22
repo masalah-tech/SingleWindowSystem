@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Details";
+    ViewData["ViewName"] = "Index";
+    Layout = "~/Views/Shared/ProjectDetailsLayout.cshtml";
+    ViewData["Controller"] = "ProjectDetails";
+}
+
+
+
+<div class="row">
+    <div class="col-sm-9">
+        <div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Primary Project Data"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Project_Name" data-lang="Project Name"></label>
+        <input type="text" id="Project_Name" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Activity_Description" data-lang="Activity Description"></label>
+        <textarea
+            id="Activity_Description"
+            class="form-control"
+            aria-label="Activity Description"
+            readonly
+        >##</textarea>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Activity_Type" data-lang="Activity Type"></label>
+        <input type="text" id="Activity_Type" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Order_Type" data-lang="Order Type"></label>
+        <input type="text" id="Order_Type" class="form-control" value="##" readonly />
+    </div>
+</div>
+    </div>
+    <div class="col-sm-3">
+        <div class="box-of-inputs one-child-box">
+            <a asp-controller="Home" asp-action="ProjectCard" class="btn btn-label-primary d-block">
+                <span data-lang="Project Card"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Project Location"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Governorate" data-lang="Governorate"></label>
+        <input type="text" id="Governorate" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Directorate" data-lang="Directorate"></label>
+        <input type="text" id="Directorate" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Region" data-lang="Region"></label>
+        <input type="text" id="Region" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Street" data-lang="Street"></label>
+        <input type="text" id="Street" class="form-control" value="##" readonly />
+    </div>
+    
+    <div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+            <h6 class="mb-0" data-lang="Administrative Address"></h6>
+    </div>
+        <div class="col-sm-12">
+            <label class="form-label" for="Administrative_Address" data-lang="Address"></label>
+            <input type="text" id="Administrative_Address" class="form-control" value="##" readonly />
+        </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Phone_Number" data-lang="Phone Number"></label>
+        <input type="text" id="Phone_Number" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Fax" data-lang="Fax"></label>
+        <input type="text" id="Fax" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Circular" data-lang="Circular"></label>
+        <input type="text" id="Circular" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Mail_Box" data-lang="Mail Box"></label>
+        <input type="text" id="Mail_Box" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Email" data-lang="Email"></label>
+        <input type="text" id="Email" class="form-control" value="##" readonly />
+    </div>
+</div>
+</div>
+
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Land Area Required for the Project"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Area_as_a_Number">
+            <span data-lang="Area as a Number"></span>
+            (<span data-lang="Square Meters"></span>)
+        </label>
+        <input type="text" id="Area_as_a_Number" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Area_as_Text">
+            <span data-lang="Area as Text"></span>
+            (<span data-lang="Square Meters"></span>)
+        </label>
+        <input type="text" id="Area_as_Text" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Ownership_Type" data-lang="Ownership Type"></label>
+        <input type="text" id="Ownership_Type" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Order"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Order_No" data-lang="Order No"></label>
+        <input type="text" id="Order_No" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Order_Date" data-lang="Order Date"></label>
+        <input type="text" id="Order_Date" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Applicant_Name" data-lang="Applicant's Name"></label>
+        <input type="text" id="Applicant_Name" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Applicant_Status" data-lang="Applicant's Status"></label>
+        <input type="text" id="Applicant_Status" class="form-control" value="##" readonly />
+    </div>
+</div>
+
+<div class="row g-3 box-of-inputs">
+    <div class="content-header mt-0 mb-1">
+        <h6 class="mb-0" data-lang="Others"></h6>
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="p-details-project-owner" data-lang="Project Owner"></label>
+        <input type="text" id="p-details-project-owner" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Order_Date" data-lang="Order Date"></label>
+        <input type="text" id="Order_Date" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Applicant_Name" data-lang="Applicant's Name"></label>
+        <input type="text" id="Applicant_Name" class="form-control" value="##" readonly />
+    </div>
+    <div class="col-sm-6">
+        <label class="form-label" for="Applicant_Status" data-lang="Applicant's Status"></label>
+        <input type="text" id="Applicant_Status" class="form-control" value="##" readonly />
+    </div>
+</div>

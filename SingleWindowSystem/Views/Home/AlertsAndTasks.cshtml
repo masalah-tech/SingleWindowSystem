@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Alerts and Tasks";
+
+    var lang = Context.Session.GetString("lang");
+    string Search = (lang == "en") ? "Search" : "بحث";
+    string lengthMenuLeft = (lang == "en") ? "Show" : "عرض الصفوف من";
+    string lengthMenuRight = (lang == "en") ? "Entries" : "";
+    string to = (lang == "en") ? "to" : "إلى";
+    string from = (lang == "en") ? "from" : "من أصل";
+    string first = (lang == "en") ? "first" : "الأول";
+    string previous = (lang == "en") ? "previous" : "السابق";
+    string next = (lang == "en") ? "next" : "التالي";
+    string last = (lang == "en") ? "last" : "الأخير";
+
+    string taskState = "1";
+    // 1 new | 2 read | 3 done
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.table').DataTable({
+
+                ordering: true,
+                info: true,
+                lengthMenu: [10, 20, 30, 100],
+                columnDefs: [
+                    { targets: [0], orderable: true },
+                    { targets: "_all", orderable: false }
+                ],
+                language: {
+                    search: '@Search',
+                    lengthMenu: '@lengthMenuLeft _MENU_ @lengthMenuRight',
+                    info: '@lengthMenuLeft _START_ @to _END_ @from _TOTAL_ @lengthMenuRight',
+                    paginate: {
+                        first: '@first',
+                        previous: '@previous',
+                        next: '@next',
+                        last: '@last'
+                    }
+                }
+            });
+
+
+            controleTableBtns();
+            function controleTableBtns() {
+                const paginateBtns = document.querySelectorAll(".paginate_button");
+
+                paginateBtns.forEach(paginateBtn => {
+                    paginateBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+
+                document.querySelectorAll(".sorting").forEach(sortBtn => {
+                    sortBtn.onclick = () => {
+                        updateLang();
+                        controleTableBtns();
+                    }
+                });
+            }
+            document.querySelectorAll("[name=DataTables_Table_0_length]").forEach(tableLengthSelect => {
+                tableLengthSelect.onchange = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+            document.querySelectorAll("input[type=search]").forEach(searchInput => {
+                searchInput.onkeyup = () => {
+                    updateLang();
+                    controleTableBtns();
+                }
+            })
+
+        });
+    </script>
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="card py-4 px-5">
+        <div class="table-responsive text-nowrap">
+            <table class="table py-4 px-2">
+                <thead>
+                    <tr>
+                        <th data-lang="ID"></th>
+                        <th data-lang="Sender"></th>
+                        <th data-lang="Time"></th>
+                        <th data-lang="Service / Order"></th>
+                        <th data-lang="Project"></th>
+                        <th data-lang="State"></th>
+                        <th data-lang="Actions"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @{
+                        for (int i = 1; i <= 110; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="task-state-container">
+                                        <span>@i</span>
+                                        @{
+                                            if (taskState == "1")
+                                            {
+                                                <span class="task-state new-task"></span>
+                                            }
+                                            else if (taskState == "2")
+                                            {
+                                                <span class="task-state read-task"></span>
+                                            }
+                                        }
+                                    </div>
+                                </td>
+                                <td><span data-lang="Text X3"></span></td>
+                                <td><span data-lang="Text X3"></span></td>
+                                <td><span data-lang="Text X3"></span></td>
+                                <td><span data-lang="Text X5"></span></td>
+                                <td><span data-lang="Text X1"></span></td>
+                                <td>
+                                    <a asp-controller="Home" asp-action="ServiceOrder" class="text-secondary">
+                                        <i class='bx bxs-show'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<style>
+    .task-state-container {
+        position: relative;
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        border: 1px solid rgb(212 216 221);
+    }
+
+    .dark-style .task-state-container {
+        border-color: rgb(84 105 144);
+    }
+
+    .task-state-container .task-state {
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        border-radius: 50%;
+    }
+
+    .task-state-container .task-state.new-task {
+        background-color: rgb(9 199 40);
+    }
+
+    .task-state-container .task-state.read-task {
+        background-color: rgb(253 11 103);
+    }
+
+</style>

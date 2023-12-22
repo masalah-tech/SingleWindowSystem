@@ -1,0 +1,229 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Service Order";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card px-4 pb-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Data About the Project"></h6>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="serv-order-proj-data-proj-name" data-lang="Project Name"></label>
+                        <input type="text" id="serv-order-proj-data-proj-name" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="serv-order-proj-data-decision-number" data-lang="Decision Number (Registration / Licensing / Benefit)"></label>
+                        <input type="text" id="serv-order-proj-data-decision-number" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="serv-order-proj-data-decision-date" data-lang="Its Date"></label>
+                        <input type="text" id="serv-order-proj-data-decision-date" class="form-control" value="##" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="serv-order-proj-data-legal-form" data-lang="Legal Form"></label>
+                        <input type="text" id="serv-order-proj-data-legal-form" class="form-control" value="##" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="card px-4 pb-4 mt-4">
+                <div class="row g-3 box-of-inputs show-only-form">
+                    <div class="content-header mt-0 mb-1">
+                        <h6 class="mb-0" data-lang="Project Folder"></h6>
+                    </div>
+
+                    <!-- الطلبات بانتظار الموافقة -->
+                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container first fix-margin">
+                        <div class="content-header mt-0 mb-1">
+                            <span class="d-block" data-lang="Requests Pending Approval"></span>
+                        </div>
+
+                        <!-- طلب بانتظار الموافقة 1 -->
+                        <div class="pt-2">
+                            <div class="row g-3 box-of-inputs special-sub-box calculation-container fix-margin subfirst">
+                            <div class="content-header mt-0 mb-1">
+                                <span class="d-block" data-lang="Project Expansion"></span>
+                            </div>
+                            <div class="d-flex justify-content-between flex-wrap" style="gap:10px;">
+                                <div class="d-flex justify-content-start flex-wrap" style="gap:10px;">
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-success">
+                                        <span data-lang="Sample"></span>
+                                    </a>
+                                    <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-success ">
+                                        <span data-lang="Document"></span>
+                                    </a>
+                                    <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-secondary disabled">
+                                        <span data-lang="Certificate"></span>
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-end flex-wrap" style="gap:10px;">
+                                        <a href="javascript:void(0)" confirm-popup-target="#discard-service-follow-up" class="btn btn-danger show-confirm-popup">
+                                        <span data-lang="Deny"></span>
+                                    </a>
+                                        <a href="javascript:void(0)" confirm-popup-target="#confirm-service-follow-up" class="btn btn-primary show-confirm-popup">
+                                        <span data-lang="Confirm"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- / طلب بانتظار الموافقة 1 -->
+
+                        <!-- ---- -->
+
+                        <!-- طلب بانتظار الموافقة 2 -->
+                        <div class="pt-2">
+                            <div class="row g-3 box-of-inputs special-sub-box calculation-container fix-margin subfirst">
+                                <div class="content-header mt-0 mb-1">
+                                    <span class="d-block" data-lang="Activity Start"></span>
+                                </div>
+                                <div class="d-flex justify-content-between flex-wrap" style="gap:10px;">
+                                    <div class="d-flex justify-content-start flex-wrap" style="gap:10px;">
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-success">
+                                            <span data-lang="Sample"></span>
+                                        </a>
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-success ">
+                                            <span data-lang="Document"></span>
+                                        </a>
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-outline-secondary disabled">
+                                            <span data-lang="Certificate"></span>
+                                        </a>
+                                    </div>
+                                    <div class="d-flex justify-content-end flex-wrap" style="gap:10px;">
+                                        <a href="javascript:void(0)" confirm-popup-target="#discard-service-follow-up" class="btn btn-danger show-confirm-popup">
+                                            <span data-lang="Deny"></span>
+                                        </a>
+                                        <a href="javascript:void(0)" confirm-popup-target="#confirm-service-follow-up" class="btn btn-primary show-confirm-popup">
+                                            <span data-lang="Confirm"></span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / طلب بانتظار الموافقة 2 -->
+                    </div>
+                    <!-- /  الطلبات بانتظار الموافقة -->
+
+                    <!-- الطلبات السابقة -->
+                    <div class="row g-3 box-of-inputs special-sub-box second-layer-sub-box calculation-container fix-margin">
+                        <div class="content-header mt-0 mb-1">
+                            <span class="d-block" data-lang="Previous Requests"></span>
+                        </div>
+
+                        <div class="d-flex flex-wrap">
+
+                            <!-- طلب سابق -->
+                            <div class="pt-2 inline-box-wrapper">
+                                <div class="row g-3 box-of-inputs special-sub-box half-box calculation-container subfirst fix-margin">
+                                    <div class="content-header mt-0 mb-1">
+                                            <span class="d-block" data-lang="Exemption of Production Inputs for the First Time"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_sample.pdf" class="btn btn-label-secondary d-block w-100">
+                                            <span data-lang="Sample"></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_doc.pdf" class="btn btn-label-secondary d-block w-100">
+                                            <span data-lang="Document"></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a asp-controller="Home" asp-action="DocumentReview" asp-route-docuementId="ownership-modification_cert.pdf" class="btn btn-label-secondary d-block w-100">
+                                            <span data-lang="Certificate"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / طلب سابق -->
+                        </div>
+
+                    </div>
+                    <!-- / الطلبات السابقة -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Popup -->
+<div class="confirmation-popup" id="confirm-service-follow-up">
+    <form id="confirmation-form" class="conf-popup-box conf-popup-form">
+        <h4 data-lang="Confirmation of the Follow-up of the Service"></h4>
+        <button type="button" class="btn-label-danger x-btn close-confirm-popup" confirm-popup-target="#confirm-service-follow-up">
+            <span>
+                <i class="bx bx-x"></i>
+            </span>
+        </button>
+        <div class="row">
+            <div class="col-12">
+                <label class="form-label" for="confirmation-popup-choose-person">إختر الشخص</label>
+                <select id="confirmation-popup-choose-person" class="select form-select">
+                    <option value="">رئيس الهيئة</option>
+                    <option value="">مكتب التسهيلات</option>
+                    <option value="">مكتب دائرة الخدمة</option>
+                    <option value="">مكتب الشئون القانونية</option>
+                    <option value="">رئيس قطاع المشاريع</option>
+                    <option value="" selected>مدير دائرة المشاريع الصناعية</option>
+                    <option value="">مدير دائرة المشاريع الاستراتيجية</option>
+                    <option value="">مدير دائرة المشاريع الزراعية</option>
+                    <option value="">ضابط المشروع 1</option>
+                    <option value="">ضابط المشروع 2</option>
+                    <option value="">السكرتارية</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-4" style="gap:7px;">
+            <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger close-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+            <input type="submit" class="btn btn-primary" value="إرسال">
+        </div>
+    </form>
+</div>
+<!-- / Confirmation Popup -->
+
+<!-- Discard Confirmation Popup -->
+<div class="confirmation-popup" id="discard-service-follow-up">
+    <form id="confirmation-form" class="conf-popup-box conf-popup-form">
+        <h4 data-lang="Refusal of Service Attach Notes"></h4>
+        <button type="button" class="btn-label-danger x-btn close-confirm-popup" confirm-popup-target="#discard-service-follow-up">
+            <span>
+                <i class="bx bx-x"></i>
+            </span>
+        </button>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label" for="discard-service-follow-up-notes" data-lang="Notes"></label>
+                <textarea id="discard-service-follow-up-notes"
+                          class="form-control no-resize"
+                          placeholder="##"
+                          aria-label="Activity Description"></textarea>
+            </div>
+            <div class="col-12 mt-2">
+                <label class="form-label" for="confirmation-popup-choose-person">إختر الشخص</label>
+                <select id="confirmation-popup-choose-person" class="select form-select">
+                    <option value="">رئيس الهيئة</option>
+                    <option value="">مكتب التسهيلات</option>
+                    <option value="">مكتب دائرة الخدمة</option>
+                    <option value="">مكتب الشئون القانونية</option>
+                    <option value="">رئيس قطاع المشاريع</option>
+                    <option value="" selected>مدير دائرة المشاريع الصناعية</option>
+                    <option value="">مدير دائرة المشاريع الاستراتيجية</option>
+                    <option value="">مدير دائرة المشاريع الزراعية</option>
+                    <option value="">ضابط المشروع 1</option>
+                    <option value="">ضابط المشروع 2</option>
+                    <option value="">السكرتارية</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-4" style="gap:7px;">
+            <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger close-confirm-popup" confirm-popup-target="#discard-service-follow-up"></a>
+            <input type="submit" class="btn btn-primary" value="إرسال">
+        </div>
+    </form>
+</div>
+<!-- / Discard Confirmation Popup -->

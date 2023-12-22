@@ -1,0 +1,209 @@
+﻿@model ProjectRegistrationViewModel
+
+@{
+    ViewData["page_title_data_lang"] = "Issuing a certificate for the renewal of the project implementation phases";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area no-scroll">
+    <div class="row container-l2">
+        <div class="col-12 container-l3">
+            <div class="bs-stepper wizard-numbered container-l4 custom">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#data-about-the-project">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle">-</span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title lh-base" data-lang="Issuing a certificate for the renewal of the project implementation phases"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="order-no">
+                        <span data-lang="Order No:"></span>
+                        <span>####</span>
+                    </div>
+                </div>
+                <div class="bs-stepper-content c-scroll container-l5">
+                    <form class="container-l6">
+                        <div id="data-about-the-project" class="content container-l7">
+                            <div class="row g-3 h-100 position-relative">
+                                <div class="container-l8 c-scroll stepper-content-wrapper">
+                                    <div class="container-l9 c-scroll">
+                                        <div class="row g-3 box-of-inputs first show-only-form">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Primary Project Data"></h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="proj-data-project-name" data-lang="Project Name"></label>
+                                                <input type="text" id="proj-data-project-name" class="form-control" readonly />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="proj-data-decision-number" data-lang="Decision Number"></label>
+                                                <input type="text" id="proj-data-decision-number" class="form-control" readonly />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="proj-data-decision-date" data-lang="Decision Date"></label>
+                                                <input type="text" id="proj-data-decision-date" class="form-control" readonly />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="proj-data-legal-form" data-lang="Legal Form"></label>
+                                                <input type="text" id="proj-data-legal-form" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="The Reasons for Renewal Request"></h6>
+                                            </div>
+                                            <div class="form-repeater">
+                                                <div class="items-container">
+                                                    <div class="repeater-item">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-sm-10 col-12 mb-0">
+                                                                <label class="form-label" for="form-repeater-1-1" data-lang="Reason"></label>
+                                                                <input name="" type="text" id="form-repeater-1-1" class="form-control" />
+                                                                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                                                            </div>
+                                                            <div class="mb-3 col-sm-2 d-flex align-items-end mb-0 d-none delete-btn-container">
+                                                                <button type="button" class="btn btn-label-danger mt-4 remove-row-btn">
+                                                                    <i class="bx bx-x me-1"></i>
+                                                                    <span class="align-middle" data-lang="Delete"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <button type="button" class="btn btn-primary add-row-btn">
+                                                        <i class="bx bx-plus me-1"></i>
+                                                        <span class="align-middle" data-lang="Add"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Determine the Start Date of Production"></h6>
+                                            </div>
+                                            <div class="col-md-6" id="prod-start-date-box">
+                                                <label class="form-label" for="proj-data-production-start-date" data-lang="Start Date of Production"></label>
+                                                <input id="proj-data-production-start-date" class="form-control" />
+                                                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="switch switch-primary">
+                                                    <input type="checkbox" class="switch-input controls-a-box" c-controls="#prod-start-date-box" />
+                                                    <span class="switch-toggle-slider">
+                                                        <span class="switch-on">
+                                                            <i class="bx bx-check"></i>
+                                                        </span>
+                                                        <span class="switch-off">
+                                                            <i class="bx bx-x"></i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="switch-label" data-lang="Production has not Started Yet"></span>
+                                                </label>
+                                                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Attachments"></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="form-label" for="" data-lang="The Document"></span>
+                                                <div class="wrapper upload">
+                                                    <div class="file-upload">
+                                                        <input type="file" required />
+                                                        <div class="details">
+                                                            <div class="file-statement">
+                                                                <span data-lang="The Original Licensing/Registration Decision"></span>
+                                                            </div>
+                                                            <div class="file-name-wrapper">
+                                                                <span data-lang="File name"></span>:
+                                                                <span class="file-name"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-btn">
+                                                            <span data-lang="Upload"></span>
+                                                            <i class='bx bx-upload'></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="form-label" for="" data-lang="The Document"></span>
+                                                <div class="wrapper upload">
+                                                    <div class="file-upload">
+                                                        <input type="file" required />
+                                                        <div class="details">
+                                                            <div class="file-statement">
+                                                                <span data-lang="A Copy of the Last (Renewed) Tax Exemption Certificate (for Projects that Started Production)"></span>
+                                                            </div>
+                                                            <div class="file-name-wrapper">
+                                                                <span data-lang="File name"></span>:
+                                                                <span class="file-name"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-btn">
+                                                            <span data-lang="Upload"></span>
+                                                            <i class='bx bx-upload'></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 box-of-inputs">
+                                            <div class="content-header mt-0 mb-1">
+                                                <h6 class="mb-0" data-lang="Applicant Data"></h6>
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-name" data-lang="Name">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-name" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-status" data-lang="Status">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-status" class="form-control" readonly value="##" />
+                                            </div>
+                                            <div class='col-lg-4'>
+                                                <label class="form-label" for="proj-reg-applicant-data-date" data-lang="Date">
+                                                </label>
+                                                <input type="text" id="proj-reg-applicant-data-date" class="form-control put-today" readonly value="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-12 justify-content-end stepper-btns">
+                                    <button type="submit" class="btn btn-success btn-submit" data-lang="Submit"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        sortFormsetIds = ($itemsContainer) => {
+            var rows = $itemsContainer.children(".repeater-item")
+            console.log("ddd");
+            $.each(rows, function (i, row) {
+                $(this).children("div").find("input, select").each(function (j, element) {
+                    var newString = $(this).attr("name");
+                    newString = newString.replace(/\[.*?\]/g, "");
+                    $(this).attr("id", "id-" + i + "-" + newString.replace("Forms.", ""));
+                    $(this).attr("name", $(this).attr("name").replace(/\[.*?\]/g, `[${i}]`));
+                    //console.log(newString);
+                })
+            })
+        }
+
+    </script>
+}

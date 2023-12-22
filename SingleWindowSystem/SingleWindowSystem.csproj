@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\custom\js\lang.js" />
+    <Content Remove="wwwroot\custom\js\printFiles.js" />
+    <Content Remove="wwwroot\custom\js\sanitize.js" />
+    <Content Remove="wwwroot\custom\js\SubsidiaryServices.js" />
+    <Content Remove="wwwroot\custom\js\tempFunctions.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\custom\js\lang.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\custom\js\sanitize.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\custom\js\SubsidiaryServices.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\custom\js\tempFunctions.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\custom\js\lang.js" />
+    <None Include="wwwroot\custom\js\printFiles.js" />
+    <None Include="wwwroot\custom\js\sanitize.js" />
+    <None Include="wwwroot\custom\js\SubsidiaryServices.js" />
+    <None Include="wwwroot\custom\js\tempFunctions.js" />
+  </ItemGroup>
+
+</Project>

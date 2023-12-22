@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Subsidiary Services";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y content-area">
+    <div class="c-page-wrapper">
+        <div class="c-row">
+            <div class="c-card overflow-auto c-scroll">
+                <div class="row">
+                    <div class="col-12">
+                        @*<label class="form-label" for="sub-servs-choose-the-office" data-lang="Choose the Office"></label>*@
+                        <span data-lang="Choose the Office" class="fs-6 mb-2 d-block"></span>
+                        <select id="sub-servs-choose-the-office" class="select form-select">
+                            <option value="" selected data-lang="Customs Office"></option>
+                            <option value="" data-lang="Tax Office"></option>
+                            <option value="" data-lang="Office 3"></option>
+                            <option value="" data-lang="Office 4"></option>
+                            <option value="" data-lang="Office 5"></option>
+                            <option value="" data-lang="Office 6"></option>
+                            <option value="" data-lang="Office 7"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-4 c-check-container">
+                    <div class="col-12">
+                        @*<label class="form-label" for="sub-servs-choose-the-office" data-lang="Choose the Office"></label>*@
+                        <span data-lang ="Select the Services" class="fs-6 mb-2 d-block"></span>
+                        <div class="form-check form-switch mb-2 order-input-container">
+                            <input class="form-check-input order-input" type="checkbox" id="sub-servs-check-1" name="subServices" />
+                            <label class="form-check-label order-label" for="sub-servs-check-1" data-lang="Issuance of the exemption decision (residence)"></label>
+                        </div>
+                        <div class="form-check form-switch mb-2 order-input-container">
+                            <input class="form-check-input order-input" type="checkbox" id="sub-servs-check-2" name="subServices" checked />
+                            <label class="form-check-label order-label" for="sub-servs-check-2" data-lang="Issuing the decision to amend and add (quantity / value / designation)"></label>
+                        </div>
+                        <div class="form-check form-switch mb-2 order-input-container">
+                            <input class="form-check-input order-input" type="checkbox" id="sub-servs-check-3" name="subServices" />
+                            <label class="form-check-label order-label" for="sub-servs-check-3" data-lang="Issuing detailed statements of fixed assets (residence - addition)"></label>
+                        </div>
+                        <div class="form-check form-switch mb-2 order-input-container">
+                            <input class="form-check-input order-input" type="checkbox" id="sub-servs-check-4" name="subServices" checked />
+                            <label class="form-check-label order-label" for="sub-servs-check-4" data-lang="Issuing release orders for fixed assets"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-card overflow-auto c-scroll orders-folder">
+                <span data-lang="Orders Folder" class="fs-6 mb-3 d-block fw-bold"></span>
+                
+            </div>
+        </div>
+        <div class="c-row">
+            <div class="c-btns-wrapper">
+                <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger"></a>
+                <a href="javascript:void(0)" data-lang="Next" class="btn btn-primary"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/custom/js/SubsidiaryServices.js" defer></script>
+    <script>
+        
+
+    </script>
+}

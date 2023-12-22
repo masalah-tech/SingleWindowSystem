@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["page_title_data_lang"] = "Project Implementation Phase Renewal Document";
+
+    String orderNum = "1234";
+    String orderIssueDate = "09/08/2023";
+    String projName = "مصنع مصنع مصنع";
+    String projRegDate = "12/06/2023";
+    String investorName = "صالح حمود علي قاسم";
+    String renewalCertNum = "121212";
+    String projCertNum = "000000";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y content-area proj-reg-doc">
+    <div class="row invoice-preview justify-content-center">
+        <!-- Invoice -->
+        <div class="col-12 col-md-10 mb-4 mb-md-0">
+            <div class="card invoice-preview-card">
+                <div class="card-body">
+                    <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between p-0 p-sm-3">
+                        <div class="mb-4 mb-xl-0">
+                            <div class="svg-illustration gap-2 d-flex flex-column align-items-start mb-3">
+                                <span class="app-brand-text h5 fw-semibold mb-0">الجمهورية اليمنية</span>
+                                <span class="app-brand-text h5 fw-medium mb-0">الهيئة العامة للاستثمار</span>
+                                <span class="app-brand-text h5 fw-medium mb-0">وثيقة تسجيل مشروع</span>
+                            </div>
+                        </div>
+                        <img src="~/favicon.png" style="width: 120px;" />
+                        <div>
+                            <h5 class="mb-2">
+                                <span>رقم الطلب: #</span>
+                                <span>@orderNum</span>
+                            </h5>
+                            <div class="mb-2">
+                                <span class="me-1">تاريخ الإصدار</span>
+                                <span class="fw-semibold">@orderIssueDate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body px-5">
+                    <div class="d-flex justify-content-between">
+                        <span>الأخ/رئيس الهيئة العامة للاستثمار</span>
+                        <span>المحترم</span>
+                    </div>
+                    <div class="d-flex justify-content-center my-3">
+                        <span class="h5 fw-medium">تحية طيبة... وبعد</span>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center my-2" style="gap:5px;padding-inline:150px">
+                        <span>شهادة رقم (</span>
+                        <span class="text-primary">@renewalCertNum</span>
+                        <span>) بشأن تجديد مراحل تنفيذ مشروع </span>
+                        <span class="text-primary">@projName</span>
+                        <span>المسجل بالشهادة رقم </span>
+                        <span class="text-primary">@projCertNum</span>
+                        <span>الصادر بتاريخ </span>
+                        <span class="text-primary">@projRegDate م</span>
+                        <span>والتابع للمستثمر</span>
+                        <span class="text-primary">@investorName</span>
+                    </div>
+                    <div class="d-flex justify-content-start my-4">
+                        <ul>
+                            <li>بعد الاطلاع على قانون الاستثمار رقم(15) لعام 2010م</li>
+                            <li>
+                                <span>وعلى شهادة التسجيل رقم (</span>
+                                <span class="text-primary">@projCertNum</span>
+                                <span>) بشأن التسجيل لإقامة مشروع </span>
+                                <span class="text-primary">@projName</span>
+                                <span>وعلى طلب المستثمر المقدم بتاريخ </span>
+                                <span class="text-primary">@projRegDate م</span>
+                            </li>
+                            <li>وبعد استيفاء الإجراءات والبيانات المطلوبة يتم ما يلي
+                                <ul>
+                                    <li>
+                                        تجدد مراحل تنفيذ المشروع الواردة في المادة (1) من قرار التسجيل أعلاه لتصبح على
+                                        النحو التالي:
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row g-3 box-of-inputs">
+                        <div class="content-header mt-0 mb-1">
+                            <h6 class="mb-0">بيانات التجديد</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proj-imp-renewal-doc-phase">المرحلة</label>
+                            <select id="proj-imp-renewal-doc-phase" class="select form-select has-new-options">
+                                <option value="" selected>المرحلة الأولى</option>
+                                <option value="">المرحلة الثانية</option>
+                                <option value="">المرحلة الثالثة</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proj-imp-renewal-doc-imp-start-date">تاريخ بدء التنفيذ</label>
+                            <input type="date" id="proj-imp-renewal-doc-imp-start-date" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proj-imp-renewal-doc-imp-end-date">تاريخ إتمام التنفيذ</label>
+                            <input type="date" id="proj-imp-renewal-doc-imp-end-date" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proj-imp-renewal-doc-activity-start-date">تاريخ بدء النشاط / الإنتاج</label>
+                            <input type="date" id="proj-imp-renewal-doc-activity-start-date" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proj-imp-renewal-renewal">التجديد</label>
+                            <select id="proj-imp-renewal-renewal" class="select form-select has-new-options">
+                                <option value="" selected>الأول</option>
+                                <option value="">الثاني</option>
+                                <option value="">الثالث</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start my-4">
+                        <ul>
+                            <li>(2): تم تسجيل شهادة التجديد أعلاه في سجل المشاريع لدى الهيئة.</li>
+                            <li>(3): يعمل بهذه الشهادة من تاريخ صدورها.</li>
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 mt-1">
+                        <span>وتقبلوا خالص تحياتنا ،،،</span>
+                    </div>
+                    <div class="d-flex justify-content-end my-4" style="gap:7px;">
+                        <a asp-controller="" asp-action="" data-lang="Cancel" class="btn btn-danger"></a>
+                        <a href="javascript:void(0)" data-lang="Next" class="btn btn-primary show-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Popup -->
+<div class="confirmation-popup" id="confirm-service-follow-up">
+    <form id="confirmation-form" class="conf-popup-box conf-popup-form">
+        <h4 data-lang="Confirmation of the Follow-up of the Service"></h4>
+        <button type="button" class="btn-label-danger x-btn close-confirm-popup" confirm-popup-target="#confirm-service-follow-up">
+            <span>
+                <i class="bx bx-x"></i>
+            </span>
+        </button>
+        <div class="row">
+            <div class="col-12">
+                <label class="form-label" for="confirmation-popup-choose-person">إختر الشخص</label>
+                <select id="confirmation-popup-choose-person" class="select form-select">
+                    <option value="">رئيس الهيئة</option>
+                    <option value="">مكتب التسهيلات</option>
+                    <option value="">مكتب دائرة الخدمة</option>
+                    <option value="">مكتب الشئون القانونية</option>
+                    <option value="">رئيس قطاع المشاريع</option>
+                    <option value="" selected>مدير دائرة المشاريع الصناعية</option>
+                    <option value="">مدير دائرة المشاريع الاستراتيجية</option>
+                    <option value="">مدير دائرة المشاريع الزراعية</option>
+                    <option value="">ضابط المشروع 1</option>
+                    <option value="">ضابط المشروع 2</option>
+                    <option value="">السكرتارية</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-4" style="gap:7px;">
+            <a href="javascript:void(0)" data-lang="Cancel" class="btn btn-danger close-confirm-popup" confirm-popup-target="#confirm-service-follow-up"></a>
+            <input type="submit" class="btn btn-primary" value="إرسال">
+        </div>
+    </form>
+</div>
+<!-- / Confirmation Popup -->
